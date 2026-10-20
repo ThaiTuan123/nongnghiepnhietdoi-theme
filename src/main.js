@@ -8,6 +8,7 @@ import { initFloatingButtons } from './modules/floatingButtons.js';
 import { initContactForms } from './modules/contactForm.js';
 import { initLightbox } from './modules/lightbox.js';
 import { initReveal } from './animations/reveal.js';
+import { initCountUp } from './animations/countUp.js';
 import { initParallax } from './animations/parallax.js';
 import StatCounter from './components/StatCounter.vue';
 import HeroSlider from './components/HeroSlider.vue';
@@ -42,6 +43,11 @@ function mountIslands() {
 }
 
 function boot() {
+  document.querySelectorAll('video.hero-video').forEach((video) => {
+    const drop = () => video.remove();
+    video.addEventListener('error', drop);
+    video.querySelectorAll('source').forEach((source) => source.addEventListener('error', drop));
+  });
   initHeader();
   const lenis = initSmoothScroll();
   initScrollIndicator(lenis);
@@ -49,6 +55,7 @@ function boot() {
   initContactForms();
   initLightbox();
   initReveal();
+  initCountUp();
   initParallax();
   mountIslands();
 }

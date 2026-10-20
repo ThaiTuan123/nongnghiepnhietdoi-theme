@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VARC — Nông nghiệp Nhiệt đới</title>
+  </head>
+  <body class="antialiased overflow-x-hidden bg-bone font-sans text-charcoal">
+    <div class="varc-header fixed inset-x-0 top-0 z-50" data-header>
+      <div class="mx-auto flex h-[76px] max-w-[1360px] items-center gap-3 px-4 sm:h-[88px] sm:px-6 lg:px-8">
+        <a href="#ve-varc" class="flex shrink-0 items-center gap-2.5">
+          <img src="/media/logo-varc.png" alt="" class="h-10 w-10 rounded-full bg-white object-cover sm:h-11 sm:w-11" width="44" height="44" />
+          <span class="varc-logo-name text-base font-bold tracking-[0.14em] sm:text-lg">VARC</span>
+        </a>
+        <nav class="varc-nav hidden min-w-0 flex-1 items-center justify-center gap-0.5 rounded-full bg-brand-900/95 p-1.5 shadow-lg xl:flex" aria-label="Menu chính">
+          <ul class="varc-menu m-0 flex list-none items-center gap-0.5 p-0">
+            <li class="menu-item current-menu-item"><a href="http://nongnghiepnhietdoi.local/">Trang Chủ</a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="http://nongnghiepnhietdoi.local/ve-chung-toi/">Về Chúng tôi</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/hoi-dong-co-van-ban-dieu-hanh/">Hội Đồng Cố Vấn &amp; Ban Điều Hành</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/doi-tac-nha-tai-tro/">Đối Tác &amp; Nhà Tài Trợ</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/linh-vuc-dich-vu/">Lĩnh vực &amp; Dịch Vụ</a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="http://nongnghiepnhietdoi.local/du-an-tac-dong/">Dự Án &amp; Tác Động</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/du-an-tai-tro-ngo-oda/">Dự Án Tài Trợ (NGO/ODA)</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/du-an-tu-van-danh-gia/">Dự Án Tư Vấn &amp; Đánh Giá</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/de-tai-dat-hang-tu-nha-nuoc/">Đề Tài Đặt Hàng Từ Nhà Nước</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/thu-vien-tin-tuc/">Thư Viện &amp; Tin Tức</a></li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/hop-tac-du-an/">Hợp Tác Dự Án</a></li>
+          </ul>
+        </nav>
+        <a href="#lien-he" class="varc-cta ml-auto hidden items-center gap-2 rounded-full bg-brand py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white hover:bg-brand-700 xl:inline-flex">
+          Liên hệ
+          <span class="varc-cta-icon inline-flex h-9 w-9 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
+            <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </span>
+        </a>
+        <button type="button" class="varc-menu-btn ml-auto inline-flex items-center justify-center rounded-full p-2 text-white xl:hidden" data-menu-toggle aria-expanded="false" aria-controls="mobile-menu" aria-label="Mở menu">
+          <span class="hamburger" aria-hidden="true"><span></span><span></span><span></span></span>
+        </button>
+      </div>
+      <div id="mobile-menu" class="mobile-menu xl:hidden" data-mobile-menu hidden>
+        <nav class="px-4 py-4" aria-label="Menu di động">
+          <ul class="lx-mobile-menu m-0 flex list-none flex-col gap-1 p-0">
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/">Trang Chủ</a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="http://nongnghiepnhietdoi.local/ve-chung-toi/">Về Chúng tôi</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/hoi-dong-co-van-ban-dieu-hanh/">Hội Đồng Cố Vấn &amp; Ban Điều Hành</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/doi-tac-nha-tai-tro/">Đối Tác &amp; Nhà Tài Trợ</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/linh-vuc-dich-vu/">Lĩnh vực &amp; Dịch Vụ</a></li>
+            <li class="menu-item menu-item-has-children">
+              <a href="http://nongnghiepnhietdoi.local/du-an-tac-dong/">Dự Án &amp; Tác Động</a>
+              <ul class="sub-menu">
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/du-an-tai-tro-ngo-oda/">Dự Án Tài Trợ (NGO/ODA)</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/du-an-tu-van-danh-gia/">Dự Án Tư Vấn &amp; Đánh Giá</a></li>
+                <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/de-tai-dat-hang-tu-nha-nuoc/">Đề Tài Đặt Hàng Từ Nhà Nước</a></li>
+              </ul>
+            </li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/thu-vien-tin-tuc/">Thư Viện &amp; Tin Tức</a></li>
+            <li class="menu-item"><a href="http://nongnghiepnhietdoi.local/hop-tac-du-an/">Hợp Tác Dự Án</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <main id="main">
+      <section class="relative isolate min-h-[100svh] overflow-hidden bg-ink text-white">
+        <video class="hero-video absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline poster="/media/hero-field.jpg">
+          <source src="/media/hero.mp4" type="video/mp4" />
+        </video>
+        <img src="/media/hero-field.jpg" alt="" class="absolute inset-0 -z-10 h-full w-full object-cover" />
+        <div class="absolute inset-0 bg-gradient-to-l from-black/55 via-black/15 to-black/10"></div>
+        <div class="relative mx-auto flex min-h-[100svh] w-full max-w-[1360px] items-end px-4 pb-14 pt-28 sm:items-center sm:px-6 sm:pb-0 lg:justify-end lg:px-8" data-reveal>
+          <div class="w-full max-w-[560px]">
+            <p class="mb-5 inline-flex w-fit items-center rounded-full border border-white/45 bg-white/10 px-4 py-1.5 text-sm text-white/95 backdrop-blur-sm">Nghiên cứu & tư vấn</p>
+            <h1 class="font-sans text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px]">Tiên phong nông nghiệp thích ứng khí hậu</h1>
+            <p class="mt-5 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">Chuyển hóa công nghệ vi sinh, xử lý môi trường và đo lường phát thải thành sinh kế bền vững cho nông dân Việt Nam.</p>
+            <a href="#lien-he" class="varc-cta mt-8 inline-flex items-center gap-3 rounded-full bg-brand py-2 pl-6 pr-2 text-sm font-semibold text-white hover:bg-brand-700">
+              Hợp tác dự án
+              <span class="varc-cta-icon inline-flex h-10 w-10 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
+                <svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-brand text-white">
+        <div class="mx-auto grid max-w-[1200px] grid-cols-2 gap-6 px-4 py-8 lg:grid-cols-4" data-reveal-stagger>
+          <div class="text-center"><p class="text-2xl font-bold sm:text-3xl" data-count="25" data-count-suffix="+">25+</p><p class="mt-1 text-xs text-white/85 sm:text-sm">Chuyên gia & nhà khoa học cố vấn</p></div>
+          <div class="text-center"><p class="text-2xl font-bold sm:text-3xl" data-count="10000" data-count-suffix="+" data-count-group>10.000+</p><p class="mt-1 text-xs text-white/85 sm:text-sm">Hợp tác xã & nông dân trong mạng lưới</p></div>
+          <div class="text-center"><p class="text-2xl font-bold sm:text-3xl" data-count="40" data-count-suffix="+">40+</p><p class="mt-1 text-xs text-white/85 sm:text-sm">Mô hình vi sinh & CSA đã triển khai</p></div>
+          <div class="text-center"><p class="text-2xl font-bold sm:text-3xl" data-count="15" data-count-suffix="+">15+</p><p class="mt-1 text-xs text-white/85 sm:text-sm">Tỉnh/thành có hoạt động triển khai</p></div>
+        </div>
+      </section>
+
+      <section id="ve-varc" class="scroll-mt-28 bg-white">
+        <div class="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-12 md:py-16 lg:grid-cols-2">
+          <div class="overflow-hidden rounded-3xl" data-reveal="image"><div data-reveal-frame><img src="/media/about-field.jpg" alt="" class="max-h-[280px] w-full object-cover sm:max-h-[420px]" /></div></div>
+          <div data-reveal="right">
+            <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Về VARC</p>
+            <h2 class="mt-3 font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl">Trung tâm nghiên cứu khoa học</h2>
+            <p class="mt-4 leading-relaxed text-slate-600">VARC là đầu mối nghiên cứu và tư vấn nông nghiệp nhiệt đới: đưa công nghệ vi sinh, nông nghiệp thích ứng khí hậu và đo lường phát thải ra đồng ruộng.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="nang-luc" class="scroll-mt-28">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Năng lực khác biệt</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold text-ink">Khoa học ra đồng, đo được kết quả</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><p class="text-sm font-bold text-sun">01</p><h3 class="mt-3 font-bold text-ink">Vi sinh bản địa</h3><p class="mt-2 text-sm text-slate-600">Phân lập, nhân sinh khối và chuyển giao chế phẩm IMO.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><p class="text-sm font-bold text-sun">02</p><h3 class="mt-3 font-bold text-ink">Hiện trường CSA</h3><p class="mt-2 text-sm text-slate-600">Mô hình nông nghiệp thông minh với khí hậu theo mùa vụ.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><p class="text-sm font-bold text-sun">03</p><h3 class="mt-3 font-bold text-ink">Đo phát thải</h3><p class="mt-2 text-sm text-slate-600">Đo khí nhà kính trước và sau can thiệp.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><p class="text-sm font-bold text-sun">04</p><h3 class="mt-3 font-bold text-ink">Chuyển giao</h3><p class="mt-2 text-sm text-slate-600">Tập huấn nông hộ và đồng hành sau bàn giao.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="linh-vuc" class="scroll-mt-28 bg-white">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Lĩnh vực hoạt động</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold text-ink">Sáu nhóm việc VARC đang làm</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Công nghệ vi sinh</h3><p class="mt-2 text-sm text-slate-600">Chế phẩm xử lý phụ phẩm và cải tạo đất.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Thích ứng khí hậu</h3><p class="mt-2 text-sm text-slate-600">Mô hình CSA cho vùng nhiệt đới.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Xử lý môi trường</h3><p class="mt-2 text-sm text-slate-600">Ủ phân hữu cơ, giảm đốt phụ phẩm.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Phát thải khí nhà kính</h3><p class="mt-2 text-sm text-slate-600">Đo và đề xuất biện pháp giảm phát thải.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Đào tạo chuyển giao</h3><p class="mt-2 text-sm text-slate-600">Cẩm nang và tập huấn hiện trường.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Tư vấn độc lập</h3><p class="mt-2 text-sm text-slate-600">Đánh giá dự án và đề tài khoa học.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="du-an" class="scroll-mt-28">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Dự án tiêu biểu</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold text-ink">Mô hình đã ra đồng</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-40 bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('/media/hero-field.jpg')"></div><div class="p-6"><h3 class="font-bold text-ink">Nhân sinh khối IMO tại nông hộ</h3><p class="mt-2 text-sm text-slate-600">Quy trình chế phẩm vi sinh bản địa cho hợp tác xã tự nhân.</p></div></article>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-40 bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('/media/about-field.jpg')"></div><div class="p-6"><h3 class="font-bold text-ink">Mô hình CSA giảm phát thải</h3><p class="mt-2 text-sm text-slate-600">Canh tác thích ứng khí hậu, đo phát thải theo vụ.</p></div></article>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-40 bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('/media/hero-field.jpg')"></div><div class="p-6"><h3 class="font-bold text-ink">Ủ phân từ phụ phẩm</h3><p class="mt-2 text-sm text-slate-600">Rơm rạ, thân bắp và vỏ cà phê thành phân hữu cơ.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="con-nguoi" class="scroll-mt-28 bg-white">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Con người VARC</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold text-ink">Nhà khoa học, kỹ thuật viên và người đứng trên ruộng</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3" data-reveal-stagger>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Nhà khoa học cố vấn</h3><p class="mt-2 text-sm text-slate-600">Định hướng đề tài và phản biện quy trình trước khi ra đồng.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Cán bộ hiện trường</h3><p class="mt-2 text-sm text-slate-600">Lắp mô hình, tập huấn và ghi số liệu theo vụ.</p></article>
+            <article class="rounded-2xl bg-bone p-6"><h3 class="font-bold text-ink">Nông dân nòng cốt</h3><p class="mt-2 text-sm text-slate-600">Nhân chế phẩm và lan tỏa trong hợp tác xã.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="ban-dieu-hanh" class="scroll-mt-28">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Ban điều hành</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold text-ink">Bốn vai trò điều phối trung tâm</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><div class="h-1.5 w-10 rounded-full bg-sun"></div><h3 class="mt-4 font-bold text-ink">Giám đốc</h3><p class="mt-2 text-sm text-slate-600">Chiến lược, đối tác và chương trình quốc gia.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><div class="h-1.5 w-10 rounded-full bg-sun"></div><h3 class="mt-4 font-bold text-ink">Phó giám đốc khoa học</h3><p class="mt-2 text-sm text-slate-600">Chất lượng nghiên cứu và hồ sơ đề tài.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><div class="h-1.5 w-10 rounded-full bg-sun"></div><h3 class="mt-4 font-bold text-ink">Trưởng ban vi sinh</h3><p class="mt-2 text-sm text-slate-600">Quy trình chế phẩm và chuyển giao kỹ thuật.</p></article>
+            <article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100"><div class="h-1.5 w-10 rounded-full bg-sun"></div><h3 class="mt-4 font-bold text-ink">Trưởng ban hiện trường</h3><p class="mt-2 text-sm text-slate-600">Mạng lưới tỉnh và lịch triển khai theo vụ.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="he-sinh-thai" class="scroll-mt-28 bg-ink text-white">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun">Hệ sinh thái</p>
+          <h2 data-reveal class="mt-3 font-sans text-3xl font-bold">VARC đứng giữa bốn nhóm đối tác</h2>
+          <div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
+            <article class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"><h3 class="font-bold">Nông hộ & HTX</h3><p class="mt-2 text-sm text-white/70">Nơi mô hình được làm và nhân rộng.</p></article>
+            <article class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"><h3 class="font-bold">Nhà khoa học</h3><p class="mt-2 text-sm text-white/70">Quy trình, phản biện và đào tạo.</p></article>
+            <article class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"><h3 class="font-bold">Doanh nghiệp</h3><p class="mt-2 text-sm text-white/70">Chuỗi tiêu thụ và thử nghiệm.</p></article>
+            <article class="rounded-2xl bg-white/5 p-6 ring-1 ring-white/10"><h3 class="font-bold">Cơ quan quản lý</h3><p class="mt-2 text-sm text-white/70">Chương trình ngành và khung đo phát thải.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="tin-tuc" class="scroll-mt-28">
+        <div class="mx-auto max-w-[1200px] px-4 py-16">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Tin tức hoạt động</p>
+          <h2 data-reveal class="mt-2 font-sans text-3xl font-bold text-ink">Tin tức</h2>
+          <div class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3" data-reveal-stagger>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-28 bg-gradient-to-br from-brand-700 to-brand"></div><div class="p-4"><p class="text-xs text-slate-400">24/08/2026</p><h3 class="mt-2 font-bold text-brand">Cẩm nang nhân sinh khối IMO tại nông hộ</h3></div></article>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-28 bg-gradient-to-br from-brand-700 to-brand"></div><div class="p-4"><p class="text-xs text-slate-400">23/08/2026</p><h3 class="mt-2 font-bold text-brand">Ký kết hợp tác nghiên cứu vi sinh</h3></div></article>
+            <article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100"><div class="h-28 bg-gradient-to-br from-brand-700 to-brand"></div><div class="p-4"><p class="text-xs text-slate-400">22/08/2026</p><h3 class="mt-2 font-bold text-brand">Ủ phân hữu cơ từ phụ phẩm</h3></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-gradient-to-r from-[#06351f] to-brand text-white">
+        <div class="mx-auto flex max-w-[1200px] flex-col items-start justify-between gap-6 px-4 py-10 md:flex-row md:items-center md:py-12" data-reveal>
+          <div>
+            <h2 class="font-sans text-2xl font-bold md:text-3xl">Cùng VARC kiến tạo nền nông nghiệp phát thải thấp</h2>
+            <p class="mt-2 max-w-2xl text-white/80">Đồng hành cùng quỹ, doanh nghiệp, NGO và cơ quan quản lý.</p>
+          </div>
+          <a href="#lien-he" class="rounded-lg bg-white px-5 py-3 text-sm font-semibold text-ink">Hợp tác dự án →</a>
+        </div>
+      </section>
+    </main>
+
+    <footer id="lien-he" class="bg-ink text-white">
+      <div class="mx-auto grid max-w-[1200px] gap-8 px-4 py-12 sm:grid-cols-2 lg:grid-cols-4">
+        <div>
+          <img src="/media/logo-varc.png" alt="VARC" class="h-14 w-14 rounded-full bg-white object-cover" />
+          <p class="mt-4 text-sm text-white/70">Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC).</p>
+        </div>
+        <div>
+          <h2 class="text-sm font-semibold">Liên kết nhanh</h2>
+          <ul class="mt-3 space-y-2 text-sm text-white/70">
+            <li><a href="#ve-varc">Về chúng tôi</a></li>
+            <li><a href="#linh-vuc">Lĩnh vực & Dịch vụ</a></li>
+            <li><a href="#du-an">Dự án & Tác động</a></li>
+            <li><a href="#tin-tuc">Thư viện & Tin tức</a></li>
+          </ul>
+        </div>
+        <div>
+          <h2 class="text-sm font-semibold">Liên hệ</h2>
+          <p class="mt-3 text-sm text-white/70">121 Nguyễn Bỉnh Khiêm, Phường Tân Định, TP. Hồ Chí Minh</p>
+          <p class="mt-2 text-sm text-white/70">info@nongnghiepnhietdoi.org</p>
+          <p class="mt-2 text-sm text-white/70">Thứ 2 – Thứ 6: 08:00 – 17:00</p>
+        </div>
+      </div>
+    </footer>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

@@ -88,6 +88,17 @@ function nongnghiepnhietdoi_the_logo( $img_class = '', $text_class = 'text-xl fo
 		return;
 	}
 
+	$seal = NONGNGHIEPNHIETDOI_URI . '/assets/images/logo-varc.png';
+	if ( file_exists( NONGNGHIEPNHIETDOI_DIR . '/assets/images/logo-varc.png' ) ) {
+		printf(
+			'<img src="%s" alt="%s" class="%s" width="48" height="48">',
+			esc_url( $seal ),
+			esc_attr( get_bloginfo( 'name' ) ),
+			esc_attr( trim( 'h-12 w-12 rounded-full bg-white object-cover ' . $img_class ) )
+		);
+		return;
+	}
+
 	printf( '<span class="%s">%s</span>', esc_attr( $text_class ), esc_html( get_bloginfo( 'name' ) ) );
 }
 

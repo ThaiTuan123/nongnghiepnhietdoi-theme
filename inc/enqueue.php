@@ -23,21 +23,28 @@ function nongnghiepnhietdoi_vite_dev_server() {
 }
 
 add_action(
+	'wp_head',
+	function () {
+		$dev = nongnghiepnhietdoi_vite_dev_server();
+		if ( ! $dev ) {
+			return;
+		}
+
+		// Printed directly on wp_head. Registering this from wp_enqueue_scripts
+		// (itself a wp_head callback) is too late and the tags never appear.
+		echo '<script type="module" src="' . esc_url( $dev . '/@vite/client' ) . '"></script>' . "\n";
+		echo '<script type="module" src="' . esc_url( $dev . '/src/main.js' ) . '"></script>' . "\n";
+	},
+	1
+);
+
+add_action(
 	'wp_enqueue_scripts',
 	function () {
 		$dev  = nongnghiepnhietdoi_vite_dev_server();
 		$main = 'src/main.js';
 
 		if ( $dev ) {
-			// Development: load modules from Vite dev server (HMR).
-			add_action(
-				'wp_head',
-				function () use ( $dev, $main ) {
-					echo '<script type="module" src="' . esc_url( $dev . '/@vite/client' ) . '"></script>' . "\n";
-					echo '<script type="module" src="' . esc_url( $dev . '/' . $main ) . '"></script>' . "\n";
-				},
-				1
-			);
 			return;
 		}
 

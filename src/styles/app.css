@@ -1,35 +1,5 @@
-/* Montserrat — self-hosted variable font (subset: vietnamese, latin-ext, latin) */
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('../assets/fonts/montserrat-vietnamese.woff2') format('woff2');
-  unicode-range:
-    U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301,
-    U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('../assets/fonts/montserrat-latin-ext.woff2') format('woff2');
-  unicode-range:
-    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
-    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
-    U+A720-A7FF;
-}
-@font-face {
-  font-family: 'Montserrat';
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-  src: url('../assets/fonts/montserrat-latin.woff2') format('woff2');
-  unicode-range:
-    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
-    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
+/* Inter + Cormorant Garamond (stand-in for Reckless). Subsets: vietnamese, latin-ext, latin. */
+@import './fonts.css';
 
 @tailwind base;
 @tailwind components;
@@ -37,7 +7,80 @@
 
 @layer base {
   :root {
-    --brand: #856a3d;
+    --brand: #009c48;
+    --color-sun: #f07818;
+    --color-ink: #0b1f33;
+
+    --color-forest-ink: #009c48;
+    --color-vivid-lime: #e8fe85;
+    --color-bone: #f4f7f5;
+    --color-pure-white: #ffffff;
+    --color-ash-gray: #efefef;
+    --color-charcoal: #212529;
+    --color-graphite: #353535;
+    --color-pewter: #6d6d6d;
+    --color-sky-card: #b2cee7;
+    --color-peach-card: #fceace;
+    --color-sage-card: #e6ecd5;
+    --color-moss: #c3cda7;
+
+    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-reckless: 'Cormorant Garamond', 'Times New Roman', serif;
+    --font-recklesslight: 'Cormorant Garamond', 'Times New Roman', serif;
+
+    --text-caption: 12px;
+    --leading-caption: 1.5;
+    --tracking-caption: 0.025em;
+    --text-body-sm: 14px;
+    --leading-body-sm: 1.5;
+    --tracking-body-sm: 0.025em;
+    --text-body: 16px;
+    --leading-body: 1.52;
+    --tracking-body: -0.022em;
+    --text-subheading: 24px;
+    --leading-subheading: 1.24;
+    --tracking-subheading: -0.012em;
+    --text-heading-sm: 37px;
+    --leading-heading-sm: 1.22;
+    --tracking-heading-sm: -0.012em;
+    --text-heading: 45px;
+    --leading-heading: 1.06;
+    --tracking-heading: -0.012em;
+    --text-heading-lg: 57px;
+    --leading-heading-lg: 1.06;
+    --tracking-heading-lg: -0.012em;
+    --text-display: 80px;
+    --leading-display: 1;
+    --tracking-display: -0.037em;
+
+    --spacing-5: 5px;
+    --spacing-6: 6px;
+    --spacing-8: 8px;
+    --spacing-9: 9px;
+    --spacing-10: 10px;
+    --spacing-12: 12px;
+    --spacing-15: 15px;
+    --spacing-20: 20px;
+    --spacing-24: 24px;
+    --spacing-27: 27px;
+    --spacing-30: 30px;
+    --spacing-38: 38px;
+    --spacing-40: 40px;
+    --spacing-50: 50px;
+    --spacing-64: 64px;
+    --spacing-193: 193px;
+
+    --page-max-width: 1200px;
+    --section-gap: 50px;
+    --card-padding: 30px;
+    --element-gap: 8px;
+
+    --radius-cards: 20px;
+    --radius-links: 26px;
+    --radius-inputs: 33px;
+    --radius-buttons: 100px;
+    --radius-nav-pills: 110px;
+    --radius-hero-cards: 30px;
   }
 
   html {
@@ -57,14 +100,18 @@
     font-size: 1rem;
   }
 
-  /* Tiêu đề: Montserrat Bold */
   h1,
   h2,
-  h3,
+  h3 {
+    font-family: var(--font-reckless);
+    font-weight: 300;
+    letter-spacing: -0.012em;
+  }
+
   h4,
   h5,
   h6 {
-    font-weight: 700;
+    font-weight: 600;
   }
 
   /* Lenis smooth scroll */
@@ -121,6 +168,48 @@
   }
   body.has-dark-hero [data-header].is-scrolled::before {
     @apply opacity-0;
+  }
+
+  /* Header nổi trên hero: trong suốt lúc đầu, đặc khi cuộn. */
+  [data-header].varc-header {
+    background: transparent;
+    color: #fff;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+  [data-header].varc-header.is-scrolled {
+    background: rgba(255, 255, 255, 0.94);
+    color: #0b1f33;
+    box-shadow: 0 1px 0 rgba(11, 31, 51, 0.06);
+    backdrop-filter: blur(14px);
+  }
+  .varc-header .varc-logo-name {
+    color: #fff;
+  }
+  .varc-header.is-scrolled .varc-logo-name,
+  .varc-header.is-scrolled .varc-menu-btn {
+    color: #0b1f33;
+  }
+
+  .varc-cta-icon {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .varc-cta-icon svg {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .varc-cta:hover .varc-cta-icon,
+  .varc-cta:focus-visible .varc-cta-icon {
+    transform: scale(1.08);
+  }
+  .varc-cta:hover .varc-cta-icon svg,
+  .varc-cta:focus-visible .varc-cta-icon svg {
+    transform: translate(3px, -3px);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .varc-cta-icon,
+    .varc-cta-icon svg {
+      transition: none;
+    }
   }
   [data-header] a {
     @apply transition-colors;
@@ -227,7 +316,7 @@
 
   /* Mobile menu panel */
   .mobile-menu {
-    @apply absolute inset-x-0 top-full origin-top bg-white text-neutral-900 shadow-lg;
+    @apply absolute inset-x-0 top-full max-h-[70vh] origin-top overflow-y-auto bg-white text-neutral-900 shadow-lg;
   }
   .lx-mobile-menu > .menu-item > a {
     @apply flex items-center justify-between gap-3 py-3;
@@ -262,9 +351,7 @@
   /* Footer                                                                 */
   /* ---------------------------------------------------------------------- */
   .site-footer {
-    @apply relative overflow-hidden text-white;
-    /* Fallback khi ảnh chưa load — tông brand đồng/vàng */
-    background-color: #6b542e;
+    @apply relative overflow-hidden bg-ink text-white;
   }
   .site-footer .custom-logo,
   .site-footer .custom-logo-link img {
@@ -291,6 +378,41 @@
   .lx-social {
     @apply flex h-9 w-9 items-center justify-center rounded-full bg-brand-600 text-white transition-colors duration-300 hover:bg-brand-800;
   }
+  /* Menu chính lấy từ Appearance → Menus (vị trí Menu chính). */
+  .varc-nav .varc-menu > .menu-item {
+    @apply relative;
+  }
+  .varc-nav .varc-menu > .menu-item > a {
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-[12px] font-medium text-white/90 hover:text-white 2xl:px-3 2xl:text-[13px];
+  }
+  .varc-nav .menu-item-has-children > a::after {
+    content: '';
+    height: 0.32em;
+    width: 0.32em;
+    flex-shrink: 0;
+    border-right: 1.5px solid currentColor;
+    border-bottom: 1.5px solid currentColor;
+    transform: translateY(-1px) rotate(45deg);
+  }
+  .varc-nav .varc-menu > .current-menu-item > a,
+  .varc-nav .varc-menu > .current-menu-ancestor > a,
+  .varc-nav .varc-menu > .current-menu-parent > a {
+    @apply bg-sun font-semibold text-white hover:text-white;
+  }
+  .varc-nav .sub-menu {
+    @apply pointer-events-none invisible absolute left-0 top-full z-50 m-0 min-w-[240px] list-none translate-y-1 rounded-xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition;
+  }
+  .varc-nav .menu-item:nth-last-child(-n + 2) > .sub-menu {
+    @apply left-auto right-0;
+  }
+  .varc-nav .menu-item-has-children:hover > .sub-menu,
+  .varc-nav .menu-item-has-children:focus-within > .sub-menu {
+    @apply pointer-events-auto visible translate-y-0 opacity-100;
+  }
+  .varc-nav .sub-menu a {
+    @apply block rounded-lg px-3 py-2 text-sm font-medium normal-case tracking-normal text-ink hover:bg-brand-50 hover:text-brand;
+  }
+
   .lx-social svg {
     @apply h-[18px] w-[18px];
   }

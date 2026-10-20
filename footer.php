@@ -1,200 +1,67 @@
 <?php
 /**
- * Footer template — bố cục thương hiệu Nông nghiệp nhiệt đới.
- *
- * Thông tin liên hệ (ĐT, email, địa chỉ) lấy từ "Cài đặt Nông nghiệp nhiệt đới" (ACF options).
- * Các cột liên kết dùng nav menu location kèm fallback đúng thiết kế.
+ * Footer VARC.
  *
  * @package NongNghiepNhietDoi
  */
 
-// --- Thông tin liên hệ (từ Cài đặt Nông nghiệp nhiệt đới, có fallback) --------------------.
-$footer_tagline = 'Giúp cho các doanh nghiệp phát triển trường tồn bằng các giải pháp toàn diện, trở thành Nông nghiệp nhiệt đới.';
-$footer_phone   = function_exists( 'nongnghiepnhietdoi_option' ) ? (string) nongnghiepnhietdoi_option( 'contact_phone' ) : '';
-$footer_email   = function_exists( 'nongnghiepnhietdoi_option' ) ? (string) nongnghiepnhietdoi_option( 'contact_email' ) : '';
-$footer_address = function_exists( 'nongnghiepnhietdoi_option' ) ? (string) nongnghiepnhietdoi_option( 'contact_address' ) : '';
-
-if ( '' === $footer_phone ) {
-	$footer_phone = '0968227922';
-}
-if ( '' === $footer_email ) {
-	$footer_email = 'Nông nghiệp nhiệt đớiRealEstate@gmail.com';
-}
-if ( '' === $footer_address ) {
-	$footer_address = "69 Nguyễn Sinh Sắc, Hoà Khánh,\nThành Phố Đà Nẵng";
-}
-
-// Mạng xã hội lấy từ trang "Cài đặt Nông nghiệp nhiệt đới" (chỉ link đã nhập).
-$footer_socials = function_exists( 'nongnghiepnhietdoi_socials' ) ? nongnghiepnhietdoi_socials() : array();
-
-/**
- * Tạo fallback cho một cột liên kết footer khi chưa gán menu.
- *
- * @param array $links Mảng label => url.
- * @return Closure
- */
-$footer_menu_fallback = static function ( array $links ) {
-	return static function () use ( $links ) {
-		echo '<ul class="lx-footer-links">';
-		foreach ( $links as $label => $url ) {
-			printf(
-				'<li><a href="%s">%s</a></li>',
-				esc_url( $url ),
-				esc_html( $label )
-			);
-		}
-		echo '</ul>';
-	};
-};
-
-$footer_nav_args = array(
-	'container'  => false,
-	'menu_class' => 'lx-footer-links',
-	'depth'      => 1,
-);
-
-$footer_bg = NONGNGHIEPNHIETDOI_URI . '/assets/images/bgFooter.webp';
+$varc_logo = NONGNGHIEPNHIETDOI_URI . '/assets/images/logo-varc.png';
 ?>
 
-<footer id="site-footer" class="site-footer">
-	<div class="absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
-		<img
-			src="<?php echo esc_url( $footer_bg ); ?>"
-			alt=""
-			class="h-full w-full scale-105 object-cover object-[center_70%]"
-			loading="lazy"
-			decoding="async"
-		>
-		<?php // Ảnh sáng → phủ brand + tối vừa đủ để lộ skyline và chữ trắng dễ đọc. ?>
-		<div class="absolute inset-0 bg-[#856a3d]/65"></div>
-		<div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/55"></div>
-	</div>
+<footer id="site-footer" class="site-footer bg-ink">
+	<div class="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 sm:grid-cols-2 sm:py-14 lg:grid-cols-4">
+		<div>
+			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="inline-flex items-center gap-3" rel="home">
+				<span class="inline-flex h-14 w-14 items-center justify-center rounded-full bg-white">
+					<img src="<?php echo esc_url( $varc_logo ); ?>" alt="" class="h-12 w-12 rounded-full object-cover" width="48" height="48">
+				</span>
+			</a>
+			<p class="mt-4 text-sm font-semibold text-white">Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới</p>
+			<p class="mt-3 text-sm leading-relaxed text-white/70">Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.</p>
+		</div>
 
-	<div class="relative z-10">
-	<div class="container-lx py-14 lg:py-16">
-		<div class="grid gap-10 md:grid-cols-3 md:gap-x-8 lg:grid-cols-[1.7fr_1fr_1fr_1fr] lg:gap-x-10 lg:gap-y-12">
+		<div>
+			<h2 class="text-sm font-semibold text-white">Liên kết nhanh</h2>
+			<ul class="mt-4 space-y-2 text-sm text-white/70">
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/ve-chung-toi/' ) ); ?>">Về Chúng tôi</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/linh-vuc-dich-vu/' ) ); ?>">Lĩnh vực &amp; Dịch Vụ</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/du-an-tac-dong/' ) ); ?>">Dự Án &amp; Tác Động</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/thu-vien-tin-tuc/' ) ); ?>">Thư Viện &amp; Tin Tức</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/hop-tac-du-an/' ) ); ?>">Hợp Tác Dự Án</a></li>
+			</ul>
+		</div>
 
-			<!-- Thương hiệu + liên hệ -->
-			<div class="md:col-span-3 lg:col-span-1 lg:row-span-2">
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="inline-flex" rel="home">
-					<?php nongnghiepnhietdoi_the_logo( '', 'text-2xl font-semibold tracking-wide text-white' ); ?>
-				</a>
+		<div>
+			<h2 class="text-sm font-semibold text-white">Lĩnh vực &amp; Dịch vụ</h2>
+			<ul class="mt-4 space-y-2 text-sm text-white/70">
+				<li>Nghiên cứu, Triển khai &amp; Chuyển giao Công nghệ</li>
+				<li>Dịch vụ Tư vấn &amp; Đánh giá Dự án Độc lập</li>
+				<li>Đề tài KH&amp;CN &amp; Chương trình Quốc gia</li>
+			</ul>
+		</div>
 
-				<p class="mt-6 max-w-md text-sm leading-relaxed text-white/85 lg:text-base">
-					<?php echo esc_html( $footer_tagline ); ?>
-				</p>
-
-				<div class="mt-8 grid grid-cols-2 gap-x-6 gap-y-6">
-					<div>
-						<p class="lx-footer-label"><?php esc_html_e( 'Điện thoại:', 'nongnghiepnhietdoi' ); ?></p>
-						<a class="lx-footer-value" href="tel:<?php echo esc_attr( preg_replace( '/[^0-9+]/', '', $footer_phone ) ); ?>"><?php echo esc_html( $footer_phone ); ?></a>
-
-						<p class="lx-footer-label mt-6"><?php esc_html_e( 'Email:', 'nongnghiepnhietdoi' ); ?></p>
-						<a class="lx-footer-value break-all" href="mailto:<?php echo esc_attr( $footer_email ); ?>"><?php echo esc_html( $footer_email ); ?></a>
-					</div>
-					<div>
-						<p class="lx-footer-label"><?php esc_html_e( 'Địa chỉ', 'nongnghiepnhietdoi' ); ?></p>
-						<p class="lx-footer-value"><?php echo nl2br( esc_html( $footer_address ) ); ?></p>
-					</div>
-				</div>
-			</div>
-
-			<!-- Cột: Về chúng tôi -->
-			<div>
-				<h3 class="lx-footer-heading"><?php esc_html_e( 'Về chúng tôi', 'nongnghiepnhietdoi' ); ?></h3>
-				<?php
-				wp_nav_menu(
-					array_merge(
-						$footer_nav_args,
-						array(
-							'theme_location' => 'footer_1',
-							'fallback_cb'    => $footer_menu_fallback(
-								array(
-									'Trang chủ'  => home_url( '/' ),
-									'Giới thiệu' => home_url( '/gioi-thieu/' ),
-									'Bất động sản' => home_url( '/bat-dong-san/' ),
-									'Thiết kế'   => home_url( '/thiet-ke/' ),
-									'Phong Thủy' => home_url( '/phong-thuy/' ),
-								)
-							),
-						)
-					)
-				);
-				?>
-			</div>
-
-			<!-- Cột: Tin tức - Sự kiện -->
-			<div>
-				<h3 class="lx-footer-heading"><?php esc_html_e( 'Tin tức - Sự kiện', 'nongnghiepnhietdoi' ); ?></h3>
-				<?php
-				wp_nav_menu(
-					array_merge(
-						$footer_nav_args,
-						array(
-							'theme_location' => 'footer_2',
-							'fallback_cb'    => $footer_menu_fallback(
-								array(
-									'Tin thị trường'    => home_url( '/tin-tuc/' ),
-									'Xu hướng thiết kế' => home_url( '/tin-tuc/' ),
-									'Phong thủy nhà ở'  => home_url( '/tin-tuc/' ),
-									'Sự kiện nổi bật'   => home_url( '/tin-tuc/' ),
-								)
-							),
-						)
-					)
-				);
-				?>
-			</div>
-
-			<!-- Cột: Thông tin khác -->
-			<div>
-				<h3 class="lx-footer-heading"><?php esc_html_e( 'Thông tin khác', 'nongnghiepnhietdoi' ); ?></h3>
-				<?php
-				wp_nav_menu(
-					array_merge(
-						$footer_nav_args,
-						array(
-							'theme_location' => 'footer_3',
-							'fallback_cb'    => $footer_menu_fallback(
-								array(
-									'Liên hệ' => home_url( '/lien-he/' ),
-								)
-							),
-						)
-					)
-				);
-				?>
-			</div>
-
-			<!-- Mạng xã hội -->
-			<?php if ( ! empty( $footer_socials ) ) : ?>
-				<div class="md:col-span-3 lg:col-span-3 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
-					<p class="max-w-sm text-sm text-white/85 lg:text-base">
-						<?php esc_html_e( 'Các kênh thông tin trên mạng xã hội của Nông nghiệp nhiệt đớigroup:', 'nongnghiepnhietdoi' ); ?>
-					</p>
-					<ul class="flex items-center gap-3">
-						<?php foreach ( $footer_socials as $key => $social ) : ?>
-							<li>
-								<a class="lx-social" href="<?php echo esc_url( $social['url'] ); ?>" aria-label="<?php echo esc_attr( $social['label'] ); ?>" target="_blank" rel="noopener">
-									<?php nongnghiepnhietdoi_social_icon( $key ); ?>
-								</a>
-							</li>
-						<?php endforeach; ?>
-					</ul>
-				</div>
-			<?php endif; ?>
+		<div id="lien-he">
+			<h2 class="text-sm font-semibold text-white">Liên hệ &amp; Hợp tác</h2>
+			<ul class="mt-4 space-y-3 text-sm text-white/75">
+				<li>121 Nguyễn Bỉnh Khiêm, Phường Tân Định, TP. Hồ Chí Minh</li>
+				<li><a class="hover:text-white" href="mailto:info@nongnghiepnhietdoi.org">info@nongnghiepnhietdoi.org</a></li>
+				<li>Thứ 2 – Thứ 6: 08:00 – 17:00</li>
+			</ul>
+			<form class="mt-4 flex overflow-hidden rounded-lg bg-white/10 ring-1 ring-white/15" action="<?php echo esc_url( home_url( '/#lien-he' ) ); ?>" method="post">
+				<label class="sr-only" for="footer-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?></label>
+				<input id="footer-email" name="email" type="email" required placeholder="Email" class="w-full bg-transparent px-3 py-2.5 text-sm text-white placeholder:text-white/50 focus:outline-none">
+				<button type="submit" class="bg-brand px-3 text-white hover:bg-brand-700" aria-label="<?php esc_attr_e( 'Đăng ký', 'nongnghiepnhietdoi' ); ?>">→</button>
+			</form>
+			<p class="mt-2 text-xs text-white/50">Đăng ký nhận bản tin</p>
 		</div>
 	</div>
-
-	<div class="border-t border-white/20 bg-black/20">
-		<div class="container-lx py-5 text-center text-xs text-white/75 sm:text-sm">
-			&copy; <?php echo esc_html( date_i18n( 'Y' ) ); ?> <?php esc_html_e( 'Nông nghiệp nhiệt đới Real Estate. All rights reserved. Công ty TNHH Đầu Tư & Phát Triển Nông nghiệp nhiệt đới.', 'nongnghiepnhietdoi' ); ?>
+	<div class="border-t border-white/10">
+		<div class="mx-auto flex max-w-[1200px] flex-col gap-2 px-4 py-4 text-xs text-white/50 sm:flex-row sm:justify-between">
+			<p>© <?php echo esc_html( gmdate( 'Y' ) ); ?> Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC). Bảo lưu mọi quyền.</p>
+			<a class="hover:text-white" href="<?php echo esc_url( home_url( '/#lien-he' ) ); ?>">Chính sách bảo mật</a>
 		</div>
-	</div>
 	</div>
 </footer>
-
-<?php get_template_part( 'template-parts/floating-buttons' ); ?>
 
 <?php wp_footer(); ?>
 </body>

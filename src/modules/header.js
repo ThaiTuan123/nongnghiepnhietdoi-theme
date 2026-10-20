@@ -70,13 +70,12 @@ export function initHeader() {
       });
     });
 
-    // Link lá (không có menu con): bấm là đóng panel.
-    menu.querySelectorAll('.menu-item:not(.menu-item-has-children) > a').forEach((a) => {
+    menu.querySelectorAll('a').forEach((a) => {
+      if (a.parentElement?.classList.contains('menu-item-has-children')) return;
       a.addEventListener('click', close);
     });
 
-    // Close on desktop breakpoint resize.
-    window.matchMedia('(min-width: 1024px)').addEventListener('change', (e) => {
+    window.matchMedia('(min-width: 1280px)').addEventListener('change', (e) => {
       if (e.matches) close();
     });
   }
