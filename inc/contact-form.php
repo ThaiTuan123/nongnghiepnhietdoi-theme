@@ -38,8 +38,8 @@ add_action(
 					'not_found_in_trash' => __( 'Không có đăng ký trong thùng rác.', 'nongnghiepnhietdoi' ),
 				),
 				'public'              => false,
-				'show_ui'             => true,
-				'show_in_menu'        => true,
+				'show_ui'             => false,
+				'show_in_menu'        => false,
 				'show_in_rest'        => false,
 				'menu_icon'           => 'dashicons-email-alt',
 				'menu_position'       => 26,
@@ -248,7 +248,16 @@ function nongnghiepnhietdoi_handle_contact_request( $request ) {
 		return $result;
 	}
 
-	$to      = NONGNGHIEPNHIETDOI_CONTACT_EMAIL;
+	$to = '';
+	if ( function_exists( 'nongnghiepnhietdoi_option' ) ) {
+		$contact_email = nongnghiepnhietdoi_option( 'contact_email' );
+		if ( is_email( $contact_email ) ) {
+			$to = $contact_email;
+		}
+	}
+	if ( ! $to ) {
+		$to = NONGNGHIEPNHIETDOI_CONTACT_EMAIL;
+	}
 	$subject = sprintf( '[%s] Liên hệ mới từ %s', wp_specialchars_decode( get_bloginfo( 'name' ) ), $name );
 	$body    = sprintf(
 		"Họ tên: %s\nEmail: %s\nĐiện thoại: %s\n\nNội dung:\n%s\n",

@@ -3,8 +3,7 @@
  * Floating contact buttons (Messenger, Zalo, Điện thoại).
  *
  * Nút nổi bên trái màn hình, có animation. Thông tin lấy từ trang
- * "Cài đặt Nông nghiệp nhiệt đới". Nút chỉ hiển thị khi đã nhập thông tin tương ứng
- * (riêng số điện thoại có sẵn giá trị dự phòng).
+ * "Cài đặt Nông nghiệp nhiệt đới". Nút chỉ hiện khi đã nhập link hoặc số điện thoại.
  *
  * @package NongNghiepNhietDoi
  */
@@ -17,10 +16,7 @@ $fb_messenger = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhiet
 $fb_zalo      = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_zalo' ) : '';
 $fb_phone     = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_phone' ) : '';
 
-if ( ! $fb_phone ) {
-	$fb_phone = '0968227922';
-}
-$fb_phone_digits = preg_replace( '/[^0-9+]/', '', $fb_phone );
+$fb_phone_digits = $fb_phone ? preg_replace( '/[^0-9+]/', '', $fb_phone ) : '';
 $fb_phone_href   = 'tel:' . $fb_phone_digits;
 
 // Zalo: nếu chưa nhập link riêng thì suy ra từ số điện thoại (zalo.me/{số}).
@@ -50,13 +46,15 @@ if ( $fb_zalo ) {
 	);
 }
 
-$fb_items[] = array(
-	'key'      => 'phone',
-	'label'    => __( 'Gọi điện', 'nongnghiepnhietdoi' ),
-	'url'      => $fb_phone_href,
-	'external' => false,
-	'icon'     => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.1.4 2.4.6 3.6.6.6 0 1 .5 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8Z"/></svg>',
-);
+if ( $fb_phone_href && 'tel:' !== $fb_phone_href ) {
+	$fb_items[] = array(
+		'key'      => 'phone',
+		'label'    => __( 'Gọi điện', 'nongnghiepnhietdoi' ),
+		'url'      => $fb_phone_href,
+		'external' => false,
+		'icon'     => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.3 1.1.4 2.4.6 3.6.6.6 0 1 .5 1 1V20c0 .6-.4 1-1 1C10.3 21 3 13.7 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.4 0 .8-.3 1L6.6 10.8Z"/></svg>',
+	);
+}
 
 if ( empty( $fb_items ) ) {
 	return;

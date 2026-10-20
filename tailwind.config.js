@@ -62,10 +62,10 @@ export default {
         moss: '#c3cda7',
       },
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        serif: ['Cormorant Garamond', 'Times New Roman', 'serif'],
-        inter: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
-        reckless: ['Cormorant Garamond', 'Times New Roman', 'serif'],
+        sans: ['Be Vietnam Pro', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        serif: ['Be Vietnam Pro', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        inter: ['Be Vietnam Pro', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        reckless: ['Be Vietnam Pro', 'ui-sans-serif', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         caption: ['12px', { lineHeight: '1.5', letterSpacing: '0.025em' }],

@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 define(
 	'NONGNGHIEPNHIETDOI_DEFAULT_DESCRIPTION',
-	'Giúp cho các doanh nghiệp phát triển trường tồn bằng các giải pháp toàn diện, trở thành Nông nghiệp nhiệt đới.'
+	'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.'
 );
 
 /**
@@ -78,6 +78,10 @@ function nongnghiepnhietdoi_meta_description() {
 
 	if ( ! $desc ) {
 		$desc = nongnghiepnhietdoi_seo_option( 'seo_default_description' );
+	}
+
+	if ( ! $desc ) {
+		$desc = nongnghiepnhietdoi_seo_option( 'site_about' );
 	}
 
 	if ( ! $desc ) {

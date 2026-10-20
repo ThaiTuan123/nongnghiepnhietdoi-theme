@@ -1,4 +1,4 @@
-/* Inter + Cormorant Garamond (stand-in for Reckless). Subsets: vietnamese, latin-ext, latin. */
+/* Be Vietnam Pro — designed for Vietnamese, used for body and headings. */
 @import './fonts.css';
 
 @tailwind base;
@@ -24,9 +24,9 @@
     --color-sage-card: #e6ecd5;
     --color-moss: #c3cda7;
 
-    --font-inter: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-reckless: 'Cormorant Garamond', 'Times New Roman', serif;
-    --font-recklesslight: 'Cormorant Garamond', 'Times New Roman', serif;
+    --font-inter: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+    --font-reckless: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
+    --font-recklesslight: 'Be Vietnam Pro', ui-sans-serif, system-ui, sans-serif;
 
     --text-caption: 12px;
     --leading-caption: 1.5;
@@ -103,8 +103,8 @@
   h1,
   h2,
   h3 {
-    font-family: var(--font-reckless);
-    font-weight: 300;
+    font-family: var(--font-inter);
+    font-weight: 600;
     letter-spacing: -0.012em;
   }
 
@@ -383,7 +383,7 @@
     @apply relative;
   }
   .varc-nav .varc-menu > .menu-item > a {
-    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-2 text-[12px] font-medium text-white/90 hover:text-white 2xl:px-3 2xl:text-[13px];
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-1.5 text-[12px] font-semibold text-white hover:bg-white/15;
   }
   .varc-nav .menu-item-has-children > a::after {
     content: '';
@@ -924,4 +924,74 @@ body.lx-lightbox-open {
   .lx-lightbox {
     transition: none;
   }
+}
+
+/* Pill menu ôm sát nhãn, căn giữa header, xanh trùng vòng logo. */
+@media (min-width: 1280px) {
+  .varc-nav {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    z-index: 20;
+    transform: translate(-50%, -50%);
+  }
+}
+.varc-nav {
+  flex: none;
+  width: max-content;
+  max-width: calc(100% - 16rem);
+  background-color: #00a050;
+}
+.varc-lang {
+  display: flex;
+  align-items: center;
+  flex: none;
+  height: 2.75rem;
+}
+.varc-lang .gtranslate_wrapper {
+  display: flex !important;
+  align-items: center;
+  gap: 0.4rem;
+  line-height: 0;
+}
+.varc-lang .gtranslate_wrapper a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+  border-radius: 3px;
+  opacity: 0.78;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.varc-lang .gtranslate_wrapper a img {
+  display: block;
+  width: 26px;
+  height: 18px;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+.varc-lang .gtranslate_wrapper a.gt-current-lang,
+.varc-lang .gtranslate_wrapper a:hover,
+.varc-lang .gtranslate_wrapper a:focus-visible {
+  opacity: 1;
+  transform: translateY(-1px);
+}
+.varc-header.is-scrolled .varc-lang .gtranslate_wrapper a img {
+  box-shadow: 0 0 0 1px rgba(11, 31, 51, 0.16);
+}
+.varc-cta {
+  background-color: #00a050;
+}
+.varc-cta:hover {
+  background-color: #008a44;
+}
+.varc-logo {
+  box-sizing: border-box;
+  width: 3rem;
+  height: 3rem;
+  padding: 2px;
+  object-fit: contain;
+  border-radius: 0;
+  background-color: #fff;
 }

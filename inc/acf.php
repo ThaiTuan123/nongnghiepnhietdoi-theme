@@ -46,17 +46,67 @@ add_action(
 );
 
 /**
- * Safe getter for a theme option field. Returns '' if ACF is not active.
+ * Giá trị dự phòng khi khách chưa lưu Cài đặt chung.
+ * Khớp nội dung đang hiển thị trên site.
+ *
+ * @return array<string,string>
+ */
+function nongnghiepnhietdoi_option_defaults() {
+	return array(
+		'site_short_name'    => 'VARC',
+		'site_company_name'  => 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới',
+		'site_about'         => 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.',
+		'contact_email'      => 'info@nongnghiepnhietdoi.org',
+		'contact_address'    => '121 Nguyễn Bỉnh Khiêm, Phường Tân Định, TP. Hồ Chí Minh',
+		'contact_hours'      => 'Thứ 2 – Thứ 6: 08:00 – 17:00',
+	);
+}
+
+/**
+ * Safe getter for a theme option field.
+ * Trả về giá trị đã lưu, hoặc mặc định của theme nếu ô còn trống.
  *
  * @param string $name Field name.
  * @return mixed
  */
 function nongnghiepnhietdoi_option( $name ) {
+	$defaults = nongnghiepnhietdoi_option_defaults();
+
 	if ( ! function_exists( 'get_field' ) ) {
-		return '';
+		return isset( $defaults[ $name ] ) ? $defaults[ $name ] : '';
 	}
-	return get_field( $name, 'option' );
+
+	$value = get_field( $name, 'option' );
+
+	// null/false = chưa từng lưu. Chuỗi rỗng = khách cố ý xoá, không đổ lại mặc định.
+	if ( null === $value || false === $value ) {
+		return isset( $defaults[ $name ] ) ? $defaults[ $name ] : '';
+	}
+
+	return $value;
 }
+
+/**
+ * Ghi giá trị mặc định vào Cài đặt chung lần đầu, để form admin hiện đúng nội dung đang chạy.
+ */
+add_action(
+	'acf/init',
+	function () {
+		if ( get_option( 'nongnghiepnhietdoi_options_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		foreach ( nongnghiepnhietdoi_option_defaults() as $name => $value ) {
+			$current = get_field( $name, 'option' );
+			if ( null === $current || false === $current || '' === $current ) {
+				update_field( $name, $value, 'option' );
+			}
+		}
+
+		update_option( 'nongnghiepnhietdoi_options_seeded', 1, false );
+	},
+	20
+);
 
 /**
  * In ra logo Nông nghiệp nhiệt đới từ options page.
@@ -94,7 +144,7 @@ function nongnghiepnhietdoi_the_logo( $img_class = '', $text_class = 'text-xl fo
 			'<img src="%s" alt="%s" class="%s" width="48" height="48">',
 			esc_url( $seal ),
 			esc_attr( get_bloginfo( 'name' ) ),
-			esc_attr( trim( 'h-12 w-12 rounded-full bg-white object-cover ' . $img_class ) )
+			esc_attr( trim( 'h-12 w-12 bg-white object-contain ' . $img_class ) )
 		);
 		return;
 	}

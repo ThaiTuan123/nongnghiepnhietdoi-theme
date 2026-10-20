@@ -36,8 +36,11 @@ if ( function_exists( 'get_field' ) && $lx_page_id ) {
 // Nhãn nhỏ phía trên bảng thông tin.
 $lx_info_label = 'Thông tin tập đoàn';
 
-// Google Maps embed (iframe).
-$lx_map_embed = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.749172773552!2d108.1648072!3d16.0785007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218dd16b1fd4d%3A0x71017793b28b4ad8!2zNjkgTmd1eeG7hW4gU2luaCBT4bqvYywgSMOyYSBLaMOhbmgsIMSQw6AgTuG6tW5nIDUwNjA2LCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sth!4v1784456157539!5m2!1svi!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+// Google Maps: lấy từ Cài đặt chung. Bản đồ Đà Nẵng chỉ là dự phòng khi chưa dán iframe.
+$lx_map_embed = nongnghiepnhietdoi_option( 'contact_map' );
+if ( ! $lx_map_embed ) {
+	$lx_map_embed = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.749172773552!2d108.1648072!3d16.0785007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218dd16b1fd4d%3A0x71017793b28b4ad8!2zNjkgTmd1eeG7hW4gU2luaCBT4bqvYywgSMOyYSBLaMOhbmgsIMSQw6AgTuG6tW5nIDUwNjA2LCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sth!4v1784456157539!5m2!1svi!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+}
 /* ============================================================ */
 
 /*
@@ -47,6 +50,7 @@ $lx_map_embed = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m
 $lx_opt_address = nongnghiepnhietdoi_option( 'contact_address' );
 $lx_opt_phone   = nongnghiepnhietdoi_option( 'contact_phone' );
 $lx_opt_email   = nongnghiepnhietdoi_option( 'contact_email' );
+$lx_opt_hours   = nongnghiepnhietdoi_option( 'contact_hours' );
 
 $lx_info = array();
 
@@ -72,6 +76,13 @@ if ( $lx_opt_email ) {
 	$lx_info[] = array(
 		'label' => 'Email:',
 		'lines' => array( $lx_opt_email ),
+	);
+}
+
+if ( $lx_opt_hours ) {
+	$lx_info[] = array(
+		'label' => 'Giờ làm việc:',
+		'lines' => array( $lx_opt_hours ),
 	);
 }
 /* ============================================================ */

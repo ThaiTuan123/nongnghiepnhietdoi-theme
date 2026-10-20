@@ -37,72 +37,13 @@ add_action(
 add_action(
 	'init',
 	function () {
-		register_post_type(
-			'du_an',
-			array(
-				'label'        => __( 'Bất động sản', 'nongnghiepnhietdoi' ),
-				'public'       => true,
-				'menu_icon'    => 'dashicons-building',
-				'has_archive'  => true,
-				'rewrite'      => array( 'slug' => 'bat-dong-san' ),
-				'supports'     => array( 'title', 'editor', 'thumbnail', 'excerpt' ),
-				'show_in_rest' => true,
-			)
-		);
-
-		// Flush rewrite khi đổi slug archive (du-an → bat-dong-san).
-		if ( '2' !== get_option( 'nongnghiepnhietdoi_rewrite_version' ) ) {
+		// Gỡ post type Bất động sản (du_an) và taxonomy Loại dự án khỏi site.
+		if ( '3' !== get_option( 'nongnghiepnhietdoi_rewrite_version' ) ) {
 			flush_rewrite_rules( false );
-			update_option( 'nongnghiepnhietdoi_rewrite_version', '2' );
+			update_option( 'nongnghiepnhietdoi_rewrite_version', '3' );
 		}
-
-		register_taxonomy(
-			'loai_du_an',
-			'du_an',
-			array(
-				'label'             => __( 'Loại dự án', 'nongnghiepnhietdoi' ),
-				'hierarchical'      => true,
-				'public'            => true,
-				'show_admin_column' => true,
-				'rewrite'           => array( 'slug' => 'loai-du-an' ),
-				'show_in_rest'      => true,
-			)
-		);
-
-		// Tạo sẵn loại "Tiêu biểu" để tích chọn dự án hiển thị ở trang chủ.
-		if ( ! term_exists( 'Tiêu biểu', 'loai_du_an' ) && ! term_exists( 'tieu-bieu', 'loai_du_an' ) ) {
-			wp_insert_term( 'Tiêu biểu', 'loai_du_an', array( 'slug' => 'tieu-bieu' ) );
-		}
-	}
-);
-
-/**
- * Loại dự án cho archive Bất động sản (3 section):
- *   - bat-dong-san-noi-bat → "Bất động sản nổi bật" (layout 3 bài)
- *   - dat-nen-biet-thu     → "Đất nền biệt thự"
- *   - du-an                → "Danh sách dự án" (đã có sẵn từ trước)
- */
-add_action(
-	'init',
-	function () {
-		if ( get_option( 'nongnghiepnhietdoi_seeded_bds_terms' ) ) {
-			return;
-		}
-
-		$defaults = array(
-			'Bất động sản nổi bật' => 'bat-dong-san-noi-bat',
-			'Đất nền biệt thự'     => 'dat-nen-biet-thu',
-			'Dự án'                => 'du-an',
-		);
-
-		foreach ( $defaults as $name => $slug ) {
-			if ( ! term_exists( $name, 'loai_du_an' ) && ! term_exists( $slug, 'loai_du_an' ) ) {
-				wp_insert_term( $name, 'loai_du_an', array( 'slug' => $slug ) );
-			}
-		}
-
-		update_option( 'nongnghiepnhietdoi_seeded_bds_terms', 1 );
-	}
+	},
+	99
 );
 
 /**

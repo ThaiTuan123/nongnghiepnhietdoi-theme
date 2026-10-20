@@ -2,28 +2,186 @@
 	"key": "group_nongnghiepnhietdoi_options",
 	"title": "Nông nghiệp nhiệt đới - Cài đặt chung",
 	"fields": [
-		{ "key": "field_lx_opt_logo", "label": "Logo", "name": "site_logo", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "mime_types": "jpg,jpeg,png,svg,webp", "instructions": "Logo hiển thị ở header và footer." },
-		{ "key": "field_lx_opt_phone", "label": "Điện thoại", "name": "contact_phone", "type": "text" },
-		{ "key": "field_lx_opt_email", "label": "Email", "name": "contact_email", "type": "email" },
-		{ "key": "field_lx_opt_address", "label": "Địa chỉ", "name": "contact_address", "type": "textarea", "rows": 3 },
-		{ "key": "field_lx_opt_messenger", "label": "Link Messenger", "name": "contact_messenger", "type": "url", "instructions": "Dùng cho nút nổi bên trái. Ví dụ: https://m.me/tenpage" },
-		{ "key": "field_lx_opt_zalo", "label": "Link Zalo", "name": "contact_zalo", "type": "url", "instructions": "Dùng cho nút nổi bên trái. Ví dụ: https://zalo.me/0788686898" },
-		{ "key": "field_lx_opt_facebook", "label": "Link Facebook", "name": "social_facebook", "type": "url" },
-		{ "key": "field_lx_opt_tiktok", "label": "Link TikTok", "name": "social_tiktok", "type": "url" },
-		{ "key": "field_lx_opt_youtube", "label": "Link YouTube", "name": "social_youtube", "type": "url" },
-		{ "key": "field_lx_opt_seo_tab", "label": "SEO", "name": "", "type": "tab", "placement": "top" },
-		{ "key": "field_lx_opt_seo_desc", "label": "Mô tả mặc định (Meta description)", "name": "seo_default_description", "type": "textarea", "rows": 3, "maxlength": 300, "instructions": "Mô tả hiển thị trên Google & khi chia sẻ mạng xã hội cho các trang chưa có mô tả riêng. Nên 120–160 ký tự. Bỏ trống sẽ dùng mô tả mặc định của theme." },
-		{ "key": "field_lx_opt_seo_keywords", "label": "Từ khoá (Keywords)", "name": "seo_keywords", "type": "text", "instructions": "Các từ khoá cách nhau bởi dấu phẩy. Ví dụ: bất động sản, phong thủy, thiết kế." },
-		{ "key": "field_lx_opt_seo_image", "label": "Ảnh chia sẻ mặc định (OG image)", "name": "seo_share_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "mime_types": "jpg,jpeg,png,webp", "instructions": "Ảnh hiển thị khi chia sẻ link lên Facebook/Zalo... Khuyến nghị 1200×630px." }
+		{
+			"key": "field_lx_opt_tab_brand",
+			"label": "Thương hiệu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_opt_logo",
+			"label": "Logo",
+			"name": "site_logo",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,svg,webp",
+			"instructions": "Logo hiển thị ở header và footer. Bỏ trống sẽ dùng logo VARC mặc định của theme."
+		},
+		{
+			"key": "field_lx_opt_short_name",
+			"label": "Tên viết tắt",
+			"name": "site_short_name",
+			"type": "text",
+			"default_value": "VARC",
+			"instructions": "Chữ đứng cạnh logo trên header. Ví dụ: VARC."
+		},
+		{
+			"key": "field_lx_opt_company",
+			"label": "Tên đơn vị",
+			"name": "site_company_name",
+			"type": "text",
+			"default_value": "Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới",
+			"instructions": "Tên đầy đủ hiển thị ở footer."
+		},
+		{
+			"key": "field_lx_opt_about",
+			"label": "Giới thiệu ngắn",
+			"name": "site_about",
+			"type": "textarea",
+			"rows": 4,
+			"default_value": "Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.",
+			"instructions": "Đoạn mô tả dưới logo ở footer. Cũng dùng làm mô tả SEO mặc định nếu ô SEO để trống."
+		},
+		{
+			"key": "field_lx_opt_tab_contact",
+			"label": "Liên hệ",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_opt_phone",
+			"label": "Điện thoại",
+			"name": "contact_phone",
+			"type": "text",
+			"instructions": "Hiển thị ở footer, trang Liên hệ, nút gọi nổi và schema SEO."
+		},
+		{
+			"key": "field_lx_opt_email",
+			"label": "Email",
+			"name": "contact_email",
+			"type": "email",
+			"default_value": "info@nongnghiepnhietdoi.org",
+			"instructions": "Hiển thị trên site và là địa chỉ nhận form liên hệ."
+		},
+		{
+			"key": "field_lx_opt_address",
+			"label": "Địa chỉ",
+			"name": "contact_address",
+			"type": "textarea",
+			"rows": 3,
+			"default_value": "121 Nguyễn Bỉnh Khiêm, Phường Tân Định, TP. Hồ Chí Minh",
+			"instructions": "Mỗi dòng là một dòng địa chỉ trên trang Liên hệ."
+		},
+		{
+			"key": "field_lx_opt_hours",
+			"label": "Giờ làm việc",
+			"name": "contact_hours",
+			"type": "text",
+			"default_value": "Thứ 2 – Thứ 6: 08:00 – 17:00",
+			"instructions": "Hiển thị ở footer và trang Liên hệ."
+		},
+		{
+			"key": "field_lx_opt_messenger",
+			"label": "Link Messenger",
+			"name": "contact_messenger",
+			"type": "url",
+			"instructions": "Nút nổi Messenger. Ví dụ: https://m.me/tenpage. Để trống sẽ ẩn nút."
+		},
+		{
+			"key": "field_lx_opt_zalo",
+			"label": "Link Zalo",
+			"name": "contact_zalo",
+			"type": "url",
+			"instructions": "Nút nổi Zalo. Ví dụ: https://zalo.me/0901234567. Để trống sẽ dùng số điện thoại nếu đã nhập."
+		},
+		{
+			"key": "field_lx_opt_map",
+			"label": "Google Maps (iframe)",
+			"name": "contact_map",
+			"type": "textarea",
+			"rows": 4,
+			"instructions": "Dán mã iframe từ Google Maps. Hiển thị ở trang Liên hệ."
+		},
+		{
+			"key": "field_lx_opt_tab_social",
+			"label": "Mạng xã hội",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_opt_facebook",
+			"label": "Link Facebook",
+			"name": "social_facebook",
+			"type": "url"
+		},
+		{
+			"key": "field_lx_opt_tiktok",
+			"label": "Link TikTok",
+			"name": "social_tiktok",
+			"type": "url"
+		},
+		{
+			"key": "field_lx_opt_youtube",
+			"label": "Link YouTube",
+			"name": "social_youtube",
+			"type": "url"
+		},
+		{
+			"key": "field_lx_opt_seo_tab",
+			"label": "SEO",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_opt_seo_desc",
+			"label": "Mô tả mặc định (Meta description)",
+			"name": "seo_default_description",
+			"type": "textarea",
+			"rows": 3,
+			"maxlength": 300,
+			"instructions": "Mô tả trên Google và khi chia sẻ mạng xã hội cho trang chưa có mô tả riêng. Nên 120–160 ký tự. Bỏ trống sẽ dùng phần Giới thiệu ngắn."
+		},
+		{
+			"key": "field_lx_opt_seo_keywords",
+			"label": "Từ khoá (Keywords)",
+			"name": "seo_keywords",
+			"type": "text",
+			"instructions": "Các từ khoá cách nhau bởi dấu phẩy. Ví dụ: nông nghiệp nhiệt đới, VARC, tư vấn nông nghiệp."
+		},
+		{
+			"key": "field_lx_opt_seo_image",
+			"label": "Ảnh chia sẻ mặc định (OG image)",
+			"name": "seo_share_image",
+			"type": "image",
+			"return_format": "id",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp",
+			"instructions": "Ảnh khi chia sẻ link lên Facebook/Zalo. Khuyến nghị 1200×630px."
+		}
 	],
 	"location": [
-		[ { "param": "options_page", "operator": "==", "value": "nongnghiepnhietdoi-settings" } ]
+		[
+			{
+				"param": "options_page",
+				"operator": "==",
+				"value": "nongnghiepnhietdoi-settings"
+			}
+		]
 	],
 	"menu_order": 0,
 	"position": "normal",
 	"style": "default",
 	"label_placement": "top",
+	"instruction_placement": "label",
 	"active": true,
-	"description": "Thông tin liên hệ toàn site",
-	"modified": 1784600000
+	"description": "Thông tin dùng chung toàn site. Sửa tại đây thì header, footer, trang liên hệ, nút nổi và SEO sẽ đổi theo.",
+	"show_in_rest": 0,
+	"modified": 1761000000
 }
