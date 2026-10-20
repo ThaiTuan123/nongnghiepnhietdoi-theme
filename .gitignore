@@ -1,0 +1,33 @@
+# Dependencies
+/node_modules/
+/vendor/
+
+# Build output
+/dist/
+/src/.hot
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+*.code-workspace
+
+# Logs & caches
+*.log
+npm-debug.log*
+.phpcs-cache
+.eslintcache
+.prettiercache
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+
+# Local / temp
+*.local
+*.tmp
+*.bak

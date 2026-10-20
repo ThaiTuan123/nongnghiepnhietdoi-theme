@@ -1,0 +1,128 @@
+{
+	"key": "group_nongnghiepnhietdoi_du_an",
+	"title": "Dự án - Thông tin chi tiết",
+	"fields": [
+		{
+			"key": "field_lx_project_gia",
+			"label": "Giá",
+			"name": "gia",
+			"type": "text",
+			"instructions": "Ví dụ: 5.7 tỷ, $570,000, Liên hệ...",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_dien_tich",
+			"label": "Diện tích (m²)",
+			"name": "dien_tich",
+			"type": "number",
+			"instructions": "Chỉ nhập số, đơn vị m² sẽ tự thêm. Ví dụ: 120",
+			"min": 0,
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_trang_thai",
+			"label": "Trạng thái",
+			"name": "trang_thai",
+			"type": "text",
+			"instructions": "Ví dụ: Có sổ chính chủ, Đang mở bán...",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_hien_trang",
+			"label": "Hiện trạng",
+			"name": "hien_trang",
+			"type": "text",
+			"instructions": "Ví dụ: Nhà mới, Đang ở, Còn trống, Đã bàn giao...",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_loai_hinh",
+			"label": "Loại hình",
+			"name": "loai_hinh",
+			"type": "text",
+			"instructions": "Ví dụ: Đất ở đô thị, Căn hộ, Nhà phố...",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_so_tang",
+			"label": "Số tầng",
+			"name": "so_tang",
+			"type": "text",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_huong",
+			"label": "Hướng",
+			"name": "huong",
+			"type": "text",
+			"instructions": "Ví dụ: Đông Nam, Tây Bắc...",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_phong_ngu",
+			"label": "Phòng ngủ",
+			"name": "phong_ngu",
+			"type": "number",
+			"min": 0,
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_phong_tam",
+			"label": "Phòng tắm",
+			"name": "phong_tam",
+			"type": "number",
+			"min": 0,
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_project_dia_chi",
+			"label": "Địa chỉ",
+			"name": "dia_chi",
+			"type": "text",
+			"instructions": "Địa chỉ hiển thị trên card & trang chi tiết. Khi bấm vào sẽ mở Google Maps."
+		},
+		{
+			"key": "field_lx_project_map_link",
+			"label": "Link Google Maps (tuỳ chọn)",
+			"name": "map_link",
+			"type": "url",
+			"instructions": "Bỏ trống để tự động tìm theo địa chỉ ở trên. Dán link Google Maps riêng nếu muốn chính xác."
+		},
+		{
+			"key": "field_lx_project_specs",
+			"label": "Thông tin thêm (bảng thông số)",
+			"name": "thong_tin_them",
+			"type": "repeater",
+			"instructions": "Thêm các thông số khác để hiển thị ở bảng tổng quan (ví dụ: Diện tích đất, Tổng diện tích sàn, Kết cấu...).",
+			"button_label": "Thêm thông số",
+			"layout": "table",
+			"sub_fields": [
+				{
+					"key": "field_lx_project_spec_label",
+					"label": "Tên thông số",
+					"name": "label",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_lx_project_spec_value",
+					"label": "Giá trị",
+					"name": "value",
+					"type": "text",
+					"wrapper": { "width": "60" }
+				}
+			]
+		}
+	],
+	"location": [
+		[ { "param": "post_type", "operator": "==", "value": "du_an" } ]
+	],
+	"menu_order": 0,
+	"position": "acf_after_title",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Thông tin hiển thị trên card & trang chi tiết dự án. Tiêu đề lấy từ tiêu đề bài viết, ảnh lấy từ Ảnh đại diện. Nội dung mô tả (Tổng quan, Ưu điểm nổi bật...) soạn trong khung nội dung bên dưới.",
+	"modified": 1784547120
+}

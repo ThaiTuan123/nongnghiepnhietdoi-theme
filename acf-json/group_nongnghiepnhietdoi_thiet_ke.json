@@ -1,0 +1,217 @@
+{
+	"key": "group_nongnghiepnhietdoi_thiet_ke",
+	"title": "Thiết kế - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_lx_tk_tab_about",
+			"label": "Về chúng tôi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_tk_about_label",
+			"label": "Nhãn nhỏ (eyebrow)",
+			"name": "tk_about_label",
+			"type": "text",
+			"instructions": "Ví dụ: Về chúng tôi",
+			"default_value": "Về chúng tôi",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_about_title",
+			"label": "Tiêu đề khối",
+			"name": "tk_about_title",
+			"type": "text",
+			"instructions": "Tiêu đề lớn căn giữa phía trên khối.",
+			"default_value": "Về chúng tôi",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_about_content",
+			"label": "Nội dung",
+			"name": "tk_about_content",
+			"type": "wysiwyg",
+			"instructions": "Nội dung bên trái. Mỗi đoạn văn nên là một đoạn riêng.",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		},
+		{
+			"key": "field_lx_tk_about_image",
+			"label": "Ảnh minh hoạ",
+			"name": "tk_about_image",
+			"type": "image",
+			"instructions": "Ảnh bên phải khối Về chúng tôi.",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_about_link",
+			"label": "Nút xem thêm",
+			"name": "tk_about_link",
+			"type": "link",
+			"instructions": "Tuỳ chọn. Ví dụ trỏ về trang Giới thiệu.",
+			"return_format": "array",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_tab_services",
+			"label": "Dịch vụ",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_tk_services_title",
+			"label": "Tiêu đề",
+			"name": "tk_services_title",
+			"type": "text",
+			"default_value": "Dịch vụ",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_lx_tk_services_intro",
+			"label": "Mô tả ngắn",
+			"name": "tk_services_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_lx_tk_services",
+			"label": "Danh sách dịch vụ (thẻ ảnh)",
+			"name": "tk_services",
+			"type": "repeater",
+			"instructions": "Mỗi hàng = 1 thẻ lớn. Bắt buộc có Ảnh nền + tiêu đề. Thêm Link để thẻ click được.",
+			"layout": "block",
+			"button_label": "Thêm thẻ dịch vụ",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_lx_tk_service_title",
+					"label": "Tiêu đề trên thẻ",
+					"name": "title",
+					"type": "text",
+					"required": 1,
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_lx_tk_service_link",
+					"label": "Link khi click",
+					"name": "link",
+					"type": "link",
+					"instructions": "Chọn trang / dán URL. Để trống thì thẻ không click được.",
+					"return_format": "array",
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_lx_tk_service_image",
+					"label": "Ảnh nền (background)",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh nền phủ kín thẻ. Khuyến nghị tỉ lệ ~4:3, tối thiểu 1200×900px.",
+					"required": 0,
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp"
+				}
+			]
+		},
+		{
+			"key": "field_lx_tk_tab_why",
+			"label": "Tại sao chọn chúng tôi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_tk_why_title",
+			"label": "Tiêu đề",
+			"name": "tk_why_title",
+			"type": "text",
+			"default_value": "Tại sao nên chọn chúng tôi",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_why_image",
+			"label": "Ảnh minh hoạ",
+			"name": "tk_why_image",
+			"type": "image",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_tk_why_desc",
+			"label": "Mô tả",
+			"name": "tk_why_desc",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": ""
+		},
+		{
+			"key": "field_lx_tk_why_stats",
+			"label": "Số liệu nổi bật",
+			"name": "tk_why_stats",
+			"type": "repeater",
+			"instructions": "Ví dụ: 8+, 60+, 30+. Số đầu tiên sẽ chiếm cả hàng trên giao diện.",
+			"layout": "table",
+			"button_label": "Thêm số liệu",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_lx_tk_stat_number",
+					"label": "Số",
+					"name": "number",
+					"type": "text",
+					"instructions": "Ví dụ: 8+",
+					"required": 1,
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_lx_tk_stat_label",
+					"label": "Nhãn",
+					"name": "label",
+					"type": "text",
+					"required": 1,
+					"wrapper": { "width": "70" }
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-thiet-ke.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "thiet-ke"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Chỉnh nội dung 3 khối: Về chúng tôi · Dịch vụ · Tại sao chọn chúng tôi trên trang Thiết kế. Hero & form tư vấn giữ trong code.",
+	"modified": 1784603000
+}

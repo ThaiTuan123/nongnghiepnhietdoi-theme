@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<ruleset name="Nông nghiệp nhiệt đới">
+	<description>WordPress Coding Standards for the Nông nghiệp nhiệt đới theme.</description>
+
+	<file>.</file>
+
+	<exclude-pattern>*/node_modules/*</exclude-pattern>
+	<exclude-pattern>*/vendor/*</exclude-pattern>
+	<exclude-pattern>*/dist/*</exclude-pattern>
+	<exclude-pattern>*/acf-json/*</exclude-pattern>
+
+	<arg name="basepath" value="."/>
+	<arg name="extensions" value="php"/>
+	<arg name="parallel" value="8"/>
+	<arg value="s"/>
+	<arg value="p"/>
+	<arg name="cache" value=".phpcs-cache"/>
+
+	<config name="minimum_supported_wp_version" value="6.0"/>
+	<config name="testVersion" value="8.0-"/>
+
+	<rule ref="WordPress">
+		<!-- Theme templates use Vietnamese slugs (page-lien-he.php, etc.). -->
+		<exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
+		<exclude name="WordPress.Files.FileName.InvalidClassFileName"/>
+		<!-- Alignment noise in mixed HTML/PHP templates. -->
+		<exclude name="Generic.Formatting.MultipleStatementAlignment"/>
+	</rule>
+
+	<rule ref="PHPCompatibilityWP"/>
+
+	<!-- Prefix rule targets plugin/theme bootstrap code, not view templates. -->
+	<rule ref="WordPress.NamingConventions.PrefixAllGlobals">
+		<properties>
+			<property name="prefixes" type="array">
+				<element value="nongnghiepnhietdoi"/>
+				<element value="NONGNGHIEPNHIETDOI"/>
+			</property>
+		</properties>
+		<exclude-pattern>*/template-parts/*</exclude-pattern>
+		<exclude-pattern>/(header|footer|sidebar|index|front-page|home|page|page-.+|single|single-.+|archive|archive-.+|search|404|comments)\.php$</exclude-pattern>
+	</rule>
+
+	<!-- Same: local vars like $link/$tag in templates are not WP global overrides. -->
+	<rule ref="WordPress.WP.GlobalVariablesOverride">
+		<exclude-pattern>*/template-parts/*</exclude-pattern>
+		<exclude-pattern>/(header|footer|sidebar|index|front-page|home|page|page-.+|single|single-.+|archive|archive-.+|search|404|comments)\.php$</exclude-pattern>
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array">
+				<element value="nongnghiepnhietdoi"/>
+			</property>
+		</properties>
+	</rule>
+</ruleset>

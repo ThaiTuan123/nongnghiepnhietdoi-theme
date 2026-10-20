@@ -1,0 +1,41 @@
+{
+	"key": "group_nongnghiepnhietdoi_lien_he",
+	"title": "Liên hệ - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_lx_lh_info_image",
+			"label": "Ảnh minh họa",
+			"name": "lh_info_image",
+			"type": "image",
+			"instructions": "Ảnh bên trái khối Thông tin tập đoàn. Nếu để trống sẽ hiện nền thay thế.",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp"
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-lien-he.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "lien-he"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Ảnh minh họa bên trái khối thông tin liên hệ.",
+	"modified": 1784602000
+}

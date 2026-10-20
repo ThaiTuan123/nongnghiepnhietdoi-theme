@@ -1,0 +1,46 @@
+{
+	"key": "group_nongnghiepnhietdoi_tin_tuc",
+	"title": "Tin tức - Bộ lọc chuyên mục",
+	"fields": [
+		{
+			"key": "field_lx_tt_filter_cats",
+			"label": "Chuyên mục hiển thị trên bộ lọc",
+			"name": "tt_filter_categories",
+			"type": "taxonomy",
+			"instructions": "Chọn các chuyên mục xuất hiện dưới dạng nút lọc (Tất cả / …). Kéo thả để sắp xếp thứ tự. Nếu để trống, trang sẽ hiện tất cả chuyên mục đang có bài (trừ Uncategorized).",
+			"required": 0,
+			"taxonomy": "category",
+			"field_type": "multi_select",
+			"allow_null": 1,
+			"add_term": 0,
+			"save_terms": 0,
+			"load_terms": 0,
+			"return_format": "object",
+			"multiple": 1
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-tin-tuc.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "tin-tuc"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Cho phép chọn chuyên mục nào xuất hiện trên bộ lọc trang Tin tức.",
+	"modified": 1784610000
+}

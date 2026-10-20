@@ -1,0 +1,133 @@
+{
+	"key": "group_nongnghiepnhietdoi_gioi_thieu",
+	"title": "Giới thiệu - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_lx_gt_tab_about",
+			"label": "Về chúng tôi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_gt_about_label",
+			"label": "Nhãn nhỏ (eyebrow)",
+			"name": "gt_about_label",
+			"type": "text",
+			"instructions": "Ví dụ: Về chúng tôi",
+			"default_value": "Về chúng tôi",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_gt_about_title",
+			"label": "Tiêu đề",
+			"name": "gt_about_title",
+			"type": "text",
+			"instructions": "Ví dụ: Về Nông nghiệp nhiệt đới",
+			"default_value": "Về Nông nghiệp nhiệt đới",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_gt_about_content",
+			"label": "Nội dung giới thiệu",
+			"name": "gt_about_content",
+			"type": "wysiwyg",
+			"instructions": "Mỗi đoạn văn nên là một đoạn riêng (Enter). Nội dung hiển thị bên trái khối Về chúng tôi.",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		},
+		{
+			"key": "field_lx_gt_about_video",
+			"label": "Video YouTube (URL nhúng)",
+			"name": "gt_about_video",
+			"type": "url",
+			"instructions": "Dạng: https://www.youtube.com/embed/XXXX. Nếu có video sẽ ưu tiên hiển thị video.",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_gt_about_image",
+			"label": "Ảnh (khi không có video)",
+			"name": "gt_about_image",
+			"type": "image",
+			"instructions": "Ảnh bên phải khối Về chúng tôi. Chỉ dùng khi không nhập video.",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp",
+			"wrapper": { "width": "50" }
+		},
+		{
+			"key": "field_lx_gt_tab_pillars",
+			"label": "Tầm nhìn · Sứ mệnh · Giá trị",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_lx_gt_pillars",
+			"label": "Các trụ cột",
+			"name": "gt_pillars",
+			"type": "repeater",
+			"instructions": "Thường gồm 3 mục: Tầm nhìn, Sứ mệnh, Giá trị cốt lõi. Thứ tự trên trang = thứ tự trong danh sách. Mục chẵn/lẻ sẽ đảo layout ảnh ↔ chữ.",
+			"layout": "block",
+			"button_label": "Thêm trụ cột",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_lx_gt_pillar_title",
+					"label": "Tiêu đề",
+					"name": "title",
+					"type": "text",
+					"required": 1,
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_lx_gt_pillar_image",
+					"label": "Ảnh",
+					"name": "image",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
+				},
+				{
+					"key": "field_lx_gt_pillar_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 4,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-gioi-thieu.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "gioi-thieu"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Chỉnh nội dung 2 khối: Về chúng tôi + Tầm nhìn / Sứ mệnh / Giá trị cốt lõi trên trang Giới thiệu.",
+	"modified": 1784601000
+}

@@ -1,0 +1,29 @@
+{
+	"key": "group_nongnghiepnhietdoi_options",
+	"title": "Nông nghiệp nhiệt đới - Cài đặt chung",
+	"fields": [
+		{ "key": "field_lx_opt_logo", "label": "Logo", "name": "site_logo", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "mime_types": "jpg,jpeg,png,svg,webp", "instructions": "Logo hiển thị ở header và footer." },
+		{ "key": "field_lx_opt_phone", "label": "Điện thoại", "name": "contact_phone", "type": "text" },
+		{ "key": "field_lx_opt_email", "label": "Email", "name": "contact_email", "type": "email" },
+		{ "key": "field_lx_opt_address", "label": "Địa chỉ", "name": "contact_address", "type": "textarea", "rows": 3 },
+		{ "key": "field_lx_opt_messenger", "label": "Link Messenger", "name": "contact_messenger", "type": "url", "instructions": "Dùng cho nút nổi bên trái. Ví dụ: https://m.me/tenpage" },
+		{ "key": "field_lx_opt_zalo", "label": "Link Zalo", "name": "contact_zalo", "type": "url", "instructions": "Dùng cho nút nổi bên trái. Ví dụ: https://zalo.me/0788686898" },
+		{ "key": "field_lx_opt_facebook", "label": "Link Facebook", "name": "social_facebook", "type": "url" },
+		{ "key": "field_lx_opt_tiktok", "label": "Link TikTok", "name": "social_tiktok", "type": "url" },
+		{ "key": "field_lx_opt_youtube", "label": "Link YouTube", "name": "social_youtube", "type": "url" },
+		{ "key": "field_lx_opt_seo_tab", "label": "SEO", "name": "", "type": "tab", "placement": "top" },
+		{ "key": "field_lx_opt_seo_desc", "label": "Mô tả mặc định (Meta description)", "name": "seo_default_description", "type": "textarea", "rows": 3, "maxlength": 300, "instructions": "Mô tả hiển thị trên Google & khi chia sẻ mạng xã hội cho các trang chưa có mô tả riêng. Nên 120–160 ký tự. Bỏ trống sẽ dùng mô tả mặc định của theme." },
+		{ "key": "field_lx_opt_seo_keywords", "label": "Từ khoá (Keywords)", "name": "seo_keywords", "type": "text", "instructions": "Các từ khoá cách nhau bởi dấu phẩy. Ví dụ: bất động sản, phong thủy, thiết kế." },
+		{ "key": "field_lx_opt_seo_image", "label": "Ảnh chia sẻ mặc định (OG image)", "name": "seo_share_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "mime_types": "jpg,jpeg,png,webp", "instructions": "Ảnh hiển thị khi chia sẻ link lên Facebook/Zalo... Khuyến nghị 1200×630px." }
+	],
+	"location": [
+		[ { "param": "options_page", "operator": "==", "value": "nongnghiepnhietdoi-settings" } ]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"active": true,
+	"description": "Thông tin liên hệ toàn site",
+	"modified": 1784600000
+}

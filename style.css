@@ -1,0 +1,9 @@
+/*
+Theme Name: Nông nghiệp nhiệt đới Theme
+Author: Tuan Vo
+Version: 1.0
+Description: Theme WordPress cho Nông nghiệp nhiệt đới. Vue 3 + Tailwind CSS + Vite + ACF. Giao diện kế thừa theme mẫu, sẽ được chỉnh lại.
+Text Domain: nongnghiepnhietdoi
+*/
+
+/* Styles thực tế được build từ src/styles/app.css qua Vite (dist/). File này chỉ giữ header theme. */

@@ -1,0 +1,21 @@
+{
+	"key": "group_nongnghiepnhietdoi_seo_meta",
+	"title": "Nông nghiệp nhiệt đới - SEO (trang/bài viết)",
+	"fields": [
+		{ "key": "field_lx_seo_title", "label": "Tiêu đề SEO", "name": "seo_title", "type": "text", "instructions": "Ghi đè tiêu đề hiển thị trên Google. Bỏ trống sẽ dùng tiêu đề trang. Nên ≤ 60 ký tự." },
+		{ "key": "field_lx_seo_description", "label": "Mô tả SEO (Meta description)", "name": "seo_description", "type": "textarea", "rows": 3, "maxlength": 300, "instructions": "Mô tả hiển thị trên Google & khi chia sẻ. Bỏ trống sẽ tự lấy từ tóm tắt / nội dung. Nên 120–160 ký tự." },
+		{ "key": "field_lx_seo_image", "label": "Ảnh chia sẻ (OG image)", "name": "seo_image", "type": "image", "return_format": "id", "preview_size": "medium", "library": "all", "mime_types": "jpg,jpeg,png,webp", "instructions": "Ảnh khi chia sẻ link. Bỏ trống sẽ dùng ảnh đại diện của bài, hoặc ảnh mặc định trong Cài đặt Nông nghiệp nhiệt đới. Khuyến nghị 1200×630px." }
+	],
+	"location": [
+		[ { "param": "post_type", "operator": "==", "value": "page" } ],
+		[ { "param": "post_type", "operator": "==", "value": "post" } ],
+		[ { "param": "post_type", "operator": "==", "value": "du_an" } ]
+	],
+	"menu_order": 10,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"active": true,
+	"description": "Tuỳ chỉnh SEO cho từng trang/bài viết Nông nghiệp nhiệt đới",
+	"modified": 1784500000
+}
