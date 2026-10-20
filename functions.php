@@ -18,5 +18,7 @@ require_once NONGNGHIEPNHIETDOI_DIR . '/inc/svg-icons.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/menus.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/enqueue.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/acf.php';
+require_once NONGNGHIEPNHIETDOI_DIR . '/inc/about.php';
+require_once NONGNGHIEPNHIETDOI_DIR . '/inc/services.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/contact-form.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/seo.php';

@@ -1,0 +1,468 @@
+{
+	"key": "group_nongnghiepnhietdoi_ve_chung_toi",
+	"title": "Về chúng tôi - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_vc_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa các thẻ bên dưới để đổi chữ, ảnh và danh sách trên trang Về chúng tôi. Ảnh nền đầu trang lấy từ Ảnh đại diện ở cột bên phải. Ô soạn thảo WordPress phía trên không dùng cho trang này.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_vc_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "vc_hero_eyebrow",
+			"type": "text",
+			"instructions": "Dòng chữ nhỏ phía trên tiêu đề. Ví dụ: Trung tâm nghiên cứu.",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "vc_hero_title",
+			"type": "text",
+			"instructions": "Tiêu đề lớn ở đầu trang.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_hero_lead",
+			"label": "Đoạn giới thiệu ngắn",
+			"name": "vc_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_vc_tab_overview",
+			"label": "Tổng quan và Sứ mệnh",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_overview_label",
+			"label": "Tên mục",
+			"name": "vc_overview_label",
+			"type": "text",
+			"instructions": "Hiện trên thanh mục lục và phía trên tiêu đề.",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_overview_title",
+			"label": "Tiêu đề",
+			"name": "vc_overview_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_overview_content",
+			"label": "Nội dung tổng quan",
+			"name": "vc_overview_content",
+			"type": "wysiwyg",
+			"tabs": "all",
+			"toolbar": "basic",
+			"media_upload": 0,
+			"delay": 0
+		},
+		{
+			"key": "field_nn_vc_overview_image",
+			"label": "Ảnh minh họa",
+			"name": "vc_overview_image",
+			"type": "image",
+			"instructions": "Ảnh bên cạnh đoạn tổng quan. Để trống sẽ dùng ảnh cánh đồng mặc định.",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp"
+		},
+		{
+			"key": "field_nn_vc_pillars",
+			"label": "Tầm nhìn, sứ mệnh, giá trị",
+			"name": "vc_pillars",
+			"type": "repeater",
+			"instructions": "Mỗi dòng là một thẻ. Có thể thêm hoặc xóa.",
+			"layout": "block",
+			"button_label": "Thêm thẻ",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_pillar_title",
+					"label": "Tiêu đề",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_pillar_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "70" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_tab_org",
+			"label": "Tổ chức và Ban cố vấn",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_org_label",
+			"label": "Tên mục",
+			"name": "vc_org_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_org_title",
+			"label": "Tiêu đề",
+			"name": "vc_org_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_org_intro",
+			"label": "Đoạn mở",
+			"name": "vc_org_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_vc_units",
+			"label": "Các bộ phận",
+			"name": "vc_units",
+			"type": "repeater",
+			"instructions": "Ban điều hành, hội đồng, ban hiện trường…",
+			"layout": "block",
+			"button_label": "Thêm bộ phận",
+			"min": 0,
+			"max": 8,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_unit_title",
+					"label": "Tên bộ phận",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_unit_text",
+					"label": "Việc phụ trách",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "70" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_board_label",
+			"label": "Tiêu đề ban cố vấn",
+			"name": "vc_board_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_board_intro",
+			"label": "Giới thiệu ban cố vấn",
+			"name": "vc_board_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_advisors",
+			"label": "Thành viên ban cố vấn",
+			"name": "vc_advisors",
+			"type": "repeater",
+			"instructions": "Điền tên thật, chức danh, vài dòng giới thiệu và ảnh chân dung. Xóa dòng mẫu khi đã có danh sách chính thức.",
+			"layout": "block",
+			"button_label": "Thêm thành viên",
+			"min": 0,
+			"max": 12,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_advisor_name",
+					"label": "Họ tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_vc_advisor_role",
+					"label": "Chức danh",
+					"name": "role",
+					"type": "text",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_advisor_photo",
+					"label": "Ảnh",
+					"name": "photo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_advisor_bio",
+					"label": "Giới thiệu ngắn",
+					"name": "bio",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_tab_network",
+			"label": "Mạng lưới liên kết",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_network_label",
+			"label": "Tên mục",
+			"name": "vc_network_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_network_title",
+			"label": "Tiêu đề",
+			"name": "vc_network_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_network_intro",
+			"label": "Đoạn mở",
+			"name": "vc_network_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_vc_links",
+			"label": "Nhóm liên kết hoặc đối tác",
+			"name": "vc_links",
+			"type": "repeater",
+			"instructions": "Một dòng là một nhóm hoặc một đơn vị. Logo và đường dẫn có thể để trống.",
+			"layout": "block",
+			"button_label": "Thêm liên kết",
+			"min": 0,
+			"max": 16,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_link_name",
+					"label": "Tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_vc_link_url",
+					"label": "Đường dẫn",
+					"name": "url",
+					"type": "url",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_link_logo",
+					"label": "Logo",
+					"name": "logo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp,svg",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_link_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_tab_gov",
+			"label": "Minh bạch và quản trị",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_gov_label",
+			"label": "Tên mục",
+			"name": "vc_gov_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_gov_title",
+			"label": "Tiêu đề",
+			"name": "vc_gov_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_vc_gov_intro",
+			"label": "Đoạn mở",
+			"name": "vc_gov_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_vc_principles",
+			"label": "Nguyên tắc quản trị",
+			"name": "vc_principles",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm nguyên tắc",
+			"min": 0,
+			"max": 8,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_principle_title",
+					"label": "Tiêu đề",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_vc_principle_text",
+					"label": "Nội dung",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_documents",
+			"label": "Tài liệu công khai",
+			"name": "vc_documents",
+			"type": "repeater",
+			"instructions": "Quy chế, báo cáo, biên bản. Để trống thì khối tài liệu không hiện trên trang.",
+			"layout": "block",
+			"button_label": "Thêm tài liệu",
+			"min": 0,
+			"max": 12,
+			"sub_fields": [
+				{
+					"key": "field_nn_vc_doc_title",
+					"label": "Tên tài liệu",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_vc_doc_note",
+					"label": "Ghi chú",
+					"name": "note",
+					"type": "text",
+					"instructions": "Ví dụ: Cập nhật 2026.",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_vc_doc_file",
+					"label": "Tệp",
+					"name": "file",
+					"type": "file",
+					"return_format": "array",
+					"library": "all",
+					"mime_types": "pdf,doc,docx",
+					"wrapper": { "width": "30" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_vc_tab_cta",
+			"label": "Lời kêu gọi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_vc_cta_title",
+			"label": "Tiêu đề",
+			"name": "vc_cta_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_vc_cta_text",
+			"label": "Mô tả",
+			"name": "vc_cta_text",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_vc_cta_button_label",
+			"label": "Chữ trên nút",
+			"name": "vc_cta_button_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_vc_cta_button_url",
+			"label": "Đường dẫn nút",
+			"name": "vc_cta_button_url",
+			"type": "url",
+			"wrapper": { "width": "60" }
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-ve-chung-toi.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "ve-chung-toi"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Nội dung trang Về chúng tôi: tổng quan, tổ chức, mạng lưới và minh bạch.",
+	"show_in_rest": 0,
+	"modified": 1792540800
+}

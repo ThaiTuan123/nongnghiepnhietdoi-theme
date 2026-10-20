@@ -201,6 +201,102 @@ function nongnghiepnhietdoi_socials() {
 }
 
 /**
+ * Đưa một ảnh trong theme vào thư viện để khách thay trong admin.
+ *
+ * @param string $relative Path tương đối từ thư mục theme.
+ * @param string $title    Tiêu đề attachment.
+ * @return int Attachment ID, hoặc 0 nếu lỗi.
+ */
+function nongnghiepnhietdoi_import_theme_image( $relative, $title ) {
+	$path = NONGNGHIEPNHIETDOI_DIR . '/' . ltrim( $relative, '/' );
+	if ( ! file_exists( $path ) ) {
+		return 0;
+	}
+
+	require_once ABSPATH . 'wp-admin/includes/file.php';
+	require_once ABSPATH . 'wp-admin/includes/media.php';
+	require_once ABSPATH . 'wp-admin/includes/image.php';
+
+	$filename = wp_unique_filename( wp_upload_dir()['path'], basename( $path ) );
+	$upload   = wp_upload_bits( $filename, null, file_get_contents( $path ) );
+	if ( ! empty( $upload['error'] ) ) {
+		return 0;
+	}
+
+	$filetype   = wp_check_filetype( $filename, null );
+	$attachment = array(
+		'post_mime_type' => $filetype['type'],
+		'post_title'     => $title,
+		'post_status'    => 'inherit',
+	);
+	$id = wp_insert_attachment( $attachment, $upload['file'] );
+	if ( is_wp_error( $id ) || ! $id ) {
+		return 0;
+	}
+
+	wp_update_attachment_metadata( $id, wp_generate_attachment_metadata( $id, $upload['file'] ) );
+	return (int) $id;
+}
+
+/**
+ * Ghi nội dung hero trang chủ lần đầu để form admin hiện đúng chữ và ảnh đang chạy.
+ */
+add_action(
+	'acf/init',
+	function () {
+		if ( get_option( 'nongnghiepnhietdoi_home_hero_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		$post_id = (int) get_option( 'page_on_front' );
+		if ( ! $post_id ) {
+			return;
+		}
+
+		$existing = get_field( 'home_hero_title', $post_id );
+		if ( is_string( $existing ) && '' !== $existing ) {
+			update_option( 'nongnghiepnhietdoi_home_hero_seeded', 1, false );
+			return;
+		}
+
+		update_field( 'home_hero_eyebrow', 'Nghiên cứu & tư vấn', $post_id );
+		update_field( 'home_hero_title', 'Tiên phong nông nghiệp thích ứng khí hậu', $post_id );
+		update_field( 'home_hero_description', 'Chuyển hóa công nghệ vi sinh, xử lý môi trường và đo lường phát thải thành sinh kế bền vững cho nông dân Việt Nam.', $post_id );
+		update_field(
+			'home_hero_cta',
+			array(
+				'title'  => 'Hợp tác dự án',
+				'url'    => '#lien-he',
+				'target' => '',
+			),
+			$post_id
+		);
+
+		$rows    = array();
+		$hero_id = nongnghiepnhietdoi_import_theme_image( 'assets/images/hero-field.jpg', 'Cánh đồng lúa lúc bình minh' );
+		$about_id = nongnghiepnhietdoi_import_theme_image( 'assets/images/about-field.jpg', 'Nông sản tươi' );
+		if ( $hero_id ) {
+			$rows[] = array(
+				'media_type' => 'image',
+				'image'      => $hero_id,
+			);
+		}
+		if ( $about_id ) {
+			$rows[] = array(
+				'media_type' => 'image',
+				'image'      => $about_id,
+			);
+		}
+		if ( $rows ) {
+			update_field( 'home_hero_slides', $rows, $post_id );
+		}
+
+		update_option( 'nongnghiepnhietdoi_home_hero_seeded', 1, false );
+	},
+	30
+);
+
+/**
  * ACF location: hiện field group khi trang có slug "gioi-thieu"
  * (dùng kèm page_template để chắc chắn hiện form khi edit trang Giới thiệu).
  */

@@ -5,6 +5,7 @@ import { initHeader } from './modules/header.js';
 import { initSmoothScroll } from './animations/smoothScroll.js';
 import { initScrollIndicator } from './modules/scrollIndicator.js';
 import { initFloatingButtons } from './modules/floatingButtons.js';
+import { initBackToTop } from './modules/backToTop.js';
 import { initContactForms } from './modules/contactForm.js';
 import { initLightbox } from './modules/lightbox.js';
 import { initReveal } from './animations/reveal.js';
@@ -52,6 +53,7 @@ function boot() {
   const lenis = initSmoothScroll();
   initScrollIndicator(lenis);
   initFloatingButtons();
+  initBackToTop(lenis);
   initContactForms();
   initLightbox();
   initReveal();

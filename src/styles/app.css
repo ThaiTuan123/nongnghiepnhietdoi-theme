@@ -748,6 +748,119 @@
   background-color: #16a34a;
 }
 
+/* Nút về đầu trang — góc phải, hiện sau khi cuộn. */
+.lx-to-top {
+  position: fixed;
+  right: 1.25rem;
+  bottom: 1.5rem;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.25rem;
+  height: 3.25rem;
+  padding: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: #fff;
+  color: #009c48;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(11, 31, 51, 0.18);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transform: translateY(16px) scale(0.86);
+  transition:
+    opacity 0.35s ease,
+    visibility 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.lx-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+  transform: translateY(0) scale(1);
+}
+.lx-to-top__icon {
+  position: relative;
+  display: block;
+  width: 1.25rem;
+  height: 1.25rem;
+  overflow: hidden;
+}
+.lx-to-top__icon svg {
+  position: absolute;
+  inset: 0;
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lx-to-top__icon svg:last-child {
+  transform: translateY(120%);
+}
+.lx-to-top__label {
+  position: absolute;
+  right: calc(100% + 12px);
+  top: 50%;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.5rem;
+  background: rgba(11, 31, 51, 0.92);
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  line-height: 1.2;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(8px, -50%);
+  transition:
+    opacity 0.25s ease,
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.lx-to-top__label::after {
+  content: '';
+  position: absolute;
+  left: 100%;
+  top: 50%;
+  margin-top: -4px;
+  border: 4px solid transparent;
+  border-left-color: rgba(11, 31, 51, 0.92);
+}
+.lx-to-top:hover,
+.lx-to-top:focus-visible {
+  background: #f07818;
+  color: #fff;
+  box-shadow: 0 14px 28px rgba(240, 120, 24, 0.42);
+  transform: translateY(-6px) scale(1.08);
+  outline: none;
+}
+.lx-to-top:hover .lx-to-top__icon svg:first-child,
+.lx-to-top:focus-visible .lx-to-top__icon svg:first-child {
+  transform: translateY(-120%);
+}
+.lx-to-top:hover .lx-to-top__icon svg:last-child,
+.lx-to-top:focus-visible .lx-to-top__icon svg:last-child {
+  transform: translateY(0);
+}
+.lx-to-top:hover .lx-to-top__label,
+.lx-to-top:focus-visible .lx-to-top__label {
+  opacity: 1;
+  transform: translate(0, -50%);
+}
+@media (max-width: 640px) {
+  .lx-to-top {
+    right: 0.75rem;
+    bottom: 1rem;
+    width: 3rem;
+    height: 3rem;
+  }
+  .lx-to-top__label {
+    display: none;
+  }
+}
+
 @keyframes lx-float-in {
   from {
     opacity: 0;
@@ -921,6 +1034,11 @@ body.lx-lightbox-open {
   .lx-float__btn--phone .lx-float__icon {
     animation: none !important;
   }
+  .lx-to-top,
+  .lx-to-top__icon svg,
+  .lx-to-top__label {
+    transition: none;
+  }
   .lx-lightbox {
     transition: none;
   }
@@ -941,6 +1059,12 @@ body.lx-lightbox-open {
   width: max-content;
   max-width: calc(100% - 16rem);
   background-color: #00a050;
+}
+/* Pill menu và nút Liên hệ cùng một chiều cao. */
+.varc-header .varc-nav,
+.varc-header .varc-cta {
+  box-sizing: border-box;
+  height: 3rem;
 }
 .varc-lang {
   display: flex;

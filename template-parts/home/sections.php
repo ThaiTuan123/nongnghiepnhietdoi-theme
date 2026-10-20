@@ -5,31 +5,134 @@
  * @package NongNghiepNhietDoi
  */
 
-$img       = NONGNGHIEPNHIETDOI_URI . '/assets/images';
-$hero_mp4  = NONGNGHIEPNHIETDOI_DIR . '/assets/video/hero.mp4';
-$has_video = file_exists( $hero_mp4 );
+$img = NONGNGHIEPNHIETDOI_URI . '/assets/images';
+
+$hero_eyebrow = 'Nghiên cứu & tư vấn';
+$hero_title   = 'Tiên phong nông nghiệp thích ứng khí hậu';
+$hero_desc    = 'Chuyển hóa công nghệ vi sinh, xử lý môi trường và đo lường phát thải thành sinh kế bền vững cho nông dân Việt Nam.';
+$hero_cta     = array(
+	'title'  => 'Hợp tác dự án',
+	'url'    => '#lien-he',
+	'target' => '',
+);
+
+$front_id = (int) get_option( 'page_on_front' );
+if ( $front_id && function_exists( 'get_field' ) ) {
+	$saved_eyebrow = get_field( 'home_hero_eyebrow', $front_id );
+	$saved_title   = get_field( 'home_hero_title', $front_id );
+	$saved_desc    = get_field( 'home_hero_description', $front_id );
+	$saved_cta     = get_field( 'home_hero_cta', $front_id );
+
+	if ( is_string( $saved_eyebrow ) && '' !== $saved_eyebrow ) {
+		$hero_eyebrow = $saved_eyebrow;
+	}
+	if ( is_string( $saved_title ) && '' !== $saved_title ) {
+		$hero_title = $saved_title;
+	}
+	if ( is_string( $saved_desc ) && '' !== $saved_desc ) {
+		$hero_desc = $saved_desc;
+	}
+	if ( is_array( $saved_cta ) && ! empty( $saved_cta['url'] ) ) {
+		$hero_cta = $saved_cta;
+	}
+}
+
+$hero_slides = array();
+$saved_rows  = ( $front_id && function_exists( 'get_field' ) ) ? get_field( 'home_hero_slides', $front_id ) : null;
+if ( is_array( $saved_rows ) ) {
+	foreach ( $saved_rows as $row ) {
+		$type = $row['media_type'] ?? 'image';
+		if ( 'video' === $type ) {
+			$video  = $row['video'] ?? null;
+			$poster = $row['poster'] ?? null;
+			if ( $video && ! empty( $video['url'] ) ) {
+				$poster_url     = ( $poster && ! empty( $poster['url'] ) ) ? $poster['url'] : '';
+				$hero_slides[]  = array(
+					'type'   => 'video',
+					'src'    => $video['url'],
+					'poster' => $poster_url,
+					'thumb'  => $poster['sizes']['medium'] ?? $poster_url,
+					'alt'    => $poster['alt'] ?? ( $video['title'] ?? '' ),
+				);
+			}
+		} else {
+			$image = $row['image'] ?? null;
+			if ( $image && ! empty( $image['url'] ) ) {
+				$hero_slides[] = array(
+					'type'  => 'image',
+					'src'   => $image['url'],
+					'thumb' => $image['sizes']['medium'] ?? $image['url'],
+					'alt'   => $image['alt'] ?? '',
+				);
+			}
+		}
+	}
+}
+
+if ( empty( $hero_slides ) ) {
+	$theme_video = NONGNGHIEPNHIETDOI_DIR . '/assets/video/hero.mp4';
+	if ( file_exists( $theme_video ) ) {
+		$hero_slides[] = array(
+			'type'   => 'video',
+			'src'    => NONGNGHIEPNHIETDOI_URI . '/assets/video/hero.mp4',
+			'poster' => $img . '/hero-field.jpg',
+			'thumb'  => $img . '/hero-field.jpg',
+			'alt'    => 'Cánh đồng lúa',
+		);
+	}
+	$hero_slides[] = array(
+		'type'  => 'image',
+		'src'   => $img . '/hero-field.jpg',
+		'thumb' => $img . '/hero-field.jpg',
+		'alt'   => 'Cánh đồng lúa lúc bình minh',
+	);
+	$hero_slides[] = array(
+		'type'  => 'image',
+		'src'   => $img . '/about-field.jpg',
+		'thumb' => $img . '/about-field.jpg',
+		'alt'   => 'Nông sản tươi',
+	);
+}
+
+$hero_first = $hero_slides[0];
+$hero_props = wp_json_encode(
+	array(
+		'slides'          => $hero_slides,
+		'interval'        => 5000,
+		'hideCopyOnVideo' => false,
+		'overlayClass'    => 'bg-gradient-to-l from-black/55 via-black/15 to-black/10',
+	)
+);
 ?>
 
-<section class="relative isolate min-h-[100svh] overflow-hidden bg-ink text-white">
-	<?php if ( $has_video ) : ?>
-		<video class="hero-video absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline poster="<?php echo esc_url( $img . '/hero-field.jpg' ); ?>">
-			<source src="<?php echo esc_url( NONGNGHIEPNHIETDOI_URI . '/assets/video/hero.mp4' ); ?>" type="video/mp4">
-		</video>
-	<?php else : ?>
-		<img src="<?php echo esc_url( $img . '/hero-field.jpg' ); ?>" alt="" class="absolute inset-0 h-full w-full object-cover" width="2000" height="1125">
-	<?php endif; ?>
-	<div class="absolute inset-0 bg-gradient-to-l from-black/55 via-black/15 to-black/10"></div>
-	<div class="relative mx-auto flex min-h-[100svh] w-full max-w-[1360px] items-end px-4 pb-14 pt-28 sm:items-center sm:px-6 sm:pb-0 lg:justify-end lg:px-8" data-reveal>
-		<div class="w-full max-w-[560px]">
-			<p class="mb-5 inline-flex w-fit items-center rounded-full border border-white/45 bg-white/10 px-4 py-1.5 text-sm text-white/95 backdrop-blur-sm">Nghiên cứu &amp; tư vấn</p>
-			<h1 class="font-sans text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px]">Tiên phong nông nghiệp thích ứng khí hậu</h1>
-			<p class="mt-5 max-w-md text-sm leading-relaxed text-white/90 sm:text-base">Chuyển hóa công nghệ vi sinh, xử lý môi trường và đo lường phát thải thành sinh kế bền vững cho nông dân Việt Nam.</p>
-			<a href="#lien-he" class="varc-cta mt-8 inline-flex items-center gap-3 rounded-full bg-brand py-2 pl-6 pr-2 text-sm font-semibold text-white hover:bg-brand-700">
-				<?php esc_html_e( 'Hợp tác dự án', 'nongnghiepnhietdoi' ); ?>
-				<span class="varc-cta-icon inline-flex h-10 w-10 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
-					<svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-				</span>
-			</a>
+<section class="relative isolate min-h-[100svh] overflow-hidden bg-ink text-white" data-section="hero">
+	<div class="absolute inset-0 z-0" data-vue="HeroSlider" data-props="<?php echo esc_attr( $hero_props ); ?>">
+		<?php if ( 'video' === $hero_first['type'] && ! empty( $hero_first['poster'] ) ) : ?>
+			<img src="<?php echo esc_url( $hero_first['poster'] ); ?>" alt="<?php echo esc_attr( $hero_first['alt'] ); ?>" class="h-full w-full object-cover" fetchpriority="high">
+		<?php elseif ( 'image' === $hero_first['type'] ) : ?>
+			<img src="<?php echo esc_url( $hero_first['src'] ); ?>" alt="<?php echo esc_attr( $hero_first['alt'] ); ?>" class="h-full w-full object-cover" fetchpriority="high">
+		<?php endif; ?>
+		<div class="pointer-events-none absolute inset-0 bg-gradient-to-l from-black/55 via-black/15 to-black/10"></div>
+	</div>
+	<div class="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1360px] items-end px-4 pb-36 pt-28 sm:items-center sm:px-6 sm:pb-0 lg:justify-end lg:px-8">
+		<div class="pointer-events-auto w-full max-w-[560px]">
+			<?php if ( $hero_eyebrow ) : ?>
+				<p class="mb-5 inline-flex w-fit items-center rounded-full border border-white/45 bg-white/10 px-4 py-1.5 text-sm text-white/95 backdrop-blur-sm" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
+			<?php endif; ?>
+			<?php if ( $hero_title ) : ?>
+				<h1 class="font-sans text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px]" data-reveal data-reveal-delay="0.12"><?php echo esc_html( $hero_title ); ?></h1>
+			<?php endif; ?>
+			<?php if ( $hero_desc ) : ?>
+				<p class="mt-5 max-w-md text-sm leading-relaxed text-white/90 sm:text-base" data-reveal data-reveal-delay="0.24"><?php echo esc_html( $hero_desc ); ?></p>
+			<?php endif; ?>
+			<?php if ( ! empty( $hero_cta['url'] ) ) : ?>
+				<a href="<?php echo esc_url( $hero_cta['url'] ); ?>" class="varc-cta mt-8 inline-flex items-center gap-3 rounded-full bg-brand py-2 pl-6 pr-2 text-sm font-semibold text-white hover:bg-brand-700" data-reveal data-reveal-delay="0.36"<?php echo ! empty( $hero_cta['target'] ) ? ' target="' . esc_attr( $hero_cta['target'] ) . '" rel="noopener noreferrer"' : ''; ?>>
+					<?php echo esc_html( $hero_cta['title'] ?: __( 'Hợp tác dự án', 'nongnghiepnhietdoi' ) ); ?>
+					<span class="varc-cta-icon inline-flex h-10 w-10 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
+						<svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					</span>
+				</a>
+			<?php endif; ?>
 		</div>
 	</div>
 </section>
@@ -77,22 +180,73 @@ $has_video = file_exists( $hero_mp4 );
 	<div class="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
 		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand">Năng lực khác biệt</p>
 		<h2 data-reveal class="mt-3 max-w-2xl font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl">Khoa học ra đồng, đo được kết quả</h2>
-		<div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 sm:gap-5 lg:grid-cols-4" data-reveal-stagger>
-			<?php
-			$caps = array(
-				array( '01', 'Vi sinh bản địa', 'Phân lập, nhân sinh khối và chuyển giao chế phẩm IMO phù hợp đất và cây của từng vùng.' ),
-				array( '02', 'Hiện trường CSA', 'Thiết kế mô hình nông nghiệp thông minh với khí hậu, theo mùa vụ và quy mô hợp tác xã.' ),
-				array( '03', 'Đo phát thải', 'Phương pháp đo lường phát thải khí nhà kính để đối chiếu trước và sau can thiệp.' ),
-				array( '04', 'Chuyển giao', 'Tập huấn nông hộ, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao.' ),
-			);
-			foreach ( $caps as $cap ) :
-				?>
-				<article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $cap[0] ); ?></p>
-					<h3 class="mt-3 font-sans text-lg font-bold text-ink"><?php echo esc_html( $cap[1] ); ?></h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $cap[2] ); ?></p>
-				</article>
-			<?php endforeach; ?>
+		<div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-12" data-reveal-stagger>
+			<article class="relative flex flex-col overflow-hidden rounded-3xl bg-ink text-white md:col-span-7 md:row-span-2">
+				<div class="relative min-h-[200px] flex-1 overflow-hidden sm:min-h-[240px]" aria-hidden="true">
+					<div class="absolute -left-10 top-6 h-40 w-40 rounded-full bg-brand/40 blur-2xl"></div>
+					<div class="absolute right-6 top-4 h-28 w-28 rounded-full bg-sun/50 blur-2xl"></div>
+					<svg class="absolute inset-0 h-full w-full" viewBox="0 0 420 280" fill="none" preserveAspectRatio="xMidYMid slice">
+						<circle cx="168" cy="148" r="78" fill="#009c48"/>
+						<circle cx="268" cy="112" r="52" fill="#f07818"/>
+						<circle cx="246" cy="196" r="36" fill="#e8fe85"/>
+						<circle cx="118" cy="196" r="22" fill="#009c48" opacity=".55"/>
+						<circle cx="300" cy="176" r="14" fill="#fff"/>
+						<circle cx="196" cy="78" r="8" fill="#fff" opacity=".8"/>
+					</svg>
+				</div>
+				<div class="p-6 sm:p-8">
+					<p class="text-sm font-bold text-sun">01</p>
+					<h3 class="mt-2 font-sans text-2xl font-bold">Vi sinh bản địa</h3>
+					<p class="mt-2 max-w-md text-sm leading-relaxed text-white/75">Phân lập, nhân sinh khối và chuyển giao chế phẩm IMO phù hợp đất và cây của từng vùng.</p>
+				</div>
+			</article>
+
+			<article class="flex items-center gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:gap-5 sm:p-5 md:col-span-5">
+				<div class="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#e6ecd5] sm:h-28 sm:w-28" aria-hidden="true">
+					<svg class="h-20 w-20" viewBox="0 0 96 96" fill="none">
+						<circle cx="68" cy="26" r="10" fill="#f07818"/>
+						<path d="M10 58c18-16 32-16 50 0s28 14 28 6v22H10V58z" fill="#009c48"/>
+						<path d="M10 74c16-10 30-8 48 4 14 8 22 6 28 2v12H10V74z" fill="#0b1f33"/>
+					</svg>
+				</div>
+				<div>
+					<p class="text-sm font-bold text-sun">02</p>
+					<h3 class="mt-1 font-sans text-lg font-bold text-ink">Hiện trường CSA</h3>
+					<p class="mt-1 text-sm leading-relaxed text-slate-600">Thiết kế mô hình nông nghiệp thông minh với khí hậu, theo mùa vụ và quy mô hợp tác xã.</p>
+				</div>
+			</article>
+
+			<article class="flex items-center gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:gap-5 sm:p-5 md:col-span-5">
+				<div class="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#fceace] sm:h-28 sm:w-28" aria-hidden="true">
+					<svg class="h-20 w-20" viewBox="0 0 96 96" fill="none">
+						<rect x="16" y="48" width="14" height="32" rx="4" fill="#009c48"/>
+						<rect x="36" y="34" width="14" height="46" rx="4" fill="#0b1f33"/>
+						<rect x="56" y="22" width="14" height="58" rx="4" fill="#f07818"/>
+						<path d="M18 28c10-12 22-8 28 2" stroke="#009c48" stroke-width="4" stroke-linecap="round"/>
+					</svg>
+				</div>
+				<div>
+					<p class="text-sm font-bold text-sun">03</p>
+					<h3 class="mt-1 font-sans text-lg font-bold text-ink">Đo phát thải</h3>
+					<p class="mt-1 text-sm leading-relaxed text-slate-600">Phương pháp đo lường phát thải khí nhà kính để đối chiếu trước và sau can thiệp.</p>
+				</div>
+			</article>
+
+			<article class="flex flex-col gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:flex-row sm:items-center sm:gap-6 sm:p-5 md:col-span-12">
+				<div class="grid h-24 w-full shrink-0 place-items-center overflow-hidden rounded-2xl bg-ink sm:h-28 sm:w-44" aria-hidden="true">
+					<svg class="h-16 w-36" viewBox="0 0 140 64" fill="none">
+						<circle cx="24" cy="32" r="14" fill="#009c48"/>
+						<circle cx="70" cy="20" r="12" fill="#f07818"/>
+						<circle cx="112" cy="36" r="14" fill="#e8fe85"/>
+						<path d="M38 32h20M82 24l16 8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+					</svg>
+				</div>
+				<div>
+					<p class="text-sm font-bold text-sun">04</p>
+					<h3 class="mt-1 font-sans text-lg font-bold text-ink">Chuyển giao</h3>
+					<p class="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600">Tập huấn nông hộ, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao.</p>
+				</div>
+			</article>
 		</div>
 	</div>
 </section>

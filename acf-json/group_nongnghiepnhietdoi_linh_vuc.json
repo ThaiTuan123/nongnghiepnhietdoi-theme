@@ -1,0 +1,296 @@
+{
+	"key": "group_nongnghiepnhietdoi_linh_vuc",
+	"title": "Lĩnh vực & Dịch vụ - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_lv_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa chữ của ba mục tại các thẻ bên dưới. Ô Đường dẫn bài chi tiết để trống thì nút Xem thêm vẫn hiện nhưng chưa mở bài. Khi có bài chi tiết, dán link vào ô đó. Ảnh nền đầu trang lấy từ Ảnh đại diện.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_lv_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_lv_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "lv_hero_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lv_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "lv_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lv_hero_lead",
+			"label": "Đoạn giới thiệu ngắn",
+			"name": "lv_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_lv_tab_s1",
+			"label": "01. Nghiên cứu & chuyển giao",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_lv_s1_title",
+			"label": "Tiêu đề",
+			"name": "lv_s1_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_lv_s1_intro",
+			"label": "Đoạn mở",
+			"name": "lv_s1_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_lv_s1_points",
+			"label": "Các việc trong mục",
+			"name": "lv_s1_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_lv_s1_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_lv_s1_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_lv_s1_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "lv_s1_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lv_s1_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "lv_s1_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lv_tab_s2",
+			"label": "02. Tư vấn & đánh giá",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_lv_s2_title",
+			"label": "Tiêu đề",
+			"name": "lv_s2_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_lv_s2_intro",
+			"label": "Đoạn mở",
+			"name": "lv_s2_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_lv_s2_points",
+			"label": "Các việc trong mục",
+			"name": "lv_s2_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_lv_s2_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_lv_s2_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_lv_s2_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "lv_s2_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lv_s2_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "lv_s2_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lv_tab_s3",
+			"label": "03. Đề tài & chương trình",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_lv_s3_title",
+			"label": "Tiêu đề",
+			"name": "lv_s3_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_lv_s3_intro",
+			"label": "Đoạn mở",
+			"name": "lv_s3_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_lv_s3_points",
+			"label": "Các việc trong mục",
+			"name": "lv_s3_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_lv_s3_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_lv_s3_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_lv_s3_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "lv_s3_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lv_s3_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "lv_s3_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lv_tab_cta",
+			"label": "Lời kêu gọi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_lv_cta_title",
+			"label": "Tiêu đề",
+			"name": "lv_cta_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_lv_cta_text",
+			"label": "Mô tả",
+			"name": "lv_cta_text",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_lv_cta_button_label",
+			"label": "Chữ trên nút",
+			"name": "lv_cta_button_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lv_cta_button_url",
+			"label": "Đường dẫn nút",
+			"name": "lv_cta_button_url",
+			"type": "url",
+			"wrapper": { "width": "60" }
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-linh-vuc-dich-vu.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "linh-vuc-dich-vu"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Ba mục lĩnh vực, mỗi mục có nút Xem thêm gắn link bài chi tiết.",
+	"show_in_rest": 0,
+	"modified": 1792548000
+}

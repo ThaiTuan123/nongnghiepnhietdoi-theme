@@ -124,8 +124,8 @@ add_filter(
 			$dark = true; // Archive Bất động sản mở đầu bằng hero banner tối.
 		} elseif ( is_page_template( 'page-tin-tuc.php' ) || is_page( 'tin-tuc' ) ) {
 			$dark = true; // Trang Tin tức mở đầu bằng hero banner tối.
-		} elseif ( is_page( array( 'gioi-thieu', 'thiet-ke', 'lien-he' ) ) ) {
-			$dark = true; // Trang Giới thiệu / Thiết kế / Liên hệ mở đầu bằng hero banner tối.
+		} elseif ( is_page( array( 'gioi-thieu', 'thiet-ke', 'lien-he', 'chinh-sach-bao-mat', 've-chung-toi', 'linh-vuc-dich-vu' ) ) || is_page_template( array( 'page-ve-chung-toi.php', 'page-linh-vuc-dich-vu.php' ) ) ) {
+			$dark = true; // Các trang mở đầu bằng hero banner tối.
 		} elseif ( ( is_front_page() || is_page() ) && function_exists( 'get_field' ) ) {
 			$sections = get_field( 'page_sections' );
 			if ( ! empty( $sections[0]['acf_fc_layout'] ) && 'hero' === $sections[0]['acf_fc_layout'] ) {

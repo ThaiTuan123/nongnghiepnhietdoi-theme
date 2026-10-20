@@ -61,9 +61,9 @@ $varc_phone_tel = $varc_phone ? preg_replace( '/[^0-9+]/', '', $varc_phone ) : '
 		<div>
 			<h2 class="text-sm font-semibold text-white">Lĩnh vực &amp; Dịch vụ</h2>
 			<ul class="mt-4 space-y-2 text-sm text-white/70">
-				<li>Nghiên cứu, Triển khai &amp; Chuyển giao Công nghệ</li>
-				<li>Dịch vụ Tư vấn &amp; Đánh giá Dự án Độc lập</li>
-				<li>Đề tài KH&amp;CN &amp; Chương trình Quốc gia</li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/linh-vuc-dich-vu/#nghien-cuu' ) ); ?>">Nghiên cứu, Triển khai &amp; Chuyển giao Công nghệ</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/linh-vuc-dich-vu/#tu-van' ) ); ?>">Dịch vụ Tư vấn &amp; Đánh giá Dự án Độc lập</a></li>
+				<li><a class="hover:text-white" href="<?php echo esc_url( home_url( '/linh-vuc-dich-vu/#de-tai' ) ); ?>">Đề tài KH&amp;CN &amp; Chương trình Quốc gia</a></li>
 			</ul>
 		</div>
 
@@ -105,12 +105,19 @@ $varc_phone_tel = $varc_phone ? preg_replace( '/[^0-9+]/', '', $varc_phone ) : '
 	<div class="border-t border-white/10">
 		<div class="mx-auto flex max-w-[1200px] flex-col gap-2 px-4 py-4 text-xs text-white/50 sm:flex-row sm:justify-between">
 			<p>© <?php echo esc_html( gmdate( 'Y' ) ); ?> <?php echo esc_html( $varc_company ? $varc_company : get_bloginfo( 'name' ) ); ?>. <?php esc_html_e( 'Bảo lưu mọi quyền.', 'nongnghiepnhietdoi' ); ?></p>
-			<a class="hover:text-white" href="<?php echo esc_url( home_url( '/#lien-he' ) ); ?>">Chính sách bảo mật</a>
+			<a class="hover:text-white" href="<?php echo esc_url( home_url( '/chinh-sach-bao-mat/' ) ); ?>">Chính sách bảo mật</a>
 		</div>
 	</div>
 </footer>
 
 <?php get_template_part( 'template-parts/floating-buttons' ); ?>
+<button type="button" class="lx-to-top" data-back-to-top aria-label="<?php esc_attr_e( 'Lên đầu trang', 'nongnghiepnhietdoi' ); ?>" aria-hidden="true" tabindex="-1">
+	<span class="lx-to-top__icon" aria-hidden="true">
+		<svg viewBox="0 0 24 24" fill="none"><path d="M6 14.5 12 8.5l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+		<svg viewBox="0 0 24 24" fill="none"><path d="M6 14.5 12 8.5l6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+	</span>
+	<span class="lx-to-top__label"><?php esc_html_e( 'Lên đầu trang', 'nongnghiepnhietdoi' ); ?></span>
+</button>
 <?php wp_footer(); ?>
 </body>
 </html>

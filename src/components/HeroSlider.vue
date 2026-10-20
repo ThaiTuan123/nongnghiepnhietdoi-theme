@@ -6,6 +6,10 @@ const props = defineProps({
   slides: { type: Array, default: () => [] },
   // Thời gian tự chuyển với mỗi ảnh (ms).
   interval: { type: Number, default: 5000 },
+  // Ẩn chữ hero khi đang phát video. Trang chủ giữ chữ luôn hiện.
+  hideCopyOnVideo: { type: Boolean, default: true },
+  // Lớp gradient phủ lên media. Để trống thì dùng gradient mặc định.
+  overlayClass: { type: String, default: '' },
 });
 
 const current = ref(0);
@@ -29,6 +33,7 @@ function clearTimer() {
 
 /** Ẩn title/desc/CTA khi đang xem video — tránh che media. */
 function syncHeroCopy() {
+  if (!props.hideCopyOnVideo) return;
   const copy = root.value?.closest('[data-section="hero"]')?.querySelector('[data-hero-copy]');
   if (!copy) return;
   copy.classList.toggle('hidden', isCurrentVideo());
@@ -129,6 +134,7 @@ onBeforeUnmount(clearTimer);
         preload="auto"
         :loop="isSingle()"
         @ended="onEnded(i)"
+        @error="onEnded(i)"
       ></video>
       <img
         v-else
@@ -141,20 +147,23 @@ onBeforeUnmount(clearTimer);
 
     <!-- Gradient: nhẹ hơn khi video (không cần nền cho chữ) -->
     <div
-      class="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/45 via-black/25 to-black/60 transition-opacity duration-700"
-      :class="isCurrentVideo() ? 'opacity-30' : 'opacity-100'"
+      class="pointer-events-none absolute inset-0 transition-opacity duration-700"
+      :class="[
+        overlayClass || 'bg-gradient-to-b from-black/45 via-black/25 to-black/60',
+        !overlayClass && isCurrentVideo() ? 'opacity-30' : 'opacity-100',
+      ]"
     ></div>
 
-    <!-- Điều hướng thumbnail (góc dưới phải) -->
+    <!-- Điều hướng thumbnail (góc dưới) -->
     <div
       v-if="slides.length > 1"
-      class="absolute bottom-4 right-3 z-20 flex gap-1.5 sm:bottom-6 sm:right-6 sm:gap-3"
+      class="absolute bottom-[5.5rem] right-4 z-20 flex max-w-[calc(100%-2rem)] gap-2 sm:right-8 sm:gap-3"
     >
       <button
         v-for="(slide, i) in slides"
         :key="i"
         type="button"
-        class="group relative h-10 w-14 overflow-hidden rounded-md ring-2 ring-offset-1 ring-offset-transparent transition-all duration-300 sm:h-16 sm:w-24 sm:rounded-lg sm:ring-offset-2"
+        class="group relative h-12 w-[4.5rem] shrink-0 overflow-hidden rounded-xl ring-2 ring-offset-1 ring-offset-black/20 transition-all duration-300 sm:h-[4.5rem] sm:w-24 sm:ring-offset-2"
         :class="
           i === current
             ? 'scale-105 opacity-100 ring-white'
@@ -165,10 +174,12 @@ onBeforeUnmount(clearTimer);
         @click="goTo(i)"
       >
         <img
+          v-if="slide.thumb || slide.poster || slide.type !== 'video'"
           class="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
           :src="slide.thumb || slide.poster || slide.src"
           :alt="slide.alt || ''"
         />
+        <span v-else class="absolute inset-0 bg-neutral-800"></span>
         <span
           v-if="slide.type === 'video'"
           class="absolute inset-0 flex items-center justify-center bg-black/25"
