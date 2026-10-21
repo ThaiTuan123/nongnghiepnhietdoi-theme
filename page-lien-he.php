@@ -1,221 +1,224 @@
 <?php
 /**
- * Template trang Liên hệ.
+ * Template Name: Liên hệ
+ * Trang Liên hệ (slug: lien-he).
  *
- * Bảng "Thông tin tập đoàn" lấy trực tiếp từ trang "Cài đặt Nông nghiệp nhiệt đới"
- * (ACF options: Điện thoại, Email, Địa chỉ). Muốn sửa nội dung này thì
- * vào WP Admin → Nông nghiệp nhiệt đới → Cài đặt chung.
- *
- * Ảnh minh họa bên trái: chỉnh trong WP Admin khi sửa trang Liên hệ
- * (field ACF "Ảnh minh họa" / lh_info_image).
+ * Địa chỉ, email, điện thoại và giờ làm việc lấy từ Cài đặt Nông nghiệp nhiệt đới.
  *
  * @package NongNghiepNhietDoi
  */
 
-/*
-============================================================
- * NỘI DUNG TĨNH — SỬA TRỰC TIẾP TẠI ĐÂY
- * ============================================================ */
-$lx_hero_title = 'Liên hệ';
-// Ảnh nền banner: ưu tiên Ảnh đại diện của trang. Để rỗng '' sẽ dùng nền gradient tối.
-$lx_hero_image = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'full' ) : '';
+$page_id    = get_queried_object_id();
+$short_name = (string) nongnghiepnhietdoi_option( 'site_short_name' );
+$company    = (string) nongnghiepnhietdoi_option( 'site_company_name' );
+$about      = (string) nongnghiepnhietdoi_option( 'site_about' );
+$address    = (string) nongnghiepnhietdoi_option( 'contact_address' );
+$phone      = (string) nongnghiepnhietdoi_option( 'contact_phone' );
+$email      = (string) nongnghiepnhietdoi_option( 'contact_email' );
+$hours      = (string) nongnghiepnhietdoi_option( 'contact_hours' );
+$logo_id    = (int) nongnghiepnhietdoi_option( 'site_logo' );
+$map_embed  = (string) nongnghiepnhietdoi_option( 'contact_map' );
+$socials    = nongnghiepnhietdoi_socials();
+$phone_tel  = $phone ? preg_replace( '/[^0-9+]/', '', $phone ) : '';
+$hero_image = get_the_post_thumbnail_url( $page_id, 'full' );
+$hero_title = 'Liên hệ';
 
-$lx_title_1 = 'Liên hệ với chúng tôi';
-$lx_title_2 = 'Gửi phản hồi cho chúng tôi';
-
-// Ảnh minh hoạ bên trái khối thông tin — lấy từ ACF trên trang Liên hệ.
-$lx_image    = '';
-$lx_image_id = 0;
-$lx_page_id  = get_queried_object_id();
-if ( function_exists( 'get_field' ) && $lx_page_id ) {
-	$lx_image_f  = get_field( 'lh_info_image', $lx_page_id );
-	$lx_image    = ( is_array( $lx_image_f ) && ! empty( $lx_image_f['url'] ) ) ? $lx_image_f['url'] : '';
-	$lx_image_id = ( is_array( $lx_image_f ) && ! empty( $lx_image_f['ID'] ) ) ? (int) $lx_image_f['ID'] : 0;
+if ( ! $short_name ) {
+	$short_name = 'VARC';
+}
+if ( ! $hero_image ) {
+	$hero_image = NONGNGHIEPNHIETDOI_URI . '/assets/images/hero-field.jpg';
 }
 
-// Nhãn nhỏ phía trên bảng thông tin.
-$lx_info_label = 'Thông tin tập đoàn';
-
-// Google Maps: lấy từ Cài đặt chung. Bản đồ Đà Nẵng chỉ là dự phòng khi chưa dán iframe.
-$lx_map_embed = nongnghiepnhietdoi_option( 'contact_map' );
-if ( ! $lx_map_embed ) {
-	$lx_map_embed = '<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3833.749172773552!2d108.1648072!3d16.0785007!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x314218dd16b1fd4d%3A0x71017793b28b4ad8!2zNjkgTmd1eeG7hW4gU2luaCBT4bqvYywgSMOyYSBLaMOhbmgsIMSQw6AgTuG6tW5nIDUwNjA2LCBWaeG7h3QgTmFt!5e0!3m2!1svi!2sth!4v1784456157539!5m2!1svi!2sth" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>';
+$contact_rows = array();
+if ( $address ) {
+	$contact_rows[] = array(
+		'label' => 'Địa chỉ',
+		'value' => $address,
+		'icon'  => 'pin',
+	);
 }
-/* ============================================================ */
+if ( $phone ) {
+	$contact_rows[] = array(
+		'label' => 'Điện thoại',
+		'value' => $phone,
+		'href'  => 'tel:' . $phone_tel,
+		'icon'  => 'phone',
+	);
+}
+if ( $email ) {
+	$contact_rows[] = array(
+		'label' => 'Email',
+		'value' => $email,
+		'href'  => 'mailto:' . $email,
+		'icon'  => 'mail',
+	);
+}
+if ( $hours ) {
+	$contact_rows[] = array(
+		'label' => 'Giờ làm việc',
+		'value' => $hours,
+		'icon'  => 'clock',
+	);
+}
 
-/*
-============================================================
- * BẢNG THÔNG TIN — LẤY TỪ "CÀI ĐẶT NONGNGHIEPNHIETDOI" (ACF OPTIONS)
- * ============================================================ */
-$lx_opt_address = nongnghiepnhietdoi_option( 'contact_address' );
-$lx_opt_phone   = nongnghiepnhietdoi_option( 'contact_phone' );
-$lx_opt_email   = nongnghiepnhietdoi_option( 'contact_email' );
-$lx_opt_hours   = nongnghiepnhietdoi_option( 'contact_hours' );
-
-$lx_info = array();
-
-if ( $lx_opt_address ) {
-	// Mỗi dòng trong ô Địa chỉ (textarea) thành 1 dòng riêng.
-	$lx_address_lines = array_values( array_filter( array_map( 'trim', preg_split( '/\r\n|\r|\n/', $lx_opt_address ) ) ) );
-	if ( $lx_address_lines ) {
-		$lx_info[] = array(
-			'label' => 'Trụ sở chính:',
-			'lines' => $lx_address_lines,
-		);
+$lh_icon = static function ( $name ) {
+	$icons = array(
+		'pin'   => '<path d="M12 21s7-5.4 7-11a7 7 0 1 0-14 0c0 5.6 7 11 7 11Z"/><circle cx="12" cy="10" r="2.2"/>',
+		'phone' => '<path d="M7.2 3.8h2.1l1.2 3-1.6 1a12.2 12.2 0 0 0 5.3 5.3l1-1.6 3 1.2v2.1c0 .7-.5 1.3-1.2 1.4A14.6 14.6 0 0 1 5.8 5c.1-.7.7-1.2 1.4-1.2Z"/>',
+		'mail'  => '<rect x="3.5" y="5.5" width="17" height="13" rx="2"/><path d="m4.5 7 7.5 6L19.5 7"/>',
+		'clock' => '<circle cx="12" cy="12" r="8"/><path d="M12 8v4.5l3 1.5"/>',
+	);
+	if ( ! isset( $icons[ $name ] ) ) {
+		return;
 	}
-}
-
-if ( $lx_opt_phone ) {
-	$lx_info[] = array(
-		'label' => 'Điện thoại:',
-		'lines' => array( $lx_opt_phone ),
-	);
-}
-
-if ( $lx_opt_email ) {
-	$lx_info[] = array(
-		'label' => 'Email:',
-		'lines' => array( $lx_opt_email ),
-	);
-}
-
-if ( $lx_opt_hours ) {
-	$lx_info[] = array(
-		'label' => 'Giờ làm việc:',
-		'lines' => array( $lx_opt_hours ),
-	);
-}
-/* ============================================================ */
+	echo '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $icons[ $name ] . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+};
 
 get_header();
 ?>
 
 <main id="main" class="site-main">
 
-	<!-- ============ Hero banner ============ -->
-	<section class="relative flex min-h-[52vh] items-center justify-center overflow-hidden bg-neutral-900 pt-24 md:min-h-[60vh]" data-section="lh-hero" data-dark-hero>
-		<div class="absolute inset-0 z-0" data-parallax="0.1">
-			<?php if ( $lx_hero_image ) : ?>
-				<img src="<?php echo esc_url( $lx_hero_image ); ?>" alt="<?php echo esc_attr( $lx_hero_title ); ?>" class="h-full w-full scale-110 object-cover" fetchpriority="high">
-			<?php else : ?>
-				<div class="h-full w-full bg-gradient-to-br from-neutral-800 via-neutral-900 to-black"></div>
-			<?php endif; ?>
+	<section class="relative flex min-h-[46vh] items-end overflow-hidden pt-24 md:min-h-[52vh]" data-section="lh-hero" data-dark-hero>
+		<div class="absolute inset-0">
+			<img src="<?php echo esc_url( $hero_image ); ?>" alt="" class="h-full w-full object-cover" fetchpriority="high">
+			<div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/70 to-ink/35"></div>
 		</div>
-		<div class="pointer-events-none absolute inset-0 z-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70"></div>
-
-		<div class="container-lx relative z-10 text-center text-white">
-			<h1 class="text-4xl font-bold uppercase tracking-wide sm:text-5xl lg:text-6xl" data-reveal><?php echo esc_html( $lx_hero_title ); ?></h1>
-			<nav class="mt-4 flex items-center justify-center gap-2 text-sm uppercase tracking-[0.2em] text-white/80" aria-label="breadcrumb" data-reveal>
-				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="transition-colors hover:text-brand-200"><?php esc_html_e( 'Trang chủ', 'nongnghiepnhietdoi' ); ?></a>
-				<span aria-hidden="true" class="text-brand-200">/</span>
-				<span class="text-brand-200"><?php echo esc_html( $lx_hero_title ); ?></span>
+		<div class="relative z-10 mx-auto w-full max-w-[1200px] px-4 pb-10 text-white md:pb-14">
+			<nav class="mb-4 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/75" aria-label="breadcrumb" data-reveal>
+				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="transition-colors hover:text-white"><?php esc_html_e( 'Trang chủ', 'nongnghiepnhietdoi' ); ?></a>
+				<span aria-hidden="true" class="text-sun">/</span>
+				<span><?php echo esc_html( $hero_title ); ?></span>
 			</nav>
+			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $short_name ); ?></p>
+			<h1 class="mt-3 font-sans text-4xl font-bold leading-tight tracking-tight md:text-5xl" data-reveal><?php echo esc_html( $hero_title ); ?></h1>
+			<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal>
+				<?php
+				echo esc_html(
+					sprintf(
+						'Gửi thông tin cho %s. Chúng tôi phản hồi trong giờ làm việc.',
+						$company ? $company : $short_name
+					)
+				);
+				?>
+			</p>
 		</div>
 	</section>
 
-	<section class="bg-gradient-to-b from-white via-white to-brand/5 py-16 md:py-24" data-section="lien-he">
-		<div class="container-lx">
+	<section class="bg-bone py-14 md:py-20" data-section="lien-he">
+		<div class="mx-auto grid max-w-[1200px] items-start gap-8 px-4 lg:grid-cols-2 lg:gap-10">
 
-			<!-- ============ Khối 1: Thông tin liên hệ ============ -->
-			<div class="mb-6" data-reveal>
-				<h2 class="text-3xl font-bold text-neutral-900 md:text-4xl lg:text-[42px]"><?php echo esc_html( $lx_title_1 ); ?></h2>
-				<div class="mt-5 h-px w-full bg-neutral-200"></div>
-			</div>
+			<article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100 md:p-8" data-reveal="left">
+				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php esc_html_e( 'Đơn vị', 'nongnghiepnhietdoi' ); ?></p>
+				<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php esc_html_e( 'Thông tin liên hệ', 'nongnghiepnhietdoi' ); ?></h2>
 
-			<div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:gap-12" data-reveal>
-				<div class="overflow-hidden rounded-lg bg-neutral-100">
-					<?php if ( $lx_image_id ) : ?>
+				<div class="mt-6 flex items-center gap-4">
+					<?php if ( $logo_id ) : ?>
 						<?php
 						echo wp_get_attachment_image(
-							$lx_image_id,
-							'large',
+							$logo_id,
+							'medium',
 							false,
 							array(
-								'class'   => 'h-full min-h-[320px] w-full object-cover',
-								'loading' => 'lazy',
-								'alt'     => get_bloginfo( 'name' ),
+								'class' => 'h-20 w-20 shrink-0 rounded-2xl bg-bone object-contain p-1.5',
+								'alt'   => $company ? $company : $short_name,
 							)
 						);
 						?>
-					<?php elseif ( $lx_image ) : ?>
-						<img src="<?php echo esc_url( $lx_image ); ?>" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>" class="h-full min-h-[320px] w-full object-cover" loading="lazy">
 					<?php else : ?>
-						<div class="flex h-full min-h-[320px] w-full items-center justify-center bg-gradient-to-br from-neutral-100 to-brand/10 text-brand/40">
-							<svg class="h-16 w-16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 9h.01M9 13h.01M9 17h.01M15 9h.01M15 13h.01M15 17h.01"/></svg>
-						</div>
+						<img src="<?php echo esc_url( NONGNGHIEPNHIETDOI_URI . '/assets/images/logo-varc.png' ); ?>" alt="" class="h-20 w-20 shrink-0 rounded-2xl bg-bone object-contain p-1.5" width="80" height="80">
 					<?php endif; ?>
+					<div>
+						<?php if ( $short_name ) : ?>
+							<p class="text-xs font-bold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $short_name ); ?></p>
+						<?php endif; ?>
+						<?php if ( $company ) : ?>
+							<p class="mt-1 font-sans text-lg font-bold leading-snug text-ink"><?php echo esc_html( $company ); ?></p>
+						<?php endif; ?>
+					</div>
 				</div>
 
-				<div>
-					<p class="text-sm font-medium uppercase tracking-[0.2em] text-brand"><?php echo esc_html( $lx_info_label ); ?></p>
-					<div class="mt-3 h-px w-full bg-brand/30"></div>
+				<?php if ( $about ) : ?>
+					<p class="mt-5 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $about ); ?></p>
+				<?php endif; ?>
 
-					<dl>
-						<?php foreach ( $lx_info as $row ) : ?>
-							<div class="flex flex-col gap-1 border-b border-neutral-200 py-5 sm:flex-row sm:gap-6">
-								<dt class="w-32 shrink-0 text-neutral-500"><?php echo esc_html( $row['label'] ); ?></dt>
-								<dd class="flex-1 space-y-3 font-semibold text-neutral-900">
-									<?php foreach ( $row['lines'] as $line ) : ?>
-										<p class="leading-snug"><?php echo esc_html( $line ); ?></p>
-									<?php endforeach; ?>
-								</dd>
-							</div>
+				<?php if ( $contact_rows ) : ?>
+					<ul class="mt-6 space-y-3 border-t border-slate-100 pt-6">
+						<?php foreach ( $contact_rows as $row ) : ?>
+							<li class="flex gap-3">
+								<span class="mt-0.5 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-brand/10 text-brand [&>svg]:h-5 [&>svg]:w-5">
+									<?php $lh_icon( $row['icon'] ); ?>
+								</span>
+								<span class="min-w-0">
+									<span class="block text-xs font-semibold uppercase tracking-[0.12em] text-slate-400"><?php echo esc_html( $row['label'] ); ?></span>
+									<?php if ( ! empty( $row['href'] ) ) : ?>
+										<a class="mt-0.5 block break-all text-sm font-semibold text-ink hover:text-brand" href="<?php echo esc_url( $row['href'] ); ?>"><?php echo esc_html( $row['value'] ); ?></a>
+									<?php else : ?>
+										<span class="mt-0.5 block text-sm font-semibold leading-relaxed text-ink"><?php echo nl2br( esc_html( $row['value'] ) ); ?></span>
+									<?php endif; ?>
+								</span>
+							</li>
 						<?php endforeach; ?>
-					</dl>
-				</div>
-			</div>
+					</ul>
+				<?php endif; ?>
 
-			<!-- ============ Khối 2: Form phản hồi ============ -->
-			<div class="mb-6 mt-20" data-reveal>
-				<h2 class="text-3xl font-bold text-neutral-900 md:text-4xl lg:text-[42px]"><?php echo esc_html( $lx_title_2 ); ?></h2>
-				<div class="mt-5 h-px w-full bg-neutral-200"></div>
-			</div>
+				<?php if ( $socials ) : ?>
+					<ul class="mt-6 flex flex-wrap gap-2">
+						<?php foreach ( $socials as $key => $social ) : ?>
+							<li>
+								<a class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-bone text-ink hover:bg-brand hover:text-white" href="<?php echo esc_url( $social['url'] ); ?>" target="_blank" rel="noopener" aria-label="<?php echo esc_attr( $social['label'] ); ?>">
+									<span class="inline-flex h-4 w-4 [&>svg]:h-full [&>svg]:w-full"><?php nongnghiepnhietdoi_social_icon( $key ); ?></span>
+								</a>
+							</li>
+						<?php endforeach; ?>
+					</ul>
+				<?php endif; ?>
+			</article>
 
-			<div class="lx-contact-form" data-reveal>
-				<form method="post" action="" novalidate data-lx-form="contact">
+			<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8" data-reveal="right">
+				<p class="text-sm text-slate-500"><?php echo esc_html( sprintf( 'Gửi phản hồi tới %s.', $short_name ) ); ?></p>
+
+				<form class="lh-contact-form mt-6" method="post" action="" novalidate>
 					<?php wp_nonce_field( 'nongnghiepnhietdoi_contact', 'nongnghiepnhietdoi_contact_nonce' ); ?>
 					<input type="hidden" name="lx_form_source" value="contact">
 					<div class="hidden" aria-hidden="true">
 						<label>Website<input type="text" name="nongnghiepnhietdoi_website" tabindex="-1" autocomplete="off"></label>
 					</div>
 
-					<div class="grid grid-cols-1 gap-6 md:grid-cols-2">
-						<div class="space-y-5">
-							<div>
-								<label for="lx-name"><?php esc_html_e( 'Tên khách hàng', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-								<input type="text" id="lx-name" name="lx_name" required value="" placeholder="<?php esc_attr_e( 'Nhập tên', 'nongnghiepnhietdoi' ); ?>">
-							</div>
-							<div>
-								<label for="lx-phone"><?php esc_html_e( 'Số điện thoại', 'nongnghiepnhietdoi' ); ?></label>
-								<input type="tel" id="lx-phone" name="phone" value="" placeholder="<?php esc_attr_e( 'Nhập số điện thoại', 'nongnghiepnhietdoi' ); ?>">
-							</div>
-							<div>
-								<label for="lx-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-								<input type="email" id="lx-email" name="email" required value="" placeholder="<?php esc_attr_e( 'Nhập email', 'nongnghiepnhietdoi' ); ?>">
-							</div>
+					<div class="space-y-5">
+						<div>
+							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-name"><?php esc_html_e( 'Họ và tên', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
+							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="text" id="lx-name" name="lx_name" required autocomplete="name">
 						</div>
-
-						<div class="flex flex-col">
-							<label for="lx-message"><?php esc_html_e( 'Nội dung', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-							<textarea id="lx-message" name="message" required class="flex-1 !min-h-[220px]" placeholder="<?php esc_attr_e( 'Nhập nội dung tin nhắn', 'nongnghiepnhietdoi' ); ?>"></textarea>
+						<div>
+							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
+							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="email" id="lx-email" name="email" required autocomplete="email">
+						</div>
+						<div>
+							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-phone"><?php esc_html_e( 'Điện thoại', 'nongnghiepnhietdoi' ); ?></label>
+							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="tel" id="lx-phone" name="phone" autocomplete="tel">
+						</div>
+						<div>
+							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-message"><?php esc_html_e( 'Nội dung', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
+							<textarea id="lx-message" name="message" required class="min-h-[148px] w-full resize-y rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"></textarea>
 						</div>
 					</div>
 
-					<div class="mt-8 flex justify-end">
-						<button type="submit" name="nongnghiepnhietdoi_contact_submit" value="1" class="lx-submit-btn" data-lx-submit>
-							<span class="lx-submit-label"><span class="mr-2 text-base leading-none">+</span><?php esc_html_e( 'Gửi phản hồi', 'nongnghiepnhietdoi' ); ?></span>
-							<span class="lx-submit-loading hidden"><?php esc_html_e( 'Đang gửi…', 'nongnghiepnhietdoi' ); ?></span>
-						</button>
-					</div>
+					<button type="submit" name="nongnghiepnhietdoi_contact_submit" value="1" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-70">
+						<span class="lx-submit-label"><?php esc_html_e( 'Gửi thông tin', 'nongnghiepnhietdoi' ); ?> <span aria-hidden="true">→</span></span>
+						<span class="lx-submit-loading hidden"><?php esc_html_e( 'Đang gửi…', 'nongnghiepnhietdoi' ); ?></span>
+					</button>
 				</form>
 			</div>
+		</div>
 
-			<!-- ============ Khối 3: Google Map ============ -->
-			<?php if ( $lx_map_embed ) : ?>
-				<div class="mt-12 overflow-hidden rounded-xl border border-neutral-200/70 shadow-sm md:mt-16 [&_iframe]:block [&_iframe]:h-[320px] [&_iframe]:w-full [&_iframe]:md:h-[450px]" data-reveal>
+		<?php if ( $map_embed ) : ?>
+			<div class="mx-auto mt-10 max-w-[1200px] px-4 md:mt-14">
+				<div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm [&_iframe]:block [&_iframe]:h-[320px] [&_iframe]:w-full [&_iframe]:md:h-[420px]" data-reveal>
 					<?php
 					echo wp_kses(
-						$lx_map_embed,
+						$map_embed,
 						array(
 							'iframe' => array(
 								'src'             => true,
@@ -226,14 +229,14 @@ get_header();
 								'allowfullscreen' => true,
 								'referrerpolicy'  => true,
 								'frameborder'     => true,
+								'title'           => true,
 							),
 						)
 					);
 					?>
 				</div>
-			<?php endif; ?>
-
-		</div>
+			</div>
+		<?php endif; ?>
 	</section>
 </main>
 

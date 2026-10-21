@@ -1,0 +1,84 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_nang_luc",
+	"title": "Trang chủ - Năng lực khác biệt",
+	"fields": [
+		{
+			"key": "field_nn_home_nl_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Khối bốn thẻ dưới phần Về VARC. Thẻ đầu là thẻ lớn nền tối. Hai thẻ tiếp theo nằm bên phải. Thẻ thứ tư trải hết chiều ngang. Kéo thả để đổi thứ tự. Hình minh họa gắn với vị trí thẻ, không sửa trong hộp này.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_nl_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_nl_eyebrow",
+			"type": "text",
+			"default_value": "Năng lực khác biệt",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_nl_title",
+			"label": "Tiêu đề",
+			"name": "home_nl_title",
+			"type": "text",
+			"default_value": "Khoa học ra đồng, đo được kết quả",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_nl_items",
+			"label": "Các thẻ",
+			"name": "home_nl_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm thẻ",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_nl_number",
+					"label": "Số thứ tự",
+					"name": "number",
+					"type": "text",
+					"instructions": "Ví dụ: 01",
+					"wrapper": { "width": "20" }
+				},
+				{
+					"key": "field_nn_home_nl_item_title",
+					"label": "Tiêu đề thẻ",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "80" }
+				},
+				{
+					"key": "field_nn_home_nl_item_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 7,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối năng lực khác biệt trên trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761021000
+}

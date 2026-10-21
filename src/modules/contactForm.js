@@ -72,6 +72,21 @@ async function submitForm(form) {
     return;
   }
 
+  const file = form.querySelector('input[type="file"]');
+  if (file?.files?.[0]) {
+    const picked = file.files[0];
+    const allowed = ['pdf', 'doc', 'docx', 'zip'];
+    const ext = picked.name.split('.').pop()?.toLowerCase() || '';
+    if (!allowed.includes(ext)) {
+      showToast('Chỉ nhận tệp PDF, DOC, DOCX hoặc ZIP.', 'error');
+      return;
+    }
+    if (picked.size > 20 * 1024 * 1024) {
+      showToast('Tệp đính kèm vượt quá 20MB.', 'error');
+      return;
+    }
+  }
+
   setSubmitting(form, true);
 
   const body = new FormData(form);
@@ -111,7 +126,7 @@ async function submitForm(form) {
  * Gắn AJAX cho form tư vấn + form liên hệ.
  */
 export function initContactForms() {
-  const forms = document.querySelectorAll('.lx-consult-form, .lx-contact-form form');
+  const forms = document.querySelectorAll('.lx-consult-form, .lx-contact-form form, .ht-proposal-form, .lh-contact-form');
   forms.forEach((form) => {
     if (form.dataset.lxAjaxBound === '1') return;
     form.dataset.lxAjaxBound = '1';
@@ -123,6 +138,24 @@ export function initContactForms() {
       submitForm(form).finally(() => {
         form.dataset.lxSubmitting = '0';
       });
+    });
+  });
+
+  const subject = document.querySelector('[data-ht-subject]');
+  const audienceInput = document.querySelector('[data-ht-audience-input]');
+  const portal = document.querySelectorAll('[data-ht-audience]');
+  portal.forEach((card) => {
+    card.addEventListener('click', () => {
+      const key = card.getAttribute('data-ht-audience') || '';
+      const subjectKey = card.getAttribute('data-ht-subject-value') || '';
+      portal.forEach((item) => {
+        const on = item === card;
+        item.classList.toggle('is-active', on);
+        item.setAttribute('aria-pressed', on ? 'true' : 'false');
+      });
+      if (subject && subjectKey) subject.value = subjectKey;
+      if (audienceInput) audienceInput.value = key;
+      document.getElementById('gui-thong-tin')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });
   });
 }

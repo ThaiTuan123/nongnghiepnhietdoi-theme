@@ -1,0 +1,78 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_stats",
+	"title": "Trang chủ - Dải số liệu",
+	"fields": [
+		{
+			"key": "field_nn_home_stats_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Dải số màu xanh ngay dưới banner. Mỗi dòng là một ô số. Số dùng để đếm khi cuộn tới; hậu tố là phần chữ đứng sau số, ví dụ dấu +.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_stats",
+			"label": "Các ô số",
+			"name": "home_stats",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm ô số",
+			"min": 0,
+			"max": 8,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_stat_number",
+					"label": "Số",
+					"name": "number",
+					"type": "text",
+					"instructions": "Chỉ nhập chữ số, ví dụ 25 hoặc 10000.",
+					"wrapper": { "width": "25" }
+				},
+				{
+					"key": "field_nn_home_stat_suffix",
+					"label": "Hậu tố",
+					"name": "suffix",
+					"type": "text",
+					"instructions": "Ví dụ: +",
+					"default_value": "+",
+					"wrapper": { "width": "15" }
+				},
+				{
+					"key": "field_nn_home_stat_grouped",
+					"label": "Ngăn cách hàng nghìn",
+					"name": "grouped",
+					"type": "true_false",
+					"instructions": "Bật để 10000 hiện thành 10.000.",
+					"ui": 1,
+					"wrapper": { "width": "20" }
+				},
+				{
+					"key": "field_nn_home_stat_label",
+					"label": "Dòng chú thích",
+					"name": "label",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 5,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Dải số liệu dưới banner trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761020000
+}

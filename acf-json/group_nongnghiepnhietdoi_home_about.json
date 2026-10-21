@@ -1,0 +1,86 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_about",
+	"title": "Trang chủ - Về VARC",
+	"fields": [
+		{
+			"key": "field_nn_home_about_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Khối giới thiệu hai cột ngay dưới dải số liệu. Để trống ảnh thì trang dùng ảnh mặc định của giao diện.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_about_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_about_eyebrow",
+			"type": "text",
+			"default_value": "Về VARC",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_about_title",
+			"label": "Tiêu đề",
+			"name": "home_about_title",
+			"type": "text",
+			"default_value": "Trung tâm nghiên cứu khoa học",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_about_text",
+			"label": "Đoạn giới thiệu",
+			"name": "home_about_text",
+			"type": "textarea",
+			"rows": 4,
+			"new_lines": ""
+		},
+		{
+			"key": "field_nn_home_about_image",
+			"label": "Ảnh bên trái",
+			"name": "home_about_image",
+			"type": "image",
+			"return_format": "array",
+			"preview_size": "medium",
+			"library": "all",
+			"mime_types": "jpg,jpeg,png,webp"
+		},
+		{
+			"key": "field_nn_home_about_points",
+			"label": "Các ý ngắn",
+			"name": "home_about_points",
+			"type": "repeater",
+			"instructions": "Mỗi dòng là một ý có chấm tròn. Xóa hết thì danh sách không hiện.",
+			"layout": "block",
+			"button_label": "Thêm ý",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_about_point_text",
+					"label": "Nội dung",
+					"name": "text",
+					"type": "text"
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 6,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối giới thiệu Về VARC trên trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761020001
+}

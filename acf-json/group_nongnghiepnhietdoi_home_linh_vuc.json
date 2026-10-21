@@ -1,0 +1,77 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_linh_vuc",
+	"title": "Trang chủ - Lĩnh vực hoạt động",
+	"fields": [
+		{
+			"key": "field_nn_home_lv_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Lưới các nhóm việc ngay dưới năng lực khác biệt. Mỗi dòng là một thẻ. Kéo thả để sắp xếp.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_lv_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_lv_eyebrow",
+			"type": "text",
+			"default_value": "Lĩnh vực hoạt động",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_lv_title",
+			"label": "Tiêu đề",
+			"name": "home_lv_title",
+			"type": "text",
+			"default_value": "Sáu nhóm việc VARC đang làm",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_lv_items",
+			"label": "Các nhóm việc",
+			"name": "home_lv_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm nhóm việc",
+			"min": 0,
+			"max": 12,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_lv_item_title",
+					"label": "Tên nhóm",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_home_lv_item_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "60" }
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 8,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối lĩnh vực hoạt động trên trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761021001
+}

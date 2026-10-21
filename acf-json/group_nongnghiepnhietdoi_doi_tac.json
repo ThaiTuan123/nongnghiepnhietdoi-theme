@@ -1,0 +1,273 @@
+{
+	"key": "group_nongnghiepnhietdoi_doi_tac",
+	"title": "Đối tác & Nhà tài trợ - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_pt_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa tên, logo và đường dẫn của từng đối tác. Logo để trống thì trang hiện biểu tượng quả địa cầu. Ảnh nền đầu trang lấy từ Ảnh đại diện ở cột bên phải.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_pt_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_pt_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "pt_hero_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_pt_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "pt_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_pt_hero_lead",
+			"label": "Đoạn giới thiệu",
+			"name": "pt_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_pt_tab_funds",
+			"label": "Quỹ quốc tế",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_pt_funds_label",
+			"label": "Tiêu đề mục",
+			"name": "pt_funds_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_pt_funds_intro",
+			"label": "Đoạn mở",
+			"name": "pt_funds_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_pt_funds",
+			"label": "Đối tác",
+			"name": "pt_funds",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm đối tác",
+			"min": 0,
+			"max": 24,
+			"sub_fields": [
+				{
+					"key": "field_nn_pt_fund_name",
+					"label": "Tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_pt_fund_url",
+					"label": "Đường dẫn",
+					"name": "url",
+					"type": "url",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_fund_logo",
+					"label": "Logo",
+					"name": "logo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp,svg",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_fund_note",
+					"label": "Ghi chú",
+					"name": "note",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_pt_tab_gov",
+			"label": "Cơ quan nhà nước",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_pt_gov_label",
+			"label": "Tiêu đề mục",
+			"name": "pt_gov_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_pt_gov_intro",
+			"label": "Đoạn mở",
+			"name": "pt_gov_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_pt_gov",
+			"label": "Cơ quan",
+			"name": "pt_gov",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm cơ quan",
+			"min": 0,
+			"max": 24,
+			"sub_fields": [
+				{
+					"key": "field_nn_pt_gov_name",
+					"label": "Tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_pt_gov_url",
+					"label": "Đường dẫn",
+					"name": "url",
+					"type": "url",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_gov_logo",
+					"label": "Logo",
+					"name": "logo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp,svg",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_gov_note",
+					"label": "Ghi chú",
+					"name": "note",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_pt_tab_biz",
+			"label": "Doanh nghiệp",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_pt_biz_label",
+			"label": "Tiêu đề mục",
+			"name": "pt_biz_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_pt_biz_intro",
+			"label": "Đoạn mở",
+			"name": "pt_biz_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_pt_biz",
+			"label": "Doanh nghiệp và hợp tác xã",
+			"name": "pt_biz",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm đơn vị",
+			"min": 0,
+			"max": 24,
+			"sub_fields": [
+				{
+					"key": "field_nn_pt_biz_name",
+					"label": "Tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_pt_biz_url",
+					"label": "Đường dẫn",
+					"name": "url",
+					"type": "url",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_biz_logo",
+					"label": "Logo",
+					"name": "logo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp,svg",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_pt_biz_note",
+					"label": "Ghi chú",
+					"name": "note",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-doi-tac-nha-tai-tro.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "doi-tac-nha-tai-tro"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Nội dung trang Đối tác và Nhà tài trợ.",
+	"show_in_rest": 0,
+	"modified": 1792610000
+}

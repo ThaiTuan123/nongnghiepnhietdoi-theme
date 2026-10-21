@@ -1,0 +1,221 @@
+{
+	"key": "group_nongnghiepnhietdoi_hoi_dong",
+	"title": "Hội đồng & Ban điều hành - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_hd_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa các thẻ bên dưới để đổi tên, chức danh, giới thiệu và ảnh. Ảnh nền đầu trang lấy từ Ảnh đại diện ở cột bên phải. Dòng đầu của Ban điều hành hiện thành thẻ người đứng đầu. Chưa có ảnh thì trang hiện chữ cái của họ.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_hd_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_hd_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "hd_hero_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_hd_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "hd_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_hd_hero_lead",
+			"label": "Đoạn giới thiệu",
+			"name": "hd_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_hd_tab_advisors",
+			"label": "Hội đồng cố vấn",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_hd_advisors_label",
+			"label": "Tiêu đề mục",
+			"name": "hd_advisors_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_hd_advisors_intro",
+			"label": "Đoạn mở",
+			"name": "hd_advisors_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_hd_advisors",
+			"label": "Thành viên hội đồng",
+			"name": "hd_advisors",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm thành viên",
+			"min": 0,
+			"max": 12,
+			"sub_fields": [
+				{
+					"key": "field_nn_hd_advisor_name",
+					"label": "Họ tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_hd_advisor_role",
+					"label": "Chức danh",
+					"name": "role",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_hd_advisor_monogram",
+					"label": "Chữ trên huy hiệu",
+					"name": "monogram",
+					"type": "text",
+					"instructions": "Để trống thì lấy chữ cái đầu của họ. Tối đa 2 ký tự.",
+					"maxlength": 2,
+					"wrapper": { "width": "20" }
+				},
+				{
+					"key": "field_nn_hd_advisor_photo",
+					"label": "Ảnh chân dung",
+					"name": "photo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp"
+				},
+				{
+					"key": "field_nn_hd_advisor_bio",
+					"label": "Giới thiệu ngắn",
+					"name": "bio",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_hd_tab_board",
+			"label": "Ban điều hành",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_hd_board_label",
+			"label": "Tiêu đề mục",
+			"name": "hd_board_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_hd_board_intro",
+			"label": "Đoạn mở",
+			"name": "hd_board_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_hd_board",
+			"label": "Thành viên ban điều hành",
+			"name": "hd_board",
+			"type": "repeater",
+			"instructions": "Dòng đầu tiên hiện thành thẻ người đứng đầu, rộng hơn các dòng sau.",
+			"layout": "block",
+			"button_label": "Thêm thành viên",
+			"min": 0,
+			"max": 12,
+			"sub_fields": [
+				{
+					"key": "field_nn_hd_board_name",
+					"label": "Họ tên",
+					"name": "name",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_hd_board_role",
+					"label": "Chức danh",
+					"name": "role",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_hd_board_monogram",
+					"label": "Chữ trên huy hiệu",
+					"name": "monogram",
+					"type": "text",
+					"maxlength": 2,
+					"wrapper": { "width": "20" }
+				},
+				{
+					"key": "field_nn_hd_board_photo",
+					"label": "Ảnh chân dung",
+					"name": "photo",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "thumbnail",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp"
+				},
+				{
+					"key": "field_nn_hd_board_bio",
+					"label": "Giới thiệu ngắn",
+					"name": "bio",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-hoi-dong-co-van-ban-dieu-hanh.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "hoi-dong-co-van-ban-dieu-hanh"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Nội dung trang Hội đồng Cố vấn và Ban Điều hành.",
+	"show_in_rest": 0,
+	"modified": 1792600000
+}

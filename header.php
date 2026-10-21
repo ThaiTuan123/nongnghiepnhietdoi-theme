@@ -69,7 +69,7 @@ $varc_menu_args = array(
 		</div>
 
 		<div class="ml-auto flex items-center gap-3">
-			<a href="<?php echo esc_url( home_url( '/#lien-he' ) ); ?>" class="varc-cta hidden items-center gap-2 rounded-full bg-[#00A050] py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white hover:bg-[#008a44] xl:inline-flex">
+			<a href="<?php echo esc_url( home_url( '/lien-he/' ) ); ?>" class="varc-cta hidden items-center gap-2 rounded-full bg-[#00A050] py-1.5 pl-5 pr-1.5 text-sm font-semibold text-white hover:bg-[#008a44] xl:inline-flex">
 				<?php esc_html_e( 'Liên hệ', 'nongnghiepnhietdoi' ); ?>
 				<span class="varc-cta-icon inline-flex h-9 w-9 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
 					<svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>

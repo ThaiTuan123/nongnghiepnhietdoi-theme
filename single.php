@@ -37,9 +37,6 @@ get_header();
 		</article>
 		<?php
 	endwhile;
-
-	// Form đăng ký tư vấn — giống trang Phong thủy / Thiết kế / Tin tức.
-	get_template_part( 'template-parts/consult', 'cta' );
 	?>
 </main>
 

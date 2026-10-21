@@ -31,3 +31,6 @@ npm-debug.log*
 *.local
 *.tmp
 *.bak
+
+# Vite cache
+.vite/

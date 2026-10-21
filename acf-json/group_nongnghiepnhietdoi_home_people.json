@@ -1,0 +1,95 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_people",
+	"title": "Trang chủ - Con người",
+	"fields": [
+		{
+			"key": "field_nn_home_people_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Khối ba thẻ có ảnh nền. Ảnh nằm phía sau chữ. Để trống ảnh của một thẻ thì thẻ đó dùng ảnh mặc định của giao diện. Kéo thả để đổi thứ tự.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_people_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_people_eyebrow",
+			"type": "text",
+			"default_value": "Con người VARC",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_people_title",
+			"label": "Tiêu đề",
+			"name": "home_people_title",
+			"type": "text",
+			"default_value": "Nhà khoa học, kỹ thuật viên và người đứng trên ruộng",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_people_text",
+			"label": "Đoạn giới thiệu",
+			"name": "home_people_text",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": ""
+		},
+		{
+			"key": "field_nn_home_people_items",
+			"label": "Các thẻ",
+			"name": "home_people_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm thẻ",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_people_item_title",
+					"label": "Tiêu đề thẻ",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_nn_home_people_item_image",
+					"label": "Ảnh nền",
+					"name": "image",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_nn_home_people_item_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 9,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối Con người VARC trên trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761040000
+}

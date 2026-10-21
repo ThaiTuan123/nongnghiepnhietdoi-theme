@@ -223,10 +223,30 @@ function nongnghiepnhietdoi_handle_contact_request( $request ) {
 	}
 
 	$source_raw = isset( $request['lx_form_source'] ) ? sanitize_text_field( wp_unslash( $request['lx_form_source'] ) ) : '';
-	if ( in_array( $source_raw, array( 'consult', 'contact' ), true ) ) {
+	if ( in_array( $source_raw, array( 'consult', 'contact', 'partnership' ), true ) ) {
 		$source = $source_raw;
 	} else {
 		$source = ( isset( $request['needs'] ) || isset( $request['project_type'] ) ) ? 'consult' : 'contact';
+	}
+
+	$organization = isset( $request['organization'] ) ? sanitize_text_field( wp_unslash( $request['organization'] ) ) : '';
+	$subject_key  = isset( $request['lx_subject'] ) ? sanitize_key( wp_unslash( $request['lx_subject'] ) ) : '';
+	$audience_key = isset( $request['lx_audience'] ) ? sanitize_key( wp_unslash( $request['lx_audience'] ) ) : '';
+	$subjects     = function_exists( 'nongnghiepnhietdoi_partnership_subjects' ) ? nongnghiepnhietdoi_partnership_subjects() : array();
+	$audiences    = function_exists( 'nongnghiepnhietdoi_partnership_audiences' ) ? nongnghiepnhietdoi_partnership_audiences() : array();
+	$subject_label = isset( $subjects[ $subject_key ] ) ? $subjects[ $subject_key ] : '';
+	$audience_label = isset( $audiences[ $audience_key ]['title'] ) ? $audiences[ $audience_key ]['title'] : '';
+
+	if ( 'partnership' === $source ) {
+		if ( '' === $subject_label ) {
+			$result['message'] = __( 'Vui lòng chọn tiêu đề.', 'nongnghiepnhietdoi' );
+			return $result;
+		}
+		$file_error = nongnghiepnhietdoi_partnership_file_error();
+		if ( $file_error ) {
+			$result['message'] = $file_error;
+			return $result;
+		}
 	}
 
 	$needs = isset( $request['needs'] ) && is_array( $request['needs'] )
@@ -248,6 +268,27 @@ function nongnghiepnhietdoi_handle_contact_request( $request ) {
 		return $result;
 	}
 
+	$attachment_paths = array();
+	if ( 'partnership' === $source ) {
+		update_post_meta( $saved, '_lx_organization', $organization );
+		update_post_meta( $saved, '_lx_subject', $subject_label );
+		update_post_meta( $saved, '_lx_audience', $audience_label );
+
+		$attachment_id = nongnghiepnhietdoi_partnership_store_file( $saved );
+		if ( is_wp_error( $attachment_id ) ) {
+			wp_delete_post( $saved, true );
+			$result['message'] = $attachment_id->get_error_message();
+			return $result;
+		}
+		if ( $attachment_id ) {
+			update_post_meta( $saved, '_lx_attachment_id', (int) $attachment_id );
+			$path = get_attached_file( $attachment_id );
+			if ( $path && file_exists( $path ) ) {
+				$attachment_paths[] = $path;
+			}
+		}
+	}
+
 	$to = '';
 	if ( function_exists( 'nongnghiepnhietdoi_option' ) ) {
 		$contact_email = nongnghiepnhietdoi_option( 'contact_email' );
@@ -258,20 +299,34 @@ function nongnghiepnhietdoi_handle_contact_request( $request ) {
 	if ( ! $to ) {
 		$to = NONGNGHIEPNHIETDOI_CONTACT_EMAIL;
 	}
-	$subject = sprintf( '[%s] Liên hệ mới từ %s', wp_specialchars_decode( get_bloginfo( 'name' ) ), $name );
-	$body    = sprintf(
-		"Họ tên: %s\nEmail: %s\nĐiện thoại: %s\n\nNội dung:\n%s\n",
-		$name,
-		$email,
-		$phone ? $phone : '(không có)',
-		$message
-	);
+	if ( 'partnership' === $source ) {
+		$subject = sprintf( '[%s] %s — %s', wp_specialchars_decode( get_bloginfo( 'name' ) ), $subject_label, $name );
+		$body    = sprintf(
+			"Họ tên: %s\nEmail: %s\nĐiện thoại: %s\nĐơn vị / Tổ chức: %s\nTiêu đề: %s\nNhóm đề xuất: %s\n\nNội dung:\n%s\n",
+			$name,
+			$email,
+			$phone ? $phone : '(không có)',
+			$organization ? $organization : '(không có)',
+			$subject_label,
+			$audience_label ? $audience_label : '(không chọn)',
+			$message
+		);
+	} else {
+		$subject = sprintf( '[%s] Liên hệ mới từ %s', wp_specialchars_decode( get_bloginfo( 'name' ) ), $name );
+		$body    = sprintf(
+			"Họ tên: %s\nEmail: %s\nĐiện thoại: %s\n\nNội dung:\n%s\n",
+			$name,
+			$email,
+			$phone ? $phone : '(không có)',
+			$message
+		);
+	}
 	$headers = array(
 		'Content-Type: text/plain; charset=UTF-8',
 		sprintf( 'Reply-To: %s <%s>', $name, $email ),
 	);
 
-	wp_mail( $to, $subject, $body, $headers );
+	wp_mail( $to, $subject, $body, $headers, $attachment_paths );
 
 	$result['status']  = 'sent';
 	$result['message'] = __( 'Cảm ơn bạn! Chúng tôi đã nhận được thông tin và sẽ liên hệ lại sớm nhất.', 'nongnghiepnhietdoi' );
@@ -403,6 +458,8 @@ add_action(
 					esc_html_e( 'Đăng ký tư vấn', 'nongnghiepnhietdoi' );
 				} elseif ( 'contact' === $source ) {
 					esc_html_e( 'Liên hệ', 'nongnghiepnhietdoi' );
+				} elseif ( 'partnership' === $source ) {
+					esc_html_e( 'Hợp tác & dự án', 'nongnghiepnhietdoi' );
 				} else {
 					echo '—';
 				}
@@ -443,9 +500,19 @@ function nongnghiepnhietdoi_render_lead_metabox( $post ) {
 	$needs        = nongnghiepnhietdoi_get_lead_needs( $post->ID );
 	$project_type = nongnghiepnhietdoi_get_lead_project_type( $post->ID );
 
-	$source_label = 'consult' === $source
-		? __( 'Đăng ký tư vấn', 'nongnghiepnhietdoi' )
-		: ( 'contact' === $source ? __( 'Liên hệ', 'nongnghiepnhietdoi' ) : '—' );
+	$organization  = get_post_meta( $post->ID, '_lx_organization', true );
+	$lead_subject  = get_post_meta( $post->ID, '_lx_subject', true );
+	$audience      = get_post_meta( $post->ID, '_lx_audience', true );
+	$attachment_id = (int) get_post_meta( $post->ID, '_lx_attachment_id', true );
+	if ( 'consult' === $source ) {
+		$source_label = __( 'Đăng ký tư vấn', 'nongnghiepnhietdoi' );
+	} elseif ( 'partnership' === $source ) {
+		$source_label = __( 'Hợp tác & dự án', 'nongnghiepnhietdoi' );
+	} elseif ( 'contact' === $source ) {
+		$source_label = __( 'Liên hệ', 'nongnghiepnhietdoi' );
+	} else {
+		$source_label = '—';
+	}
 	?>
 	<style>
 		.lx-lead-meta { margin: 0; }
@@ -462,6 +529,29 @@ function nongnghiepnhietdoi_render_lead_metabox( $post ) {
 
 		<dt><?php esc_html_e( 'Điện thoại', 'nongnghiepnhietdoi' ); ?></dt>
 		<dd><?php echo $phone ? esc_html( $phone ) : '—'; ?></dd>
+
+		<?php if ( 'partnership' === $source ) : ?>
+			<dt><?php esc_html_e( 'Đơn vị / Tổ chức', 'nongnghiepnhietdoi' ); ?></dt>
+			<dd><?php echo $organization ? esc_html( $organization ) : '—'; ?></dd>
+
+			<dt><?php esc_html_e( 'Tiêu đề', 'nongnghiepnhietdoi' ); ?></dt>
+			<dd><?php echo $lead_subject ? esc_html( $lead_subject ) : '—'; ?></dd>
+
+			<dt><?php esc_html_e( 'Nhóm đề xuất', 'nongnghiepnhietdoi' ); ?></dt>
+			<dd><?php echo $audience ? esc_html( $audience ) : '—'; ?></dd>
+
+			<dt><?php esc_html_e( 'Tệp đính kèm', 'nongnghiepnhietdoi' ); ?></dt>
+			<dd>
+				<?php
+				$attachment_url = $attachment_id ? wp_get_attachment_url( $attachment_id ) : '';
+				if ( $attachment_url ) {
+					echo '<a href="' . esc_url( $attachment_url ) . '">' . esc_html( get_the_title( $attachment_id ) ) . '</a>';
+				} else {
+					echo '—';
+				}
+				?>
+			</dd>
+		<?php endif; ?>
 
 		<dt><?php esc_html_e( 'Nhu cầu tư vấn', 'nongnghiepnhietdoi' ); ?></dt>
 		<dd><?php echo $needs ? esc_html( $needs ) : '—'; ?></dd>

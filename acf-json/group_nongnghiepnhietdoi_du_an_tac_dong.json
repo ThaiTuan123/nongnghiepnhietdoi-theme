@@ -1,0 +1,343 @@
+{
+	"key": "group_nongnghiepnhietdoi_du_an_tac_dong",
+	"title": "Dự Án & Tác Động - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_dt_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa chữ của ba mục dự án tại các thẻ bên dưới. Ô Đường dẫn bài chi tiết để trống thì nút Xem thêm vẫn hiện nhưng chưa mở bài. Khối Dự án tiêu biểu lấy tự động từ chuyên mục cùng tên. Ảnh nền đầu trang lấy từ Ảnh đại diện.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_dt_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "dt_hero_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "dt_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_dt_hero_lead",
+			"label": "Đoạn giới thiệu ngắn",
+			"name": "dt_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_tab_s1",
+			"label": "01. Dự án tài trợ",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_s1_nav",
+			"label": "Nhãn mục lục",
+			"name": "dt_s1_nav",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s1_title",
+			"label": "Tiêu đề",
+			"name": "dt_s1_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s1_intro",
+			"label": "Đoạn mở",
+			"name": "dt_s1_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_s1_points",
+			"label": "Các việc trong mục",
+			"name": "dt_s1_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_dt_s1_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_dt_s1_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_dt_s1_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "dt_s1_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_s1_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "dt_s1_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_dt_tab_s2",
+			"label": "02. Tư vấn & đánh giá",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_s2_nav",
+			"label": "Nhãn mục lục",
+			"name": "dt_s2_nav",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s2_title",
+			"label": "Tiêu đề",
+			"name": "dt_s2_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s2_intro",
+			"label": "Đoạn mở",
+			"name": "dt_s2_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_s2_points",
+			"label": "Các việc trong mục",
+			"name": "dt_s2_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_dt_s2_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_dt_s2_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_dt_s2_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "dt_s2_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_s2_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "dt_s2_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_dt_tab_s3",
+			"label": "03. Đề tài nhà nước",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_s3_nav",
+			"label": "Nhãn mục lục",
+			"name": "dt_s3_nav",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s3_title",
+			"label": "Tiêu đề",
+			"name": "dt_s3_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_s3_intro",
+			"label": "Đoạn mở",
+			"name": "dt_s3_intro",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_s3_points",
+			"label": "Các việc trong mục",
+			"name": "dt_s3_points",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm việc",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_dt_s3_point_title",
+					"label": "Tên việc",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_dt_s3_point_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": "",
+					"wrapper": { "width": "65" }
+				}
+			]
+		},
+		{
+			"key": "field_nn_dt_s3_more_label",
+			"label": "Chữ nút Xem thêm",
+			"name": "dt_s3_more_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_s3_more_url",
+			"label": "Đường dẫn bài chi tiết",
+			"name": "dt_s3_more_url",
+			"type": "url",
+			"instructions": "Dán link bài chi tiết khi đã có. Để trống thì nút chưa mở trang nào.",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_dt_tab_featured",
+			"label": "Dự án tiêu biểu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_featured_label",
+			"label": "Nhãn nhỏ",
+			"name": "dt_featured_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_featured_title",
+			"label": "Tiêu đề khối",
+			"name": "dt_featured_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_dt_featured_intro",
+			"label": "Đoạn giới thiệu",
+			"name": "dt_featured_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_tab_cta",
+			"label": "Lời kêu gọi",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_dt_cta_title",
+			"label": "Tiêu đề",
+			"name": "dt_cta_title",
+			"type": "text"
+		},
+		{
+			"key": "field_nn_dt_cta_text",
+			"label": "Mô tả",
+			"name": "dt_cta_text",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_cta_button_label",
+			"label": "Chữ trên nút",
+			"name": "dt_cta_button_label",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_dt_cta_button_url",
+			"label": "Đường dẫn nút",
+			"name": "dt_cta_button_url",
+			"type": "url",
+			"wrapper": { "width": "60" }
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-du-an-tac-dong.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "du-an-tac-dong"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Ba nhóm dự án và khối dự án tiêu biểu trên trang Dự Án & Tác Động.",
+	"show_in_rest": 0,
+	"modified": 1792600000
+}

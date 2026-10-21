@@ -48,7 +48,6 @@ $lx_cta_types = $lx_cta_cfg['types'] ?? array(
 		>
 		<?php // Overlay đậm hơn phía dưới/cạnh để form dễ đọc, vẫn lộ ảnh nền. ?>
 		<div class="absolute inset-0 bg-gradient-to-b from-black/55 via-black/50 to-black/70"></div>
-		<div class="absolute inset-0 bg-brand/10 mix-blend-multiply" aria-hidden="true"></div>
 	</div>
 
 	<div class="container-lx relative z-10">

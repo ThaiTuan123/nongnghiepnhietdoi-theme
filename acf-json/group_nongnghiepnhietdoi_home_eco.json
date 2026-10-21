@@ -1,0 +1,87 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_eco",
+	"title": "Trang chủ - Hệ sinh thái",
+	"fields": [
+		{
+			"key": "field_nn_home_eco_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Bốn thẻ đối tác trên nền tối. Ảnh nằm phía sau chữ. Để trống ảnh của một thẻ thì thẻ đó dùng ảnh mặc định của giao diện. Kéo thả để đổi thứ tự.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_eco_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_eco_eyebrow",
+			"type": "text",
+			"default_value": "Hệ sinh thái",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_eco_title",
+			"label": "Tiêu đề",
+			"name": "home_eco_title",
+			"type": "text",
+			"default_value": "VARC đứng giữa bốn nhóm đối tác",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_eco_items",
+			"label": "Các thẻ",
+			"name": "home_eco_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm thẻ",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_eco_item_title",
+					"label": "Tiêu đề thẻ",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_nn_home_eco_item_image",
+					"label": "Ảnh nền",
+					"name": "image",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_nn_home_eco_item_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 10,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối Hệ sinh thái trên trang chủ.",
+	"show_in_rest": 0,
+	"modified": 1761042000
+}

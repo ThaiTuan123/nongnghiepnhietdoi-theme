@@ -1119,3 +1119,124 @@ body.lx-lightbox-open {
   border-radius: 0;
   background-color: #fff;
 }
+.ht-select {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5 10 12.5 15 7.5' stroke='%2364748b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+}
+.ht-portal-card.is-active {
+  background-color: #009c48;
+  color: #fff;
+  box-shadow: none;
+}
+.ht-portal-card.is-active .ht-portal-icon {
+  background-color: rgba(255, 255, 255, 0.16);
+  color: #fff;
+}
+.ht-portal-card.is-active .ht-portal-text {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.hd-avatar {
+  position: relative;
+  display: grid;
+  width: 6.5rem;
+  height: 6.5rem;
+  place-items: center;
+}
+.hd-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: conic-gradient(from 40deg, #009c48, #c8f56a, #f07818, #0b1f33, #009c48);
+  animation: hd-spin 9s linear infinite;
+}
+.hd-ring::after {
+  content: '';
+  position: absolute;
+  inset: 3px;
+  border-radius: inherit;
+  background: #fff;
+}
+.hd-avatar--dark .hd-ring::after {
+  background: #0b1f33;
+}
+.hd-face {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 5.15rem;
+  height: 5.15rem;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 9999px;
+  background: radial-gradient(circle at 30% 25%, #1aad5b, #06351f 72%);
+  color: #fff;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+.hd-face img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hd-card {
+  transition: transform 0.45s ease, box-shadow 0.45s ease;
+}
+.hd-card:hover,
+.hd-card:focus-within {
+  transform: translateY(-8px);
+}
+.hd-card__bar {
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s ease;
+}
+.hd-card:hover .hd-card__bar,
+.hd-card:focus-within .hd-card__bar {
+  transform: scaleX(1);
+}
+@keyframes hd-spin {
+  to {
+    transform: rotate(1turn);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hd-ring {
+    animation: none;
+  }
+  .hd-card,
+  .hd-card__bar {
+    transition: none;
+  }
+}
+
+.pt-tile {
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.pt-tile:hover,
+.pt-tile:focus-visible {
+  transform: translateY(-6px);
+}
+.pt-mark {
+  transition: transform 0.45s ease;
+}
+.pt-tile:hover .pt-mark,
+.pt-tile:focus-visible .pt-mark {
+  transform: scale(1.06);
+}
+.pt-orbit {
+  transform-origin: center;
+  animation: hd-spin 14s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .pt-tile,
+  .pt-mark {
+    transition: none;
+  }
+  .pt-orbit {
+    animation: none;
+  }
+}
