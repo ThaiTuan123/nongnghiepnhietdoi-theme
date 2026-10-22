@@ -547,7 +547,7 @@ $nl_count = count( $nl_items );
 					}
 					?>
 					<article class="hp-card hp-card--project group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100">
-						<a href="<?php the_permalink(); ?>" class="hp-card__media block h-40 overflow-hidden bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('<?php echo esc_url( $featured_image ); ?>')" aria-hidden="true" tabindex="-1"></a>
+						<div class="hp-card__media h-40 overflow-hidden bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('<?php echo esc_url( $featured_image ); ?>')" aria-hidden="true"></div>
 						<div class="p-6">
 							<h3 class="font-sans text-lg font-bold text-ink">
 								<a href="<?php the_permalink(); ?>" class="hp-card__link"><?php the_title(); ?></a>
@@ -801,7 +801,7 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 						$activity_news->the_post();
 						?>
 						<article class="news-card group">
-							<a href="<?php the_permalink(); ?>" class="news-card__media" aria-hidden="true" tabindex="-1">
+							<div class="news-card__media" aria-hidden="true">
 								<?php if ( has_post_thumbnail() ) : ?>
 									<?php
 									the_post_thumbnail(
@@ -816,7 +816,7 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 									<span class="news-card__fallback"></span>
 								<?php endif; ?>
 								<span class="news-card__scrim"></span>
-							</a>
+							</div>
 							<div class="news-card__body">
 								<p class="news-card__date"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></p>
 								<h3 class="news-card__title">
