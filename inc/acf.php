@@ -420,6 +420,7 @@ add_action(
 
 		update_field( 'home_nl_eyebrow', 'Năng lực khác biệt', $post_id );
 		$nl_saved = update_field( 'home_nl_title', 'Khoa học ra đồng, đo được kết quả', $post_id );
+		update_field( 'home_nl_lead', 'Bốn giai đoạn từ phòng lab ra đồng ruộng', $post_id );
 		update_field( 'home_lv_eyebrow', 'Lĩnh vực hoạt động', $post_id );
 		$lv_saved = update_field( 'home_lv_title', 'Sáu nhóm việc VARC đang làm', $post_id );
 		if ( ! $nl_saved || ! $lv_saved ) {
@@ -486,6 +487,75 @@ add_action(
 		update_option( 'nongnghiepnhietdoi_home_blocks_seeded', 1, false );
 	},
 	32
+);
+
+/**
+ * Bổ sung dòng phụ + đảm bảo 4 giai đoạn hiện trong Meta Boxes (một lần).
+ */
+add_action(
+	'acf/init',
+	function () {
+		if ( get_option( 'nongnghiepnhietdoi_home_nl_stages_seeded' ) || ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
+			return;
+		}
+
+		$post_id = (int) get_option( 'page_on_front' );
+		if ( ! $post_id ) {
+			return;
+		}
+
+		$lead = get_field( 'home_nl_lead', $post_id );
+		if ( ! is_string( $lead ) || '' === $lead ) {
+			update_field( 'home_nl_lead', 'Bốn giai đoạn từ phòng lab ra đồng ruộng', $post_id );
+		}
+
+		$items = get_field( 'home_nl_items', $post_id );
+		$valid = 0;
+		if ( is_array( $items ) ) {
+			foreach ( $items as $row ) {
+				if ( ! is_array( $row ) ) {
+					continue;
+				}
+				$title = isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
+				$text  = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
+				if ( '' !== $title || '' !== $text ) {
+					++$valid;
+				}
+			}
+		}
+
+		if ( $valid < 4 ) {
+			update_field(
+				'home_nl_items',
+				array(
+					array(
+						'number' => '01',
+						'title'  => 'Vi sinh bản địa',
+						'text'   => 'Phân lập, nhân sinh khối và chuyển giao chế phẩm IMO phù hợp đất và cây của từng vùng.',
+					),
+					array(
+						'number' => '02',
+						'title'  => 'Hiện trường CSA',
+						'text'   => 'Thiết kế mô hình nông nghiệp thông minh với khí hậu, theo mùa vụ và quy mô hợp tác xã.',
+					),
+					array(
+						'number' => '03',
+						'title'  => 'Đo phát thải',
+						'text'   => 'Phương pháp đo lường phát thải khí nhà kính để đối chiếu trước và sau can thiệp.',
+					),
+					array(
+						'number' => '04',
+						'title'  => 'Chuyển giao',
+						'text'   => 'Tập huấn nông hộ, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao.',
+					),
+				),
+				$post_id
+			);
+		}
+
+		update_option( 'nongnghiepnhietdoi_home_nl_stages_seeded', 1, false );
+	},
+	33
 );
 
 /**

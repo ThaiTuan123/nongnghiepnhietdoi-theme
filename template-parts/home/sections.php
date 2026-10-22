@@ -268,6 +268,7 @@ $point_dots = array( 'bg-sun', 'bg-brand', 'bg-brand-700' );
 <?php
 $nl_eyebrow = 'Năng lực khác biệt';
 $nl_title   = 'Khoa học ra đồng, đo được kết quả';
+$nl_lead    = 'Bốn giai đoạn từ phòng lab ra đồng ruộng';
 $nl_items   = array(
 	array(
 		'number' => '01',
@@ -290,6 +291,13 @@ $nl_items   = array(
 		'text'   => 'Tập huấn nông hộ, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao.',
 	),
 );
+$nl_icons = array(
+	'<svg class="nl-stage__svg" viewBox="0 0 96 96" fill="none" aria-hidden="true"><circle cx="48" cy="48" r="28" fill="#009c48"/><circle cx="62" cy="34" r="16" fill="#f07818"/><circle cx="56" cy="58" r="12" fill="#e8fe85"/><circle cx="34" cy="58" r="8" fill="#009c48" opacity=".55"/></svg>',
+	'<svg class="nl-stage__svg" viewBox="0 0 96 96" fill="none" aria-hidden="true"><circle cx="68" cy="26" r="10" fill="#f07818"/><path d="M10 58c18-16 32-16 50 0s28 14 28 6v22H10V58z" fill="#009c48"/><path d="M10 74c16-10 30-8 48 4 14 8 22 6 28 2v12H10V74z" fill="#0b1f33"/></svg>',
+	'<svg class="nl-stage__svg" viewBox="0 0 96 96" fill="none" aria-hidden="true"><rect x="16" y="48" width="14" height="32" rx="4" fill="#009c48"/><rect x="36" y="34" width="14" height="46" rx="4" fill="#0b1f33"/><rect x="56" y="22" width="14" height="58" rx="4" fill="#f07818"/><path d="M18 28c10-12 22-8 28 2" stroke="#009c48" stroke-width="4" stroke-linecap="round"/></svg>',
+	'<svg class="nl-stage__svg" viewBox="0 0 96 96" fill="none" aria-hidden="true"><circle cx="22" cy="48" r="12" fill="#009c48"/><circle cx="48" cy="36" r="10" fill="#f07818"/><circle cx="74" cy="50" r="12" fill="#e8fe85"/><path d="M34 48h8M58 40l8 6" stroke="#0b1f33" stroke-width="3" stroke-linecap="round"/></svg>',
+);
+$nl_tones = array( 'nl-stage--ink', 'nl-stage--sage', 'nl-stage--peach', 'nl-stage--lime' );
 $lv_eyebrow = 'Lĩnh vực hoạt động';
 $lv_title   = 'Sáu nhóm việc VARC đang làm';
 $lv_items   = array(
@@ -303,6 +311,7 @@ $lv_items   = array(
 if ( $front_id && function_exists( 'get_field' ) ) {
 	$saved_nl_eyebrow = get_field( 'home_nl_eyebrow', $front_id );
 	$saved_nl_title   = get_field( 'home_nl_title', $front_id );
+	$saved_nl_lead    = get_field( 'home_nl_lead', $front_id );
 	$saved_nl_items   = get_field( 'home_nl_items', $front_id );
 	$saved_lv_eyebrow = get_field( 'home_lv_eyebrow', $front_id );
 	$saved_lv_title   = get_field( 'home_lv_title', $front_id );
@@ -314,9 +323,12 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 	if ( is_string( $saved_nl_title ) && '' !== $saved_nl_title ) {
 		$nl_title = $saved_nl_title;
 	}
+	if ( is_string( $saved_nl_lead ) ) {
+		$nl_lead = $saved_nl_lead;
+	}
 	if ( is_array( $saved_nl_items ) ) {
-		$nl_items = array();
-		foreach ( $saved_nl_items as $row ) {
+		$parsed_nl = array();
+		foreach ( $saved_nl_items as $index => $row ) {
 			if ( ! is_array( $row ) ) {
 				continue;
 			}
@@ -325,11 +337,18 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			if ( '' === $title && '' === $text ) {
 				continue;
 			}
-			$nl_items[] = array(
-				'number' => isset( $row['number'] ) ? trim( (string) $row['number'] ) : '',
+			$number = isset( $row['number'] ) ? trim( (string) $row['number'] ) : '';
+			if ( '' === $number ) {
+				$number = str_pad( (string) ( count( $parsed_nl ) + 1 ), 2, '0', STR_PAD_LEFT );
+			}
+			$parsed_nl[] = array(
+				'number' => $number,
 				'title'  => $title,
 				'text'   => $text,
 			);
+		}
+		if ( $parsed_nl ) {
+			$nl_items = $parsed_nl;
 		}
 	}
 	if ( is_string( $saved_lv_eyebrow ) && '' !== $saved_lv_eyebrow ) {
@@ -356,96 +375,45 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 		}
 	}
 }
+$nl_count = count( $nl_items );
 ?>
 
-<section id="nang-luc" class="scroll-mt-28">
+<section id="nang-luc" class="scroll-mt-28" aria-labelledby="nang-luc-title">
 	<div class="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
-		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $nl_eyebrow ); ?></p>
-		<h2 data-reveal class="mt-3 max-w-2xl font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $nl_title ); ?></h2>
-		<div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-12" data-reveal-stagger>
-			<?php if ( ! empty( $nl_items[0] ) ) : ?>
-			<article class="relative flex flex-col overflow-hidden rounded-3xl bg-ink text-white md:col-span-7 md:row-span-2">
-				<div class="relative min-h-[200px] flex-1 overflow-hidden sm:min-h-[240px]" aria-hidden="true">
-					<div class="absolute -left-10 top-6 h-40 w-40 rounded-full bg-brand/40 blur-2xl"></div>
-					<div class="absolute right-6 top-4 h-28 w-28 rounded-full bg-sun/50 blur-2xl"></div>
-					<svg class="absolute inset-0 h-full w-full" viewBox="0 0 420 280" fill="none" preserveAspectRatio="xMidYMid slice">
-						<circle cx="168" cy="148" r="78" fill="#009c48"/>
-						<circle cx="268" cy="112" r="52" fill="#f07818"/>
-						<circle cx="246" cy="196" r="36" fill="#e8fe85"/>
-						<circle cx="118" cy="196" r="22" fill="#009c48" opacity=".55"/>
-						<circle cx="300" cy="176" r="14" fill="#fff"/>
-						<circle cx="196" cy="78" r="8" fill="#fff" opacity=".8"/>
-					</svg>
-				</div>
-				<div class="p-6 sm:p-8">
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $nl_items[0]['number'] ); ?></p>
-					<h3 class="mt-2 font-sans text-2xl font-bold"><?php echo esc_html( $nl_items[0]['title'] ); ?></h3>
-					<p class="mt-2 max-w-md text-sm leading-relaxed text-white/75"><?php echo esc_html( $nl_items[0]['text'] ); ?></p>
-				</div>
-			</article>
-			<?php endif; ?>
+		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand" data-reveal><?php echo esc_html( $nl_eyebrow ); ?></p>
+		<h2 id="nang-luc-title" data-reveal class="mt-3 max-w-2xl font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $nl_title ); ?></h2>
+		<?php if ( '' !== trim( (string) $nl_lead ) ) : ?>
+			<p class="mt-3 max-w-xl text-base leading-relaxed text-slate-600" data-reveal data-reveal-delay="0.08"><?php echo esc_html( $nl_lead ); ?></p>
+		<?php endif; ?>
 
-			<?php if ( ! empty( $nl_items[1] ) ) : ?>
-			<article class="flex items-center gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:gap-5 sm:p-5 md:col-span-5">
-				<div class="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#e6ecd5] sm:h-28 sm:w-28" aria-hidden="true">
-					<svg class="h-20 w-20" viewBox="0 0 96 96" fill="none">
-						<circle cx="68" cy="26" r="10" fill="#f07818"/>
-						<path d="M10 58c18-16 32-16 50 0s28 14 28 6v22H10V58z" fill="#009c48"/>
-						<path d="M10 74c16-10 30-8 48 4 14 8 22 6 28 2v12H10V74z" fill="#0b1f33"/>
-					</svg>
-				</div>
-				<div>
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $nl_items[1]['number'] ); ?></p>
-					<h3 class="mt-1 font-sans text-lg font-bold text-ink"><?php echo esc_html( $nl_items[1]['title'] ); ?></h3>
-					<p class="mt-1 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $nl_items[1]['text'] ); ?></p>
-				</div>
-			</article>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $nl_items[2] ) ) : ?>
-			<article class="flex items-center gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:gap-5 sm:p-5 md:col-span-5">
-				<div class="grid h-24 w-24 shrink-0 place-items-center overflow-hidden rounded-2xl bg-[#fceace] sm:h-28 sm:w-28" aria-hidden="true">
-					<svg class="h-20 w-20" viewBox="0 0 96 96" fill="none">
-						<rect x="16" y="48" width="14" height="32" rx="4" fill="#009c48"/>
-						<rect x="36" y="34" width="14" height="46" rx="4" fill="#0b1f33"/>
-						<rect x="56" y="22" width="14" height="58" rx="4" fill="#f07818"/>
-						<path d="M18 28c10-12 22-8 28 2" stroke="#009c48" stroke-width="4" stroke-linecap="round"/>
-					</svg>
-				</div>
-				<div>
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $nl_items[2]['number'] ); ?></p>
-					<h3 class="mt-1 font-sans text-lg font-bold text-ink"><?php echo esc_html( $nl_items[2]['title'] ); ?></h3>
-					<p class="mt-1 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $nl_items[2]['text'] ); ?></p>
-				</div>
-			</article>
-			<?php endif; ?>
-
-			<?php if ( ! empty( $nl_items[3] ) ) : ?>
-			<article class="flex flex-col gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:flex-row sm:items-center sm:gap-6 sm:p-5 md:col-span-12">
-				<div class="grid h-24 w-full shrink-0 place-items-center overflow-hidden rounded-2xl bg-ink sm:h-28 sm:w-44" aria-hidden="true">
-					<svg class="h-16 w-36" viewBox="0 0 140 64" fill="none">
-						<circle cx="24" cy="32" r="14" fill="#009c48"/>
-						<circle cx="70" cy="20" r="12" fill="#f07818"/>
-						<circle cx="112" cy="36" r="14" fill="#e8fe85"/>
-						<path d="M38 32h20M82 24l16 8" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
-					</svg>
-				</div>
-				<div>
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $nl_items[3]['number'] ); ?></p>
-					<h3 class="mt-1 font-sans text-lg font-bold text-ink"><?php echo esc_html( $nl_items[3]['title'] ); ?></h3>
-					<p class="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600"><?php echo esc_html( $nl_items[3]['text'] ); ?></p>
-				</div>
-			</article>
-			<?php endif; ?>
-			<?php foreach ( array_slice( $nl_items, 4 ) as $extra ) : ?>
-			<article class="flex flex-col gap-4 rounded-3xl bg-white p-4 ring-1 ring-slate-100 sm:flex-row sm:items-center sm:gap-6 sm:p-5 md:col-span-12">
-				<div>
-					<p class="text-sm font-bold text-sun"><?php echo esc_html( $extra['number'] ); ?></p>
-					<h3 class="mt-1 font-sans text-lg font-bold text-ink"><?php echo esc_html( $extra['title'] ); ?></h3>
-					<p class="mt-1 max-w-2xl text-sm leading-relaxed text-slate-600"><?php echo esc_html( $extra['text'] ); ?></p>
-				</div>
-			</article>
-			<?php endforeach; ?>
+		<div class="nl-stages-wrap mt-8 sm:mt-10">
+			<span class="nl-stages__rail" aria-hidden="true" data-reveal-line></span>
+			<ol class="nl-stages" data-reveal-stagger data-nl-count="<?php echo esc_attr( (string) $nl_count ); ?>">
+				<?php foreach ( $nl_items as $i => $stage ) : ?>
+					<?php
+					$tone     = $nl_tones[ $i % count( $nl_tones ) ];
+					$icon     = $nl_icons[ $i % count( $nl_icons ) ];
+					$is_last  = ( $i === $nl_count - 1 );
+					?>
+					<li class="nl-stage <?php echo esc_attr( $tone ); ?>">
+						<article class="nl-stage__card group">
+							<div class="nl-stage__icon" aria-hidden="true">
+								<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG markup. ?>
+							</div>
+							<p class="nl-stage__num">
+								<span class="sr-only"><?php esc_html_e( 'Giai đoạn', 'nongnghiepnhietdoi' ); ?> </span>
+								<?php echo esc_html( $stage['number'] ); ?>
+							</p>
+							<h3 class="nl-stage__title"><?php echo esc_html( $stage['title'] ); ?></h3>
+							<p class="nl-stage__text"><?php echo esc_html( $stage['text'] ); ?></p>
+							<span class="nl-stage__bar" aria-hidden="true"></span>
+						</article>
+						<?php if ( ! $is_last ) : ?>
+							<span class="nl-stage__connector" aria-hidden="true"></span>
+						<?php endif; ?>
+					</li>
+				<?php endforeach; ?>
+			</ol>
 		</div>
 	</div>
 </section>
