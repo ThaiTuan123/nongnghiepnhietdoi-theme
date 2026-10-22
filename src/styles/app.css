@@ -1988,6 +1988,7 @@ body.lx-lightbox-open {
   gap: 1rem;
 }
 .news-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -1995,6 +1996,7 @@ body.lx-lightbox-open {
   background: #fff;
   box-shadow: 0 1px 0 rgba(11, 31, 51, 0.04);
   outline: 1px solid #eef2f0;
+  cursor: pointer;
   transition:
     outline-color 0.4s ease,
     outline-offset 0.4s ease,
@@ -2057,6 +2059,12 @@ body.lx-lightbox-open {
   color: var(--color-ink);
   text-decoration: none;
   transition: color 0.3s ease;
+}
+.news-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .news-card__excerpt {
   margin-top: 0.5rem;
@@ -2170,6 +2178,16 @@ body.lx-lightbox-open {
 }
 .hp-card__link {
   transition: color 0.3s ease;
+}
+.hp-card--project {
+  position: relative;
+  cursor: pointer;
+}
+.hp-card--project .hp-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 .hp-card__accent {
   transform-origin: left center;
@@ -2289,6 +2307,61 @@ body.lx-lightbox-open {
   .hp-card:focus-within .hp-card__img,
   .hp-card:hover .hp-card__media,
   .hp-card:focus-within .hp-card__media {
+    transform: none !important;
+  }
+}
+
+/* ——— Search results ——— */
+.search-card {
+  cursor: pointer;
+  transition:
+    box-shadow 0.35s ease,
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    outline-color 0.3s ease;
+  outline: 1px solid transparent;
+}
+.search-card__img {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.search-card__link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s ease;
+}
+.search-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+@media (min-width: 768px) {
+  .search-card:hover,
+  .search-card:focus-within {
+    transform: translateY(-3px);
+    box-shadow: 0 16px 32px -20px rgba(11, 31, 51, 0.28);
+    outline-color: color-mix(in srgb, var(--brand) 35%, transparent);
+  }
+  .search-card:hover .search-card__img,
+  .search-card:focus-within .search-card__img {
+    transform: scale(1.05);
+  }
+  .search-card:hover .search-card__link,
+  .search-card:focus-within .search-card__link {
+    color: var(--brand);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .search-card,
+  .search-card__img,
+  .search-card__link {
+    transition: none !important;
+  }
+  .search-card:hover,
+  .search-card:focus-within {
+    transform: none !important;
+  }
+  .search-card:hover .search-card__img,
+  .search-card:focus-within .search-card__img {
     transform: none !important;
   }
 }
