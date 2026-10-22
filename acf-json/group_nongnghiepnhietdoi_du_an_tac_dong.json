@@ -7,7 +7,7 @@
 			"label": "Hướng dẫn",
 			"name": "",
 			"type": "message",
-			"message": "Sửa chữ của ba mục dự án tại các thẻ bên dưới. Ô Đường dẫn bài chi tiết để trống thì nút Xem thêm vẫn hiện nhưng chưa mở bài. Khối Dự án tiêu biểu lấy tự động từ chuyên mục cùng tên. Ảnh nền đầu trang lấy từ Ảnh đại diện.",
+			"message": "Sửa chữ của ba mục dự án tại các thẻ bên dưới. Mỗi việc có ô Ảnh nền thẻ — bỏ trống sẽ dùng ảnh mặc định của theme. Khối Dự án tiêu biểu chỉ hiện bài thuộc chuyên mục «Dự án tiêu biểu» (slug: du-an-tieu-bieu). Ảnh nền đầu trang lấy từ Ảnh đại diện.",
 			"new_lines": "wpautop",
 			"esc_html": 0
 		},
@@ -82,7 +82,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_dt_s1_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_dt_s1_point_text",
@@ -90,8 +102,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -152,7 +163,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_dt_s2_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_dt_s2_point_text",
@@ -160,8 +183,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -222,7 +244,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_dt_s3_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_dt_s3_point_text",
@@ -230,8 +264,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -278,6 +311,15 @@
 			"type": "textarea",
 			"rows": 2,
 			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_dt_featured_help",
+			"label": "",
+			"name": "",
+			"type": "message",
+			"message": "Khối này không chọn bài thủ công. Gắn chuyên mục <strong>Dự án tiêu biểu</strong> cho bài viết cần hiện; ảnh thẻ lấy từ ảnh đại diện của bài.",
+			"new_lines": "wpautop",
+			"esc_html": 0
 		},
 		{
 			"key": "field_nn_dt_tab_cta",
@@ -339,5 +381,5 @@
 	"active": true,
 	"description": "Ba nhóm dự án và khối dự án tiêu biểu trên trang Dự Án & Tác Động.",
 	"show_in_rest": 0,
-	"modified": 1792600000
+	"modified": 1761160000
 }

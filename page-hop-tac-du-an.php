@@ -19,7 +19,6 @@ $hours       = (string) nongnghiepnhietdoi_option( 'contact_hours' );
 $logo_id     = (int) nongnghiepnhietdoi_option( 'site_logo' );
 $socials     = nongnghiepnhietdoi_socials();
 $phone_tel   = $phone ? preg_replace( '/[^0-9+]/', '', $phone ) : '';
-$subjects    = nongnghiepnhietdoi_partnership_subjects();
 $audiences   = nongnghiepnhietdoi_partnership_audiences();
 $hero_image  = get_the_post_thumbnail_url( $page_id, 'full' );
 $hero_title  = 'Hợp tác & dự án';
@@ -226,57 +225,13 @@ get_header();
 					?>
 				</p>
 
-				<form class="ht-proposal-form mt-6" method="post" action="" enctype="multipart/form-data" novalidate>
-					<?php wp_nonce_field( 'nongnghiepnhietdoi_contact', 'nongnghiepnhietdoi_contact_nonce' ); ?>
-					<input type="hidden" name="lx_form_source" value="partnership">
-					<input type="hidden" name="lx_audience" value="" data-ht-audience-input>
-					<div class="hidden" aria-hidden="true">
-						<label>Website<input type="text" name="nongnghiepnhietdoi_website" tabindex="-1" autocomplete="off"></label>
-					</div>
-
-					<div class="grid grid-cols-1 gap-5 md:grid-cols-2">
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="ht-name"><?php esc_html_e( 'Họ và tên', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="text" id="ht-name" name="lx_name" required autocomplete="name">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="ht-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="email" id="ht-email" name="email" required autocomplete="email">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="ht-phone"><?php esc_html_e( 'Điện thoại', 'nongnghiepnhietdoi' ); ?></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="tel" id="ht-phone" name="phone" autocomplete="tel">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="ht-org"><?php esc_html_e( 'Đơn vị / Tổ chức', 'nongnghiepnhietdoi' ); ?></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="text" id="ht-org" name="organization" autocomplete="organization">
-						</div>
-					</div>
-
-					<div class="mt-5">
-						<label class="mb-2 block text-sm font-semibold text-ink" for="ht-subject"><?php esc_html_e( 'Tiêu đề', 'nongnghiepnhietdoi' ); ?></label>
-						<select id="ht-subject" name="lx_subject" class="ht-select h-11 w-full appearance-none rounded-md border border-slate-200 bg-white px-3 pr-10 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" data-ht-subject>
-							<?php foreach ( $subjects as $value => $label ) : ?>
-								<option value="<?php echo esc_attr( $value ); ?>"><?php echo esc_html( $label ); ?></option>
-							<?php endforeach; ?>
-						</select>
-					</div>
-
-					<div class="mt-5">
-						<label class="mb-2 block text-sm font-semibold text-ink" for="ht-message"><?php esc_html_e( 'Nội dung', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-						<textarea id="ht-message" name="message" required class="min-h-[148px] w-full resize-y rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"></textarea>
-					</div>
-
-					<div class="mt-5">
-						<label class="mb-2 block text-sm font-semibold text-ink" for="ht-file"><?php esc_html_e( 'Tệp đính kèm (PDF, DOC, ZIP ≤ 20MB)', 'nongnghiepnhietdoi' ); ?></label>
-						<input id="ht-file" class="block w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm text-slate-600 file:mr-3 file:rounded-md file:border file:border-slate-300 file:bg-slate-50 file:px-3 file:py-1.5 file:text-sm file:font-medium file:text-ink" type="file" name="lx_attachment" accept=".pdf,.doc,.docx,.zip,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/zip">
-					</div>
-
-					<button type="submit" name="nongnghiepnhietdoi_contact_submit" value="1" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-70">
-						<span class="lx-submit-label"><?php esc_html_e( 'Gửi thông tin', 'nongnghiepnhietdoi' ); ?> <span aria-hidden="true">→</span></span>
-						<span class="lx-submit-loading hidden"><?php esc_html_e( 'Đang gửi…', 'nongnghiepnhietdoi' ); ?></span>
-					</button>
-				</form>
+				<div class="ht-cf7 mt-6">
+					<?php
+					if ( function_exists( 'nongnghiepnhietdoi_cf7_render' ) ) {
+						nongnghiepnhietdoi_cf7_render( 'partnership' );
+					}
+					?>
+				</div>
 			</div>
 		</div>
 	</section>

@@ -244,20 +244,23 @@ $point_dots = array( 'bg-sun', 'bg-brand', 'bg-brand-700' );
 </section>
 
 <section id="ve-varc" class="scroll-mt-28 bg-white">
-	<div class="mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-12 md:py-16 lg:grid-cols-2">
-		<div class="overflow-hidden rounded-3xl" data-reveal="image">
-			<div data-reveal-frame>
-				<img src="<?php echo esc_url( $about_image ); ?>" alt="<?php echo esc_attr( $about_alt ); ?>" class="h-full max-h-[280px] w-full object-cover sm:max-h-[420px]" width="1400" height="934">
+	<div class="about-varc mx-auto grid max-w-[1200px] items-center gap-8 px-4 py-12 md:py-16 lg:grid-cols-2">
+		<div class="about-varc__media overflow-hidden rounded-3xl" data-reveal="image">
+			<div class="about-varc__frame" data-reveal-frame>
+				<img src="<?php echo esc_url( $about_image ); ?>" alt="<?php echo esc_attr( $about_alt ); ?>" class="about-varc__img h-full max-h-[280px] w-full object-cover sm:max-h-[420px]" width="1400" height="934">
 			</div>
 		</div>
-		<div data-reveal="right">
-			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $about_eyebrow ); ?></p>
-			<h2 class="mt-3 font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $about_title ); ?></h2>
-			<p class="mt-4 text-[16px] leading-relaxed text-slate-600"><?php echo nl2br( esc_html( $about_text ) ); ?></p>
+		<div class="about-varc__copy" data-reveal="right">
+			<p class="about-varc__eyebrow text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $about_eyebrow ); ?></p>
+			<h2 class="about-varc__title mt-3 font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $about_title ); ?></h2>
+			<p class="about-varc__text mt-4 text-[16px] leading-relaxed text-slate-600"><?php echo nl2br( esc_html( $about_text ) ); ?></p>
 			<?php if ( $about_points ) : ?>
-				<ul class="mt-6 space-y-3 text-sm text-slate-700">
+				<ul class="about-varc__points mt-6 space-y-3 text-sm text-slate-700">
 					<?php foreach ( $about_points as $index => $point ) : ?>
-						<li class="flex gap-3"><span class="mt-1 h-2 w-2 shrink-0 rounded-full <?php echo esc_attr( $point_dots[ $index % 3 ] ); ?>"></span><?php echo esc_html( $point ); ?></li>
+						<li class="about-varc__point flex gap-3">
+							<span class="about-varc__dot mt-1 h-2 w-2 shrink-0 rounded-full <?php echo esc_attr( $point_dots[ $index % 3 ] ); ?>" aria-hidden="true"></span>
+							<span class="about-varc__point-text"><?php echo esc_html( $point ); ?></span>
+						</li>
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>
@@ -274,21 +277,25 @@ $nl_items   = array(
 		'number' => '01',
 		'title'  => 'Vi sinh bản địa',
 		'text'   => 'Phân lập, nhân sinh khối và chuyển giao chế phẩm IMO phù hợp đất và cây của từng vùng.',
+		'image'  => null,
 	),
 	array(
 		'number' => '02',
 		'title'  => 'Hiện trường CSA',
 		'text'   => 'Thiết kế mô hình nông nghiệp thông minh với khí hậu, theo mùa vụ và quy mô hợp tác xã.',
+		'image'  => null,
 	),
 	array(
 		'number' => '03',
 		'title'  => 'Đo phát thải',
 		'text'   => 'Phương pháp đo lường phát thải khí nhà kính để đối chiếu trước và sau can thiệp.',
+		'image'  => null,
 	),
 	array(
 		'number' => '04',
 		'title'  => 'Chuyển giao',
 		'text'   => 'Tập huấn nông hộ, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao.',
+		'image'  => null,
 	),
 );
 $nl_icons = array(
@@ -301,12 +308,12 @@ $nl_tones = array( 'nl-stage--ink', 'nl-stage--sage', 'nl-stage--peach', 'nl-sta
 $lv_eyebrow = 'Lĩnh vực hoạt động';
 $lv_title   = 'Sáu nhóm việc VARC đang làm';
 $lv_items   = array(
-	array( 'title' => 'Công nghệ vi sinh', 'text' => 'Chế phẩm xử lý phụ phẩm, cải tạo đất và tăng sức chống chịu của cây trồng.' ),
-	array( 'title' => 'Thích ứng khí hậu', 'text' => 'Mô hình CSA cho vùng nhiệt đới: nước, giống, lịch mùa và rủi ro thời tiết.' ),
-	array( 'title' => 'Xử lý môi trường', 'text' => 'Ủ phân hữu cơ, giảm đốt phụ phẩm và xử lý ô nhiễm tại nông hộ.' ),
-	array( 'title' => 'Phát thải khí nhà kính', 'text' => 'Đo, báo cáo và đề xuất biện pháp giảm phát thải trên đồng ruộng.' ),
-	array( 'title' => 'Đào tạo chuyển giao', 'text' => 'Cẩm nang, tập huấn hiện trường và mạng lưới khuyến nông cộng đồng.' ),
-	array( 'title' => 'Tư vấn độc lập', 'text' => 'Đánh giá dự án, đề tài khoa học công nghệ và chương trình quốc gia.' ),
+	array( 'title' => 'Công nghệ vi sinh', 'text' => 'Chế phẩm xử lý phụ phẩm, cải tạo đất và tăng sức chống chịu của cây trồng.', 'image' => null ),
+	array( 'title' => 'Thích ứng khí hậu', 'text' => 'Mô hình CSA cho vùng nhiệt đới: nước, giống, lịch mùa và rủi ro thời tiết.', 'image' => null ),
+	array( 'title' => 'Xử lý môi trường', 'text' => 'Ủ phân hữu cơ, giảm đốt phụ phẩm và xử lý ô nhiễm tại nông hộ.', 'image' => null ),
+	array( 'title' => 'Phát thải khí nhà kính', 'text' => 'Đo, báo cáo và đề xuất biện pháp giảm phát thải trên đồng ruộng.', 'image' => null ),
+	array( 'title' => 'Đào tạo chuyển giao', 'text' => 'Cẩm nang, tập huấn hiện trường và mạng lưới khuyến nông cộng đồng.', 'image' => null ),
+	array( 'title' => 'Tư vấn độc lập', 'text' => 'Đánh giá dự án, đề tài khoa học công nghệ và chương trình quốc gia.', 'image' => null ),
 );
 if ( $front_id && function_exists( 'get_field' ) ) {
 	$saved_nl_eyebrow = get_field( 'home_nl_eyebrow', $front_id );
@@ -334,7 +341,21 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			}
 			$title = isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
 			$text  = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
-			if ( '' === $title && '' === $text ) {
+			$image = null;
+			if ( ! empty( $row['image'] ) && is_array( $row['image'] ) && ! empty( $row['image']['url'] ) ) {
+				$image = $row['image'];
+			} elseif ( ! empty( $row['image'] ) && is_numeric( $row['image'] ) ) {
+				$img_id = (int) $row['image'];
+				$url    = wp_get_attachment_image_url( $img_id, 'medium_large' );
+				if ( $url ) {
+					$image = array(
+						'ID'  => $img_id,
+						'url' => $url,
+						'alt' => (string) get_post_meta( $img_id, '_wp_attachment_image_alt', true ),
+					);
+				}
+			}
+			if ( '' === $title && '' === $text && ! $image ) {
 				continue;
 			}
 			$number = isset( $row['number'] ) ? trim( (string) $row['number'] ) : '';
@@ -345,6 +366,7 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 				'number' => $number,
 				'title'  => $title,
 				'text'   => $text,
+				'image'  => $image,
 			);
 		}
 		if ( $parsed_nl ) {
@@ -358,20 +380,38 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 		$lv_title = $saved_lv_title;
 	}
 	if ( is_array( $saved_lv_items ) ) {
-		$lv_items = array();
+		$parsed_lv = array();
 		foreach ( $saved_lv_items as $row ) {
 			if ( ! is_array( $row ) ) {
 				continue;
 			}
 			$title = isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
 			$text  = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
-			if ( '' === $title && '' === $text ) {
+			$image = null;
+			if ( ! empty( $row['image'] ) && is_array( $row['image'] ) && ! empty( $row['image']['url'] ) ) {
+				$image = $row['image'];
+			} elseif ( ! empty( $row['image'] ) && is_numeric( $row['image'] ) ) {
+				$img_id = (int) $row['image'];
+				$url    = wp_get_attachment_image_url( $img_id, 'medium_large' );
+				if ( $url ) {
+					$image = array(
+						'ID'  => $img_id,
+						'url' => $url,
+						'alt' => (string) get_post_meta( $img_id, '_wp_attachment_image_alt', true ),
+					);
+				}
+			}
+			if ( '' === $title && '' === $text && ! $image ) {
 				continue;
 			}
-			$lv_items[] = array(
+			$parsed_lv[] = array(
 				'title' => $title,
 				'text'  => $text,
+				'image' => $image,
 			);
+		}
+		if ( $parsed_lv ) {
+			$lv_items = $parsed_lv;
 		}
 	}
 }
@@ -391,22 +431,40 @@ $nl_count = count( $nl_items );
 			<ol class="nl-stages" data-reveal-stagger data-nl-count="<?php echo esc_attr( (string) $nl_count ); ?>">
 				<?php foreach ( $nl_items as $i => $stage ) : ?>
 					<?php
-					$tone     = $nl_tones[ $i % count( $nl_tones ) ];
-					$icon     = $nl_icons[ $i % count( $nl_icons ) ];
-					$is_last  = ( $i === $nl_count - 1 );
+					$tone      = $nl_tones[ $i % count( $nl_tones ) ];
+					$icon      = $nl_icons[ $i % count( $nl_icons ) ];
+					$is_last   = ( $i === $nl_count - 1 );
+					$has_image  = ! empty( $stage['image']['url'] );
+					$card_class = $has_image ? 'nl-stage__card nl-stage__card--media group' : 'nl-stage__card group';
 					?>
 					<li class="nl-stage <?php echo esc_attr( $tone ); ?>">
-						<article class="nl-stage__card group">
-							<div class="nl-stage__icon" aria-hidden="true">
-								<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG markup. ?>
+						<article class="<?php echo esc_attr( $card_class ); ?>">
+							<?php if ( $has_image ) : ?>
+								<div class="nl-stage__media" aria-hidden="true">
+									<img
+										src="<?php echo esc_url( $stage['image']['url'] ); ?>"
+										alt=""
+										class="nl-stage__img"
+										width="800"
+										height="1000"
+										loading="lazy"
+										decoding="async"
+									>
+									<span class="nl-stage__shade"></span>
+								</div>
+							<?php else : ?>
+								<div class="nl-stage__icon" aria-hidden="true">
+									<?php echo $icon; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- static SVG markup. ?>
+								</div>
+							<?php endif; ?>
+							<div class="nl-stage__body">
+								<p class="nl-stage__num">
+									<span class="sr-only"><?php esc_html_e( 'Giai đoạn', 'nongnghiepnhietdoi' ); ?> </span>
+									<?php echo esc_html( $stage['number'] ); ?>
+								</p>
+								<h3 class="nl-stage__title"><?php echo esc_html( $stage['title'] ); ?></h3>
+								<p class="nl-stage__text"><?php echo esc_html( $stage['text'] ); ?></p>
 							</div>
-							<p class="nl-stage__num">
-								<span class="sr-only"><?php esc_html_e( 'Giai đoạn', 'nongnghiepnhietdoi' ); ?> </span>
-								<?php echo esc_html( $stage['number'] ); ?>
-							</p>
-							<h3 class="nl-stage__title"><?php echo esc_html( $stage['title'] ); ?></h3>
-							<p class="nl-stage__text"><?php echo esc_html( $stage['text'] ); ?></p>
-							<span class="nl-stage__bar" aria-hidden="true"></span>
 						</article>
 						<?php if ( ! $is_last ) : ?>
 							<span class="nl-stage__connector" aria-hidden="true"></span>
@@ -420,13 +478,34 @@ $nl_count = count( $nl_items );
 
 <section id="linh-vuc" class="scroll-mt-28 bg-white">
 	<div class="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
-		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $lv_eyebrow ); ?></p>
+		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand" data-reveal><?php echo esc_html( $lv_eyebrow ); ?></p>
 		<h2 data-reveal class="mt-3 font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $lv_title ); ?></h2>
-		<div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-3" data-reveal-stagger>
-			<?php foreach ( $lv_items as $field ) : ?>
-				<article class="rounded-2xl border border-slate-100 bg-bone p-6">
-					<h3 class="font-sans text-lg font-bold text-ink"><?php echo esc_html( $field['title'] ); ?></h3>
-					<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $field['text'] ); ?></p>
+		<div class="lv-grid mt-8 sm:mt-10" data-reveal-stagger>
+			<?php foreach ( $lv_items as $i => $field ) : ?>
+				<?php
+				$has_image  = ! empty( $field['image']['url'] );
+				$card_class = $has_image ? 'lv-card lv-card--media group' : 'lv-card group';
+				?>
+				<article class="<?php echo esc_attr( $card_class ); ?>">
+					<?php if ( $has_image ) : ?>
+						<div class="lv-card__media" aria-hidden="true">
+							<img
+								src="<?php echo esc_url( $field['image']['url'] ); ?>"
+								alt=""
+								class="lv-card__img"
+								width="800"
+								height="600"
+								loading="lazy"
+								decoding="async"
+							>
+							<span class="lv-card__shade"></span>
+						</div>
+					<?php endif; ?>
+					<div class="lv-card__body">
+						<span class="lv-card__index" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+						<h3 class="lv-card__title"><?php echo esc_html( $field['title'] ); ?></h3>
+						<p class="lv-card__text"><?php echo esc_html( $field['text'] ); ?></p>
+					</div>
 				</article>
 			<?php endforeach; ?>
 		</div>
@@ -467,11 +546,11 @@ $nl_count = count( $nl_items );
 						$featured_image = $img . ( 1 === $featured_index % 3 ? '/about-field.jpg' : '/hero-field.jpg' );
 					}
 					?>
-					<article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100">
-						<a href="<?php the_permalink(); ?>" class="block h-40 bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('<?php echo esc_url( $featured_image ); ?>')"></a>
+					<article class="hp-card hp-card--project group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100">
+						<a href="<?php the_permalink(); ?>" class="hp-card__media block h-40 overflow-hidden bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('<?php echo esc_url( $featured_image ); ?>')" aria-hidden="true" tabindex="-1"></a>
 						<div class="p-6">
 							<h3 class="font-sans text-lg font-bold text-ink">
-								<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+								<a href="<?php the_permalink(); ?>" class="hp-card__link"><?php the_title(); ?></a>
 							</h3>
 							<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
 						</div>
@@ -556,11 +635,11 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $people_eyebrow ); ?></p>
 		<h2 class="mt-3 max-w-2xl font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $people_title ); ?></h2>
 		<p class="mt-4 max-w-2xl text-slate-600"><?php echo esc_html( $people_text ); ?></p>
-		<div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3">
+		<div class="mt-8 grid gap-4 sm:mt-10 md:grid-cols-3" data-reveal-stagger>
 			<?php foreach ( $people as $person ) : ?>
-				<article class="relative min-h-[300px] overflow-hidden rounded-2xl bg-ink">
+				<article class="hp-card hp-card--cover group relative min-h-[300px] overflow-hidden rounded-2xl bg-ink">
 					<?php if ( ! empty( $person['image'] ) ) : ?>
-						<img src="<?php echo esc_url( $person['image'] ); ?>" alt="<?php echo esc_attr( $person['alt'] ); ?>" class="absolute inset-0 h-full w-full object-cover object-[center_22%]" width="1200" height="900">
+						<img src="<?php echo esc_url( $person['image'] ); ?>" alt="<?php echo esc_attr( $person['alt'] ); ?>" class="hp-card__img absolute inset-0 h-full w-full object-cover object-[center_22%]" width="1200" height="900">
 					<?php endif; ?>
 					<div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/35 to-ink/10" aria-hidden="true"></div>
 					<div class="relative flex min-h-[300px] flex-col justify-end p-6">
@@ -587,8 +666,8 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			);
 			foreach ( $board as $role ) :
 				?>
-				<article class="rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-					<div class="h-1.5 w-10 rounded-full bg-sun"></div>
+				<article class="hp-card hp-card--board group rounded-2xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
+					<div class="hp-card__accent h-1.5 w-10 rounded-full bg-sun"></div>
 					<h3 class="mt-4 font-sans text-lg font-bold text-ink"><?php echo esc_html( $role[0] ); ?></h3>
 					<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $role[1] ); ?></p>
 				</article>
@@ -665,16 +744,18 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 	<div class="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
 		<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun"><?php echo esc_html( $eco_eyebrow ); ?></p>
 		<h2 data-reveal class="mt-3 max-w-2xl font-sans text-3xl font-bold tracking-tight md:text-4xl"><?php echo esc_html( $eco_title ); ?></h2>
-		<div class="mt-8 grid gap-4 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
-			<?php foreach ( $eco as $node ) : ?>
-				<article class="relative min-h-[320px] overflow-hidden rounded-2xl bg-white/5 ring-1 ring-white/10">
+		<div class="eco-grid mt-8 sm:mt-10" data-reveal-stagger>
+			<?php foreach ( $eco as $i => $node ) : ?>
+				<article class="eco-card group">
 					<?php if ( ! empty( $node['image'] ) ) : ?>
-						<img src="<?php echo esc_url( $node['image'] ); ?>" alt="<?php echo esc_attr( $node['alt'] ); ?>" class="absolute inset-0 h-full w-full object-cover object-[center_18%]" width="900" height="1200">
+						<img src="<?php echo esc_url( $node['image'] ); ?>" alt="<?php echo esc_attr( $node['alt'] ); ?>" class="eco-card__img" width="900" height="1200">
 					<?php endif; ?>
-					<div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/40 to-ink/15" aria-hidden="true"></div>
-					<div class="relative flex min-h-[320px] flex-col justify-end p-5">
-						<h3 class="font-sans text-lg font-bold text-white"><?php echo esc_html( $node['title'] ); ?></h3>
-						<p class="mt-2 text-sm leading-relaxed text-white/85"><?php echo esc_html( $node['text'] ); ?></p>
+					<span class="eco-card__shade" aria-hidden="true"></span>
+					<span class="eco-card__glow" aria-hidden="true"></span>
+					<div class="eco-card__body">
+						<span class="eco-card__index" aria-hidden="true"><?php echo esc_html( str_pad( (string) ( $i + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></span>
+						<h3 class="eco-card__title"><?php echo esc_html( $node['title'] ); ?></h3>
+						<p class="eco-card__text"><?php echo esc_html( $node['text'] ); ?></p>
 					</div>
 				</article>
 			<?php endforeach; ?>
@@ -713,32 +794,36 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 				)
 			);
 			?>
-			<div class="mt-8 grid gap-4 sm:grid-cols-2 md:grid-cols-3" data-reveal-stagger>
+			<div class="news-grid mt-8" data-reveal-stagger>
 				<?php if ( $activity_news->have_posts() ) : ?>
 					<?php
 					while ( $activity_news->have_posts() ) :
 						$activity_news->the_post();
 						?>
-						<article class="overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100">
-							<a href="<?php the_permalink(); ?>" class="block h-28 overflow-hidden bg-gradient-to-br from-brand-700 to-brand">
+						<article class="news-card group">
+							<a href="<?php the_permalink(); ?>" class="news-card__media" aria-hidden="true" tabindex="-1">
 								<?php if ( has_post_thumbnail() ) : ?>
 									<?php
 									the_post_thumbnail(
 										'medium_large',
 										array(
-											'class' => 'h-full w-full object-cover',
+											'class' => 'news-card__img',
 											'alt'   => '',
 										)
 									);
 									?>
+								<?php else : ?>
+									<span class="news-card__fallback"></span>
 								<?php endif; ?>
+								<span class="news-card__scrim"></span>
 							</a>
-							<div class="p-4">
-								<p class="text-xs text-slate-400"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></p>
-								<h3 class="mt-2 font-sans text-[15px] font-bold leading-snug text-brand">
-									<a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
+							<div class="news-card__body">
+								<p class="news-card__date"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></p>
+								<h3 class="news-card__title">
+									<a href="<?php the_permalink(); ?>" class="news-card__link"><?php the_title(); ?></a>
 								</h3>
-								<p class="mt-2 line-clamp-3 text-sm text-slate-600"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
+								<p class="news-card__excerpt"><?php echo esc_html( wp_strip_all_tags( get_the_excerpt() ) ); ?></p>
+								<span class="news-card__more" aria-hidden="true"><?php esc_html_e( 'Đọc thêm', 'nongnghiepnhietdoi' ); ?> →</span>
 							</div>
 						</article>
 						<?php
@@ -771,21 +856,21 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			? nongnghiepnhietdoi_library_url( 'cam-nang-ky-thuat-cho-nong-dan' )
 			: home_url( '/thu-vien-tin-tuc/' );
 		?>
-		<aside class="h-fit rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100" data-reveal="right">
+		<aside class="hp-docs h-fit rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100" data-reveal="right">
 			<h3 class="font-sans text-base font-bold text-ink">Tài liệu mới</h3>
 			<?php if ( $handbook_docs->have_posts() ) : ?>
-				<ul class="mt-4 space-y-4 text-sm">
+				<ul class="hp-docs__list mt-4 space-y-2 text-sm">
 					<?php
 					while ( $handbook_docs->have_posts() ) :
 						$handbook_docs->the_post();
 						?>
-						<li>
-							<p class="font-semibold text-ink">
-								<a href="<?php the_permalink(); ?>" class="hover:text-brand"><?php the_title(); ?></a>
-							</p>
-							<?php if ( $handbook_term instanceof WP_Term ) : ?>
-								<p class="text-xs text-slate-400"><?php echo esc_html( $handbook_term->name ); ?></p>
-							<?php endif; ?>
+						<li class="hp-docs__item">
+							<a href="<?php the_permalink(); ?>" class="hp-docs__link block rounded-lg px-2 py-2">
+								<p class="font-semibold text-ink"><?php the_title(); ?></p>
+								<?php if ( $handbook_term instanceof WP_Term ) : ?>
+									<p class="text-xs text-slate-400"><?php echo esc_html( $handbook_term->name ); ?></p>
+								<?php endif; ?>
+							</a>
 						</li>
 						<?php
 					endwhile;
@@ -795,7 +880,7 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			<?php else : ?>
 				<p class="mt-4 text-sm text-slate-500"><?php esc_html_e( 'Chưa có cẩm nang kỹ thuật.', 'nongnghiepnhietdoi' ); ?></p>
 			<?php endif; ?>
-			<a href="<?php echo esc_url( $handbook_url ); ?>" class="mt-5 flex justify-center rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-ink hover:border-brand hover:text-brand">Xem tất cả</a>
+			<a href="<?php echo esc_url( $handbook_url ); ?>" class="hp-docs__all mt-5 flex justify-center rounded-lg border border-slate-200 px-4 py-2 text-sm font-semibold text-ink">Xem tất cả</a>
 		</aside>
 	</div>
 </section>
@@ -806,6 +891,6 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 			<h2 class="font-sans text-2xl font-bold md:text-3xl">Cùng VARC kiến tạo nền nông nghiệp phát thải thấp</h2>
 			<p class="mt-2 max-w-2xl text-sm text-white/80 md:text-base">Chúng tôi sẵn sàng đồng hành cùng các Quỹ quốc tế, Đại sứ quán, NGO, doanh nghiệp và cơ quan quản lý nhà nước.</p>
 		</div>
-		<a href="<?php echo esc_url( home_url( '/hop-tac-du-an/' ) ); ?>" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-bone">Hợp tác dự án <span aria-hidden="true">→</span></a>
+		<a href="<?php echo esc_url( home_url( '/hop-tac-du-an/' ) ); ?>" class="lx-band-cta">Hợp tác dự án <span class="lx-band-cta__arrow" aria-hidden="true">→</span></a>
 	</div>
 </section>

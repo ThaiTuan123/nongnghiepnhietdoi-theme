@@ -7,7 +7,7 @@
 			"label": "Hướng dẫn",
 			"name": "",
 			"type": "message",
-			"message": "Lưới các nhóm việc ngay dưới năng lực khác biệt. Mỗi dòng là một thẻ. Kéo thả để sắp xếp.",
+			"message": "Lưới các nhóm việc ngay dưới năng lực khác biệt. Mỗi dòng là một thẻ: tên, mô tả và ảnh nền. Ảnh nên ngang hoặc vuông (~800×600). Để trống ảnh thì thẻ dùng nền màu nhạt.",
 			"new_lines": "wpautop",
 			"esc_html": 0
 		},
@@ -32,17 +32,31 @@
 			"label": "Các nhóm việc",
 			"name": "home_lv_items",
 			"type": "repeater",
+			"instructions": "Kéo thả để sắp xếp. Upload ảnh ở ô Ảnh nền.",
 			"layout": "block",
 			"button_label": "Thêm nhóm việc",
 			"min": 0,
 			"max": 12,
+			"collapsed": "field_nn_home_lv_item_title",
 			"sub_fields": [
 				{
 					"key": "field_nn_home_lv_item_title",
 					"label": "Tên nhóm",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "40" }
+					"wrapper": { "width": "50" }
+				},
+				{
+					"key": "field_nn_home_lv_item_image",
+					"label": "Ảnh nền",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phủ nền thẻ, chữ nằm phía trước. Để trống thì dùng nền màu.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "50" }
 				},
 				{
 					"key": "field_nn_home_lv_item_text",
@@ -50,8 +64,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "60" }
+					"new_lines": ""
 				}
 			]
 		}
@@ -71,7 +84,7 @@
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"active": true,
-	"description": "Khối lĩnh vực hoạt động trên trang chủ.",
+	"description": "Khối lĩnh vực hoạt động trên trang chủ — chữ và ảnh chỉnh tại đây.",
 	"show_in_rest": 0,
-	"modified": 1761021001
+	"modified": 1761136200
 }

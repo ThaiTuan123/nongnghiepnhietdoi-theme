@@ -8,6 +8,7 @@ import { initFloatingButtons } from './modules/floatingButtons.js';
 import { initBackToTop } from './modules/backToTop.js';
 import { initContactForms } from './modules/contactForm.js';
 import { initLightbox } from './modules/lightbox.js';
+import { initPostShare } from './modules/postShare.js';
 import { initReveal } from './animations/reveal.js';
 import { initCountUp } from './animations/countUp.js';
 import { initParallax } from './animations/parallax.js';
@@ -56,6 +57,7 @@ function boot() {
   initBackToTop(lenis);
   initContactForms();
   initLightbox();
+  initPostShare();
   initReveal();
   initCountUp();
   initParallax();

@@ -126,8 +126,12 @@ async function submitForm(form) {
  * Gắn AJAX cho form tư vấn + form liên hệ.
  */
 export function initContactForms() {
-  const forms = document.querySelectorAll('.lx-consult-form, .lx-contact-form form, .ht-proposal-form, .lh-contact-form');
+  // Bỏ qua form Contact Form 7 — CF7 tự xử lý AJAX.
+  const forms = document.querySelectorAll(
+    '.lx-consult-form:not(.wpcf7-form), .ht-proposal-form:not(.wpcf7-form), .lh-contact-form:not(.wpcf7-form)',
+  );
   forms.forEach((form) => {
+    if (form.classList.contains('wpcf7-form') || form.closest('.wpcf7')) return;
     if (form.dataset.lxAjaxBound === '1') return;
     form.dataset.lxAjaxBound = '1';
 
@@ -141,8 +145,23 @@ export function initContactForms() {
     });
   });
 
-  const subject = document.querySelector('[data-ht-subject]');
-  const audienceInput = document.querySelector('[data-ht-audience-input]');
+  const htForm =
+    document.querySelector('.ht-cf7 .wpcf7-form') ||
+    document.querySelector('.ht-proposal-form');
+  const subject =
+    htForm?.querySelector('select[name="your-subject"]') ||
+    document.querySelector('[data-ht-subject]');
+  const audienceInput =
+    htForm?.querySelector('input[name="your-audience"]') ||
+    document.querySelector('[data-ht-audience-input]');
+  /** Map key subject → nhãn option CF7 (trùng định nghĩa form). */
+  const subjectLabels = {
+    capability: 'Yêu cầu Hồ sơ năng lực',
+    cfp: 'Gửi Call for Proposal',
+    ngo: 'Đề xuất hợp tác — Nhà tài trợ / NGO',
+    business: 'Đề xuất hợp tác — Doanh nghiệp / HTX',
+    expert: 'Đề xuất hợp tác — Chuyên gia / Nhà khoa học',
+  };
   const portal = document.querySelectorAll('[data-ht-audience]');
   portal.forEach((card) => {
     card.addEventListener('click', () => {
@@ -153,7 +172,9 @@ export function initContactForms() {
         item.classList.toggle('is-active', on);
         item.setAttribute('aria-pressed', on ? 'true' : 'false');
       });
-      if (subject && subjectKey) subject.value = subjectKey;
+      if (subject && subjectKey) {
+        subject.value = subjectLabels[subjectKey] || subjectKey;
+      }
       if (audienceInput) audienceInput.value = key;
       document.getElementById('gui-thong-tin')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });

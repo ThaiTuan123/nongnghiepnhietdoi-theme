@@ -7,7 +7,7 @@
 			"label": "Hướng dẫn",
 			"name": "",
 			"type": "message",
-			"message": "Sửa chữ của ba mục tại các thẻ bên dưới. Ô Đường dẫn bài chi tiết để trống thì nút Xem thêm vẫn hiện nhưng chưa mở bài. Khi có bài chi tiết, dán link vào ô đó. Ảnh nền đầu trang lấy từ Ảnh đại diện.",
+			"message": "Sửa chữ của ba mục tại các thẻ bên dưới. Mỗi việc có ô Ảnh nền thẻ — bỏ trống sẽ dùng ảnh mặc định của theme. Ô Đường dẫn bài chi tiết để trống thì nút Xem thêm vẫn hiện nhưng chưa mở bài. Ảnh nền đầu trang lấy từ Ảnh đại diện.",
 			"new_lines": "wpautop",
 			"esc_html": 0
 		},
@@ -76,7 +76,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_lv_s1_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_lv_s1_point_text",
@@ -84,8 +96,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -140,7 +151,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_lv_s2_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_lv_s2_point_text",
@@ -148,8 +171,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -204,7 +226,19 @@
 					"label": "Tên việc",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "35" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_lv_s3_point_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_lv_s3_point_text",
@@ -212,8 +246,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "65" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -292,5 +325,5 @@
 	"active": true,
 	"description": "Ba mục lĩnh vực, mỗi mục có nút Xem thêm gắn link bài chi tiết.",
 	"show_in_rest": 0,
-	"modified": 1792548000
+	"modified": 1761148800
 }

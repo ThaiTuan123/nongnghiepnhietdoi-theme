@@ -25,5 +25,6 @@ require_once NONGNGHIEPNHIETDOI_DIR . '/inc/services.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/projects.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/partnership.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/contact-form.php';
+require_once NONGNGHIEPNHIETDOI_DIR . '/inc/cf7.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/seo.php';
 require_once NONGNGHIEPNHIETDOI_DIR . '/inc/library.php';

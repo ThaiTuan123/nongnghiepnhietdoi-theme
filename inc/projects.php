@@ -37,14 +37,17 @@ function nongnghiepnhietdoi_projects_defaults() {
 			array(
 				'title' => 'Thiết kế mô hình',
 				'text'  => 'Xây dựng khung kỹ thuật, chỉ số theo dõi và kế hoạch hiện trường phù hợp điều kiện tài trợ.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Triển khai ngoài đồng',
 				'text'  => 'Lắp đặt mô hình tại hợp tác xã và nông hộ, tập huấn và ghi nhận số liệu theo vụ.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Báo cáo tác động',
 				'text'  => 'Đối chiếu kết quả với cam kết tài trợ: sinh kế, môi trường và phát thải khí nhà kính.',
+				'image' => null,
 			),
 		),
 		'dt_s1_more_label'    => 'Xem thêm',
@@ -56,14 +59,17 @@ function nongnghiepnhietdoi_projects_defaults() {
 			array(
 				'title' => 'Thẩm định đầu kỳ',
 				'text'  => 'Rà quy trình, chỉ số và giả định của dự án trước khi xuống hiện trường.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Đánh giá giữa kỳ / cuối kỳ',
 				'text'  => 'Đối chiếu việc đã làm với mục tiêu đã cam kết, kèm bằng chứng số liệu.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Độc lập với bên thực hiện',
 				'text'  => 'Không thay đơn vị triển khai và không nhận kết quả hộ cho bên được đánh giá.',
+				'image' => null,
 			),
 		),
 		'dt_s2_more_label'    => 'Xem thêm',
@@ -75,14 +81,17 @@ function nongnghiepnhietdoi_projects_defaults() {
 			array(
 				'title' => 'Hồ sơ đề tài',
 				'text'  => 'Phương pháp, chỉ tiêu và sản phẩm giao nộp đúng khung đặt hàng của nhà nước.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Thực hiện hiện trường',
 				'text'  => 'Triển khai thử nghiệm, thu thập số liệu và điều chỉnh quy trình theo mùa vụ.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Nghiệm thu & chuyển giao',
 				'text'  => 'Báo cáo, sản phẩm và hướng dẫn sử dụng để cơ quan chủ quản và nông hộ tiếp tục dùng.',
+				'image' => null,
 			),
 		),
 		'dt_s3_more_label'    => 'Xem thêm',
@@ -190,6 +199,63 @@ function nongnghiepnhietdoi_projects_field( $name, $post_id = 0 ) {
 	}
 
 	return $value;
+}
+
+/**
+ * Ảnh nền mặc định cho thẻ mục trên trang Dự Án & Tác Động.
+ *
+ * @param int $section_index 1|2|3.
+ * @param int $point_index   Chỉ số thẻ (0-based).
+ * @return string
+ */
+function nongnghiepnhietdoi_projects_card_fallback( $section_index, $point_index ) {
+	$map = array(
+		1 => array(
+			'assets/images/eco-agency.jpg',
+			'assets/images/eco-farmers.jpg',
+			'assets/images/person-field.jpg',
+		),
+		2 => array(
+			'assets/images/person-scientist.jpg',
+			'assets/images/eco-scientist.jpg',
+			'assets/images/eco-business.jpg',
+		),
+		3 => array(
+			'assets/images/eco-business.jpg',
+			'assets/images/eco-agency.jpg',
+			'assets/images/person-farmer.jpg',
+		),
+	);
+
+	$section_index = (int) $section_index;
+	if ( ! isset( $map[ $section_index ] ) ) {
+		$section_index = 1;
+	}
+
+	$list = $map[ $section_index ];
+	$file = $list[ (int) $point_index % count( $list ) ];
+	$path = NONGNGHIEPNHIETDOI_DIR . '/' . $file;
+
+	return file_exists( $path ) ? ( NONGNGHIEPNHIETDOI_URI . '/' . $file ) : '';
+}
+
+/**
+ * URL ảnh nền thẻ dự án: Meta trước, không có thì ảnh theme.
+ *
+ * @param mixed $image         Giá trị field image.
+ * @param int   $section_index 1|2|3.
+ * @param int   $point_index   Chỉ số thẻ.
+ * @return string
+ */
+function nongnghiepnhietdoi_projects_card_image( $image, $section_index, $point_index = 0 ) {
+	if ( function_exists( 'nongnghiepnhietdoi_about_image_url' ) ) {
+		$url = nongnghiepnhietdoi_about_image_url( $image );
+		if ( $url ) {
+			return $url;
+		}
+	}
+
+	return nongnghiepnhietdoi_projects_card_fallback( $section_index, $point_index );
 }
 
 /**

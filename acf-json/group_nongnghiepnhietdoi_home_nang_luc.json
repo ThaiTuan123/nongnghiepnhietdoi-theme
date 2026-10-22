@@ -7,7 +7,7 @@
 			"label": "Hướng dẫn",
 			"name": "",
 			"type": "message",
-			"message": "Khối quy trình 4 giai đoạn trên trang chủ. Sửa nhãn, tiêu đề và từng giai đoạn bên dưới — nội dung sẽ hiện ngay trên site. Nên giữ đúng 4 dòng (01→04). Thứ tự kéo thả = thứ tự hiển thị từ trái sang phải trên desktop.",
+			"message": "Khối quy trình 4 giai đoạn trên trang chủ. Sửa nhãn, tiêu đề, ảnh và mô tả từng giai đoạn bên dưới. Nên giữ đúng 4 dòng (01→04). Ảnh vuông khoảng 400×400px (jpg/png/webp). Để trống ảnh thì dùng icon mặc định.",
 			"new_lines": "wpautop",
 			"esc_html": 0
 		},
@@ -42,7 +42,7 @@
 			"label": "Bốn giai đoạn",
 			"name": "home_nl_items",
 			"type": "repeater",
-			"instructions": "Mỗi dòng = một giai đoạn. Số thứ tự nên là 01, 02, 03, 04.",
+			"instructions": "Mỗi dòng = một giai đoạn. Upload ảnh ở ô Ảnh minh họa.",
 			"layout": "block",
 			"button_label": "Thêm giai đoạn",
 			"min": 1,
@@ -65,13 +65,26 @@
 					"wrapper": { "width": "80" }
 				},
 				{
+					"key": "field_nn_home_nl_item_image",
+					"label": "Ảnh minh họa",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh vuông phía trên thẻ. Để trống thì dùng icon mặc định.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "50" }
+				},
+				{
 					"key": "field_nn_home_nl_item_text",
 					"label": "Mô tả ngắn",
 					"name": "text",
 					"type": "textarea",
 					"instructions": "1–2 câu, hiện dưới tên giai đoạn.",
 					"rows": 3,
-					"new_lines": ""
+					"new_lines": "",
+					"wrapper": { "width": "50" }
 				}
 			]
 		}
@@ -91,7 +104,7 @@
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"active": true,
-	"description": "Quy trình 4 giai đoạn năng lực trên trang chủ — chỉnh toàn bộ chữ tại đây.",
+	"description": "Quy trình 4 giai đoạn năng lực trên trang chủ — chữ và ảnh chỉnh tại đây.",
 	"show_in_rest": 0,
-	"modified": 1761135000
+	"modified": 1761135600
 }

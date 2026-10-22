@@ -37,14 +37,17 @@ function nongnghiepnhietdoi_services_defaults() {
 			array(
 				'title' => 'Công nghệ vi sinh',
 				'text'  => 'Phân lập, nhân sinh khối và chuyển giao chế phẩm phù hợp đất và cây của từng vùng.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Thích ứng khí hậu',
 				'text'  => 'Mô hình nông nghiệp thông minh với khí hậu theo mùa vụ, nguồn nước và quy mô hợp tác xã.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Chuyển giao hiện trường',
 				'text'  => 'Tập huấn, sổ tay kỹ thuật và đồng hành sau khi mô hình được bàn giao cho nông hộ.',
+				'image' => null,
 			),
 		),
 		'lv_s1_more_label'   => 'Xem thêm',
@@ -56,14 +59,17 @@ function nongnghiepnhietdoi_services_defaults() {
 			array(
 				'title' => 'Thẩm định trước khi làm',
 				'text'  => 'Rà quy trình, chỉ số theo dõi và giả định của dự án trước khi xuống hiện trường.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Đánh giá giữa kỳ và cuối kỳ',
 				'text'  => 'Đối chiếu việc đã làm với mục tiêu đã cam kết, kèm số liệu năng suất, sinh kế và môi trường.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Độc lập với bên thực hiện',
 				'text'  => 'Không thay đơn vị triển khai và không nhận kết quả hộ cho bên được đánh giá.',
+				'image' => null,
 			),
 		),
 		'lv_s2_more_label'   => 'Xem thêm',
@@ -75,14 +81,17 @@ function nongnghiepnhietdoi_services_defaults() {
 			array(
 				'title' => 'Đề tài đặt hàng',
 				'text'  => 'Hồ sơ, phương pháp và sản phẩm giao nộp đúng khung của cơ quan chủ quản.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Chương trình quốc gia',
 				'text'  => 'Gắn mô hình đồng ruộng với chỉ tiêu ngành về sinh kế, môi trường và phát thải.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Đầu mối kỹ thuật',
 				'text'  => 'Phối hợp khi một chương trình có nhiều đơn vị cùng tham gia, để số liệu và quy trình đi cùng một hướng.',
+				'image' => null,
 			),
 		),
 		'lv_s3_more_label'   => 'Xem thêm',
@@ -189,6 +198,63 @@ function nongnghiepnhietdoi_services_field( $name, $post_id = 0 ) {
 	}
 
 	return $value;
+}
+
+/**
+ * Ảnh nền mặc định cho thẻ Lĩnh vực & Dịch vụ.
+ *
+ * @param int $service_index 1|2|3.
+ * @param int $point_index   Chỉ số thẻ (0-based).
+ * @return string
+ */
+function nongnghiepnhietdoi_services_card_fallback( $service_index, $point_index ) {
+	$map = array(
+		1 => array(
+			'assets/images/eco-scientist.jpg',
+			'assets/images/eco-farmers.jpg',
+			'assets/images/person-field.jpg',
+		),
+		2 => array(
+			'assets/images/eco-agency.jpg',
+			'assets/images/person-scientist.jpg',
+			'assets/images/eco-business.jpg',
+		),
+		3 => array(
+			'assets/images/eco-business.jpg',
+			'assets/images/eco-agency.jpg',
+			'assets/images/person-farmer.jpg',
+		),
+	);
+
+	$service_index = (int) $service_index;
+	if ( ! isset( $map[ $service_index ] ) ) {
+		$service_index = 1;
+	}
+
+	$list = $map[ $service_index ];
+	$file = $list[ (int) $point_index % count( $list ) ];
+	$path = NONGNGHIEPNHIETDOI_DIR . '/' . $file;
+
+	return file_exists( $path ) ? ( NONGNGHIEPNHIETDOI_URI . '/' . $file ) : '';
+}
+
+/**
+ * URL ảnh nền thẻ dịch vụ: Meta trước, không có thì ảnh theme.
+ *
+ * @param mixed $image         Giá trị field image.
+ * @param int   $service_index 1|2|3.
+ * @param int   $point_index   Chỉ số thẻ.
+ * @return string
+ */
+function nongnghiepnhietdoi_services_card_image( $image, $service_index, $point_index = 0 ) {
+	if ( function_exists( 'nongnghiepnhietdoi_about_image_url' ) ) {
+		$url = nongnghiepnhietdoi_about_image_url( $image );
+		if ( $url ) {
+			return $url;
+		}
+	}
+
+	return nongnghiepnhietdoi_services_card_fallback( $service_index, $point_index );
 }
 
 /**

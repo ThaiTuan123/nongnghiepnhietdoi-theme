@@ -178,38 +178,13 @@ get_header();
 
 			<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8" data-reveal="right">
 				<p class="text-sm text-slate-500"><?php echo esc_html( sprintf( 'Gửi phản hồi tới %s.', $short_name ) ); ?></p>
-
-				<form class="lh-contact-form mt-6" method="post" action="" novalidate>
-					<?php wp_nonce_field( 'nongnghiepnhietdoi_contact', 'nongnghiepnhietdoi_contact_nonce' ); ?>
-					<input type="hidden" name="lx_form_source" value="contact">
-					<div class="hidden" aria-hidden="true">
-						<label>Website<input type="text" name="nongnghiepnhietdoi_website" tabindex="-1" autocomplete="off"></label>
-					</div>
-
-					<div class="space-y-5">
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-name"><?php esc_html_e( 'Họ và tên', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="text" id="lx-name" name="lx_name" required autocomplete="name">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="email" id="lx-email" name="email" required autocomplete="email">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-phone"><?php esc_html_e( 'Điện thoại', 'nongnghiepnhietdoi' ); ?></label>
-							<input class="h-11 w-full rounded-md border border-slate-200 bg-white px-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20" type="tel" id="lx-phone" name="phone" autocomplete="tel">
-						</div>
-						<div>
-							<label class="mb-2 block text-sm font-semibold text-ink" for="lx-message"><?php esc_html_e( 'Nội dung', 'nongnghiepnhietdoi' ); ?> <span class="text-red-600">*</span></label>
-							<textarea id="lx-message" name="message" required class="min-h-[148px] w-full resize-y rounded-md border border-slate-200 bg-white px-3 py-3 text-sm text-ink outline-none transition focus:border-brand focus:ring-2 focus:ring-brand/20"></textarea>
-						</div>
-					</div>
-
-					<button type="submit" name="nongnghiepnhietdoi_contact_submit" value="1" class="mt-6 inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-3 text-sm font-semibold text-white transition hover:bg-brand-700 disabled:opacity-70">
-						<span class="lx-submit-label"><?php esc_html_e( 'Gửi thông tin', 'nongnghiepnhietdoi' ); ?> <span aria-hidden="true">→</span></span>
-						<span class="lx-submit-loading hidden"><?php esc_html_e( 'Đang gửi…', 'nongnghiepnhietdoi' ); ?></span>
-					</button>
-				</form>
+				<div class="lh-cf7 mt-6">
+					<?php
+					if ( function_exists( 'nongnghiepnhietdoi_cf7_render' ) ) {
+						nongnghiepnhietdoi_cf7_render( 'contact' );
+					}
+					?>
+				</div>
 			</div>
 		</div>
 

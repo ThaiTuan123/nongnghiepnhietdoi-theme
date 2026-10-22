@@ -104,39 +104,11 @@ $has_info = $phone || $email || $address;
 							</p>
 						</div>
 
-						<form method="post" action="" novalidate data-lx-form="contact">
-							<?php wp_nonce_field( 'nongnghiepnhietdoi_contact', 'nongnghiepnhietdoi_contact_nonce' ); ?>
-							<input type="hidden" name="lx_form_source" value="contact">
-							<div class="hidden" aria-hidden="true">
-								<label>Website<input type="text" name="nongnghiepnhietdoi_website" tabindex="-1" autocomplete="off"></label>
-							</div>
-
-							<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
-								<div>
-									<label for="<?php echo esc_attr( $lx_uid ); ?>-name"><?php esc_html_e( 'Tên khách hàng', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-									<input type="text" id="<?php echo esc_attr( $lx_uid ); ?>-name" name="lx_name" required value="" placeholder="<?php esc_attr_e( 'Nhập tên', 'nongnghiepnhietdoi' ); ?>" autocomplete="name">
-								</div>
-								<div>
-									<label for="<?php echo esc_attr( $lx_uid ); ?>-phone"><?php esc_html_e( 'Số điện thoại', 'nongnghiepnhietdoi' ); ?></label>
-									<input type="tel" id="<?php echo esc_attr( $lx_uid ); ?>-phone" name="phone" value="" placeholder="<?php esc_attr_e( 'Nhập số điện thoại', 'nongnghiepnhietdoi' ); ?>" autocomplete="tel">
-								</div>
-								<div class="sm:col-span-2">
-									<label for="<?php echo esc_attr( $lx_uid ); ?>-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-									<input type="email" id="<?php echo esc_attr( $lx_uid ); ?>-email" name="email" required value="" placeholder="<?php esc_attr_e( 'Nhập email', 'nongnghiepnhietdoi' ); ?>" autocomplete="email">
-								</div>
-								<div class="sm:col-span-2">
-									<label for="<?php echo esc_attr( $lx_uid ); ?>-message"><?php esc_html_e( 'Nội dung', 'nongnghiepnhietdoi' ); ?> <span class="text-brand">*</span></label>
-									<textarea id="<?php echo esc_attr( $lx_uid ); ?>-message" name="message" required rows="4" class="!min-h-[120px]" placeholder="<?php esc_attr_e( 'Nhập nội dung tin nhắn', 'nongnghiepnhietdoi' ); ?>"></textarea>
-								</div>
-							</div>
-
-							<div class="mt-6 flex justify-end">
-								<button type="submit" name="nongnghiepnhietdoi_contact_submit" value="1" class="lx-submit-btn" data-lx-submit>
-									<span class="lx-submit-label"><span class="mr-2 text-base leading-none">+</span><?php esc_html_e( 'Gửi phản hồi', 'nongnghiepnhietdoi' ); ?></span>
-									<span class="lx-submit-loading hidden"><?php esc_html_e( 'Đang gửi…', 'nongnghiepnhietdoi' ); ?></span>
-								</button>
-							</div>
-						</form>
+						<?php
+						if ( function_exists( 'nongnghiepnhietdoi_cf7_render' ) ) {
+							nongnghiepnhietdoi_cf7_render( 'contact' );
+						}
+						?>
 					</div>
 				</div>
 			</div>

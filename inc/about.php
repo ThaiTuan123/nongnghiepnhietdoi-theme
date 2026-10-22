@@ -60,18 +60,22 @@ function nongnghiepnhietdoi_about_defaults() {
 			array(
 				'title' => 'Ban điều hành',
 				'text'  => 'Điều phối chiến lược, đối tác và các chương trình quốc gia. Đây là nơi chốt phạm vi và tiến độ.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Hội đồng khoa học',
 				'text'  => 'Phản biện quy trình trước khi ra đồng và chịu trách nhiệm chất lượng nghiên cứu, hồ sơ đề tài.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Ban hiện trường',
 				'text'  => 'Giữ mạng lưới tỉnh, hợp tác xã và lịch triển khai theo vụ. Ghi nhận số liệu tại nông hộ.',
+				'image' => null,
 			),
 			array(
 				'title' => 'Ban đối tác',
 				'text'  => 'Đầu mối với quỹ, doanh nghiệp, tổ chức xã hội và cơ quan quản lý trong cùng một chương trình.',
+				'image' => null,
 			),
 		),
 		'vc_board_label'      => 'Ban cố vấn',
@@ -82,24 +86,28 @@ function nongnghiepnhietdoi_about_defaults() {
 				'role'  => 'Vi sinh và môi trường',
 				'bio'   => 'Định hướng quy trình chế phẩm, an toàn sinh học và điều kiện nhân sinh khối tại nông hộ.',
 				'photo' => null,
+				'image' => null,
 			),
 			array(
 				'name'  => 'Cố vấn hiện trường',
 				'role'  => 'Thích ứng khí hậu',
 				'bio'   => 'Góp ý mô hình CSA theo mùa vụ, nguồn nước và quy mô hợp tác xã trước khi triển khai.',
 				'photo' => null,
+				'image' => null,
 			),
 			array(
 				'name'  => 'Cố vấn đo lường',
 				'role'  => 'Phát thải khí nhà kính',
 				'bio'   => 'Thẩm định phương pháp đo, chỉ số theo dõi và cách báo cáo tác động sau mỗi vụ.',
 				'photo' => null,
+				'image' => null,
 			),
 			array(
 				'name'  => 'Cố vấn chính sách',
 				'role'  => 'Chương trình và đối tác',
 				'bio'   => 'Kết nối đề tài với chương trình ngành, quỹ và yêu cầu minh bạch của đối tác tài trợ.',
 				'photo' => null,
+				'image' => null,
 			),
 		),
 		'vc_network_label'    => 'Mạng lưới liên kết',
@@ -107,28 +115,32 @@ function nongnghiepnhietdoi_about_defaults() {
 		'vc_network_intro'    => 'Mạng lưới không phải danh sách logo. Mỗi nhóm có một việc rõ trên cùng một mô hình: làm, đo, tiêu thụ hoặc ban hành.',
 		'vc_links'            => array(
 			array(
-				'name' => 'Nông hộ và hợp tác xã',
-				'text' => 'Nơi mô hình được làm, đo và nhân rộng. Nông dân nòng cốt giữ quy trình sau khi được bàn giao.',
-				'url'  => '',
-				'logo' => null,
+				'name'  => 'Nông hộ và hợp tác xã',
+				'text'  => 'Nơi mô hình được làm, đo và nhân rộng. Nông dân nòng cốt giữ quy trình sau khi được bàn giao.',
+				'url'   => '',
+				'logo'  => null,
+				'image' => null,
 			),
 			array(
-				'name' => 'Nhà khoa học',
-				'text' => 'Nguồn quy trình, phản biện và đào tạo. Bảo đảm thứ ra đồng đã được kiểm tra.',
-				'url'  => '',
-				'logo' => null,
+				'name'  => 'Nhà khoa học',
+				'text'  => 'Nguồn quy trình, phản biện và đào tạo. Bảo đảm thứ ra đồng đã được kiểm tra.',
+				'url'   => '',
+				'logo'  => null,
+				'image' => null,
 			),
 			array(
-				'name' => 'Doanh nghiệp',
-				'text' => 'Chuỗi tiêu thụ, chế phẩm và đồng tài trợ thử nghiệm khi mô hình đủ số liệu.',
-				'url'  => '',
-				'logo' => null,
+				'name'  => 'Doanh nghiệp',
+				'text'  => 'Chuỗi tiêu thụ, chế phẩm và đồng tài trợ thử nghiệm khi mô hình đủ số liệu.',
+				'url'   => '',
+				'logo'  => null,
+				'image' => null,
 			),
 			array(
-				'name' => 'Cơ quan quản lý và tổ chức quốc tế',
-				'text' => 'Chương trình ngành, đề tài khoa học công nghệ và khung đo phát thải dùng chung.',
-				'url'  => '',
-				'logo' => null,
+				'name'  => 'Cơ quan quản lý và tổ chức quốc tế',
+				'text'  => 'Chương trình ngành, đề tài khoa học công nghệ và khung đo phát thải dùng chung.',
+				'url'   => '',
+				'logo'  => null,
+				'image' => null,
 			),
 		),
 		'vc_gov_label'        => 'Minh bạch và quản trị',
@@ -292,7 +304,75 @@ function nongnghiepnhietdoi_about_image_url( $image ) {
 		return $url ? $url : '';
 	}
 
+	if ( is_string( $image ) && '' !== $image ) {
+		if ( 0 === strpos( $image, 'http://' ) || 0 === strpos( $image, 'https://' ) || 0 === strpos( $image, '//' ) ) {
+			return $image;
+		}
+		$relative = ltrim( $image, '/' );
+		$path     = NONGNGHIEPNHIETDOI_DIR . '/' . $relative;
+		if ( file_exists( $path ) ) {
+			return NONGNGHIEPNHIETDOI_URI . '/' . $relative;
+		}
+	}
+
 	return '';
+}
+
+/**
+ * Ảnh nền mặc định cho thẻ Về chúng tôi (khi chưa chọn trong Meta).
+ *
+ * @param string $group units|advisors|links.
+ * @param int    $index Chỉ số thẻ (0-based).
+ * @return string URL ảnh theme, hoặc rỗng.
+ */
+function nongnghiepnhietdoi_about_card_fallback( $group, $index ) {
+	$map = array(
+		'units'    => array(
+			'assets/images/person-field.jpg',
+			'assets/images/person-scientist.jpg',
+			'assets/images/eco-farmers.jpg',
+			'assets/images/eco-business.jpg',
+		),
+		'advisors' => array(
+			'assets/images/person-scientist.jpg',
+			'assets/images/person-field.jpg',
+			'assets/images/eco-agency.jpg',
+			'assets/images/eco-business.jpg',
+		),
+		'links'    => array(
+			'assets/images/eco-farmers.jpg',
+			'assets/images/eco-scientist.jpg',
+			'assets/images/eco-business.jpg',
+			'assets/images/eco-agency.jpg',
+		),
+	);
+
+	if ( ! isset( $map[ $group ] ) || ! $map[ $group ] ) {
+		return '';
+	}
+
+	$list = $map[ $group ];
+	$file = $list[ $index % count( $list ) ];
+	$path = NONGNGHIEPNHIETDOI_DIR . '/' . $file;
+
+	return file_exists( $path ) ? ( NONGNGHIEPNHIETDOI_URI . '/' . $file ) : '';
+}
+
+/**
+ * URL ảnh nền thẻ: ưu tiên Meta (ACF), không có thì ảnh theme theo nhóm/vị trí.
+ *
+ * @param mixed  $image Giá trị field image.
+ * @param string $group units|advisors|links.
+ * @param int    $index Chỉ số thẻ.
+ * @return string
+ */
+function nongnghiepnhietdoi_about_card_image( $image, $group, $index = 0 ) {
+	$url = nongnghiepnhietdoi_about_image_url( $image );
+	if ( $url ) {
+		return $url;
+	}
+
+	return nongnghiepnhietdoi_about_card_fallback( $group, (int) $index );
 }
 
 /**

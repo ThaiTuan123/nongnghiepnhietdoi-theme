@@ -187,18 +187,25 @@ get_header();
 						<?php
 						$unit_title = isset( $unit['title'] ) ? (string) $unit['title'] : '';
 						$unit_text  = isset( $unit['text'] ) ? (string) $unit['text'] : '';
+						$unit_bg    = nongnghiepnhietdoi_about_card_image( $unit['image'] ?? null, 'units', (int) $index );
 						if ( '' === $unit_title && '' === $unit_text ) {
 							continue;
 						}
 						?>
-						<article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100">
-							<p class="text-sm font-bold text-sun"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></p>
-							<?php if ( $unit_title ) : ?>
-								<h3 class="mt-2 font-sans text-lg font-bold text-ink"><?php echo esc_html( $unit_title ); ?></h3>
+						<article class="vc-media-card group">
+							<?php if ( $unit_bg ) : ?>
+								<img class="vc-media-card__bg" src="<?php echo esc_url( $unit_bg ); ?>" alt="" loading="lazy" decoding="async">
 							<?php endif; ?>
-							<?php if ( $unit_text ) : ?>
-								<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $unit_text ); ?></p>
-							<?php endif; ?>
+							<span class="vc-media-card__scrim" aria-hidden="true"></span>
+							<div class="vc-media-card__body">
+								<p class="vc-media-card__index"><?php echo esc_html( str_pad( (string) ( $index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></p>
+								<?php if ( $unit_title ) : ?>
+									<h3 class="vc-media-card__title"><?php echo esc_html( $unit_title ); ?></h3>
+								<?php endif; ?>
+								<?php if ( $unit_text ) : ?>
+									<p class="vc-media-card__text"><?php echo esc_html( $unit_text ); ?></p>
+								<?php endif; ?>
+							</div>
 						</article>
 					<?php endforeach; ?>
 				</div>
@@ -217,7 +224,7 @@ get_header();
 
 					<?php if ( $advisors ) : ?>
 						<div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4" data-reveal-stagger>
-							<?php foreach ( $advisors as $advisor ) : ?>
+							<?php foreach ( $advisors as $index => $advisor ) : ?>
 								<?php
 								$name  = isset( $advisor['name'] ) ? (string) $advisor['name'] : '';
 								$role  = isset( $advisor['role'] ) ? (string) $advisor['role'] : '';
@@ -225,26 +232,33 @@ get_header();
 								$photo = $advisor['photo'] ?? null;
 								$src   = nongnghiepnhietdoi_about_image_url( $photo );
 								$alt   = nongnghiepnhietdoi_about_image_alt( $photo, $name );
+								$bg    = nongnghiepnhietdoi_about_card_image( $advisor['image'] ?? null, 'advisors', (int) $index );
 								if ( '' === $name && '' === $role && '' === $bio ) {
 									continue;
 								}
 								$initial = $name ? mb_substr( $name, 0, 1 ) : '•';
 								?>
-								<article class="flex flex-col rounded-3xl bg-white p-5 shadow-sm ring-1 ring-slate-100">
-									<?php if ( $src ) : ?>
-										<img src="<?php echo esc_url( $src ); ?>" alt="<?php echo esc_attr( $alt ); ?>" class="h-16 w-16 rounded-full object-cover" width="64" height="64">
-									<?php else : ?>
-										<div class="flex h-16 w-16 items-center justify-center rounded-full bg-brand text-lg font-bold text-white" aria-hidden="true"><?php echo esc_html( $initial ); ?></div>
+								<article class="vc-media-card vc-media-card--advisor group">
+									<?php if ( $bg ) : ?>
+										<img class="vc-media-card__bg" src="<?php echo esc_url( $bg ); ?>" alt="" loading="lazy" decoding="async">
 									<?php endif; ?>
-									<?php if ( $name ) : ?>
-										<h4 class="mt-4 font-sans text-base font-bold text-ink"><?php echo esc_html( $name ); ?></h4>
-									<?php endif; ?>
-									<?php if ( $role ) : ?>
-										<p class="mt-1 text-sm font-semibold text-brand"><?php echo esc_html( $role ); ?></p>
-									<?php endif; ?>
-									<?php if ( $bio ) : ?>
-										<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $bio ); ?></p>
-									<?php endif; ?>
+									<span class="vc-media-card__scrim" aria-hidden="true"></span>
+									<div class="vc-media-card__body">
+										<?php if ( $src ) : ?>
+											<img src="<?php echo esc_url( $src ); ?>" alt="<?php echo esc_attr( $alt ); ?>" class="vc-media-card__avatar" width="64" height="64">
+										<?php else : ?>
+											<span class="vc-media-card__avatar vc-media-card__avatar--fallback" aria-hidden="true"><?php echo esc_html( $initial ); ?></span>
+										<?php endif; ?>
+										<?php if ( $name ) : ?>
+											<h4 class="vc-media-card__title"><?php echo esc_html( $name ); ?></h4>
+										<?php endif; ?>
+										<?php if ( $role ) : ?>
+											<p class="vc-media-card__role"><?php echo esc_html( $role ); ?></p>
+										<?php endif; ?>
+										<?php if ( $bio ) : ?>
+											<p class="vc-media-card__text"><?php echo esc_html( $bio ); ?></p>
+										<?php endif; ?>
+									</div>
 								</article>
 							<?php endforeach; ?>
 						</div>
@@ -270,34 +284,44 @@ get_header();
 
 			<?php if ( $links ) : ?>
 				<div class="mt-8 grid gap-4 sm:grid-cols-2" data-reveal-stagger>
-					<?php foreach ( $links as $link ) : ?>
+					<?php foreach ( $links as $index => $link ) : ?>
 						<?php
 						$name = isset( $link['name'] ) ? (string) $link['name'] : '';
 						$text = isset( $link['text'] ) ? (string) $link['text'] : '';
 						$url  = isset( $link['url'] ) ? (string) $link['url'] : '';
 						$logo = nongnghiepnhietdoi_about_image_url( $link['logo'] ?? null );
 						$alt  = nongnghiepnhietdoi_about_image_alt( $link['logo'] ?? null, $name );
+						$bg   = nongnghiepnhietdoi_about_card_image( $link['image'] ?? null, 'links', (int) $index );
 						if ( '' === $name && '' === $text ) {
 							continue;
 						}
 						$tag = $url ? 'a' : 'article';
 						?>
-						<<?php echo esc_attr( $tag ); ?> class="flex gap-4 rounded-3xl bg-white/5 p-6 ring-1 ring-white/10 <?php echo $url ? 'transition hover:bg-white/10' : ''; ?>" <?php echo $url ? 'href="' . esc_url( $url ) . '"' : ''; ?>>
-							<?php if ( $logo ) : ?>
-								<span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-white p-2">
-									<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $alt ); ?>" class="max-h-10 max-w-full object-contain">
-								</span>
-							<?php else : ?>
-								<span class="mt-1 h-2.5 w-2.5 shrink-0 rounded-full bg-sun" aria-hidden="true"></span>
+						<<?php echo esc_attr( $tag ); ?>
+							class="vc-media-card vc-media-card--network group<?php echo $url ? ' vc-media-card--link' : ''; ?>"
+							<?php echo $url ? ' href="' . esc_url( $url ) . '"' : ''; ?>
+						>
+							<?php if ( $bg ) : ?>
+								<img class="vc-media-card__bg" src="<?php echo esc_url( $bg ); ?>" alt="" loading="lazy" decoding="async">
 							<?php endif; ?>
-							<span>
-								<?php if ( $name ) : ?>
-									<span class="block font-sans text-lg font-bold"><?php echo esc_html( $name ); ?></span>
+							<span class="vc-media-card__scrim" aria-hidden="true"></span>
+							<div class="vc-media-card__body vc-media-card__body--row">
+								<?php if ( $logo ) : ?>
+									<span class="vc-media-card__logo">
+										<img src="<?php echo esc_url( $logo ); ?>" alt="<?php echo esc_attr( $alt ); ?>">
+									</span>
+								<?php else : ?>
+									<span class="vc-media-card__dot" aria-hidden="true"></span>
 								<?php endif; ?>
-								<?php if ( $text ) : ?>
-									<span class="mt-2 block text-sm leading-relaxed text-white/70"><?php echo esc_html( $text ); ?></span>
-								<?php endif; ?>
-							</span>
+								<span class="min-w-0">
+									<?php if ( $name ) : ?>
+										<span class="vc-media-card__title"><?php echo esc_html( $name ); ?></span>
+									<?php endif; ?>
+									<?php if ( $text ) : ?>
+										<span class="vc-media-card__text"><?php echo esc_html( $text ); ?></span>
+									<?php endif; ?>
+								</span>
+							</div>
 						</<?php echo esc_attr( $tag ); ?>>
 					<?php endforeach; ?>
 				</div>
@@ -404,9 +428,9 @@ get_header();
 					<?php endif; ?>
 				</div>
 				<?php if ( $cta_url && $cta_label ) : ?>
-					<a href="<?php echo esc_url( $cta_url ); ?>" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-bone">
+					<a href="<?php echo esc_url( $cta_url ); ?>" class="lx-band-cta">
 						<?php echo esc_html( $cta_label ); ?>
-						<span aria-hidden="true">→</span>
+						<span class="lx-band-cta__arrow" aria-hidden="true">→</span>
 					</a>
 				<?php endif; ?>
 			</div>

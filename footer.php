@@ -94,11 +94,13 @@ $varc_phone_tel = $varc_phone ? preg_replace( '/[^0-9+]/', '', $varc_phone ) : '
 					<?php endforeach; ?>
 				</ul>
 			<?php endif; ?>
-			<form class="mt-4 flex overflow-hidden rounded-lg bg-white/10 ring-1 ring-white/15" action="<?php echo esc_url( home_url( '/#lien-he' ) ); ?>" method="post">
-				<label class="sr-only" for="footer-email"><?php esc_html_e( 'Email', 'nongnghiepnhietdoi' ); ?></label>
-				<input id="footer-email" name="email" type="email" required placeholder="Email" class="w-full bg-transparent px-3 py-2.5 text-sm text-white placeholder:text-white/50 focus:outline-none">
-				<button type="submit" class="bg-brand px-3 text-white hover:bg-brand-700" aria-label="<?php esc_attr_e( 'Đăng ký', 'nongnghiepnhietdoi' ); ?>">→</button>
-			</form>
+			<div class="footer-cf7 mt-4">
+				<?php
+				if ( function_exists( 'nongnghiepnhietdoi_cf7_render' ) ) {
+					nongnghiepnhietdoi_cf7_render( 'footer' );
+				}
+				?>
+			</div>
 			<p class="mt-2 text-xs text-white/50">Đăng ký nhận bản tin</p>
 		</div>
 	</div>

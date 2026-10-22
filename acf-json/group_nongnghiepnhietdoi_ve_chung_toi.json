@@ -159,7 +159,19 @@
 					"label": "Tên bộ phận",
 					"name": "title",
 					"type": "text",
-					"wrapper": { "width": "30" }
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_vc_unit_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "60" }
 				},
 				{
 					"key": "field_nn_vc_unit_text",
@@ -167,8 +179,7 @@
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": "",
-					"wrapper": { "width": "70" }
+					"new_lines": ""
 				}
 			]
 		},
@@ -215,9 +226,10 @@
 				},
 				{
 					"key": "field_nn_vc_advisor_photo",
-					"label": "Ảnh",
+					"label": "Ảnh chân dung",
 					"name": "photo",
 					"type": "image",
+					"instructions": "Ảnh tròn trên thẻ. Có thể để trống.",
 					"return_format": "array",
 					"preview_size": "thumbnail",
 					"library": "all",
@@ -225,12 +237,25 @@
 					"wrapper": { "width": "30" }
 				},
 				{
+					"key": "field_nn_vc_advisor_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "50" }
+				},
+				{
 					"key": "field_nn_vc_advisor_bio",
 					"label": "Giới thiệu ngắn",
 					"name": "bio",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": ""
+					"new_lines": "",
+					"wrapper": { "width": "50" }
 				}
 			]
 		},
@@ -293,6 +318,7 @@
 					"label": "Logo",
 					"name": "logo",
 					"type": "image",
+					"instructions": "Logo nhỏ (tuỳ chọn). Khác với ảnh nền thẻ.",
 					"return_format": "array",
 					"preview_size": "thumbnail",
 					"library": "all",
@@ -300,12 +326,25 @@
 					"wrapper": { "width": "30" }
 				},
 				{
+					"key": "field_nn_vc_link_image",
+					"label": "Ảnh nền thẻ",
+					"name": "image",
+					"type": "image",
+					"instructions": "Ảnh phía sau thẻ. Bỏ trống sẽ dùng ảnh mặc định của theme.",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "40" }
+				},
+				{
 					"key": "field_nn_vc_link_text",
 					"label": "Mô tả",
 					"name": "text",
 					"type": "textarea",
 					"rows": 3,
-					"new_lines": ""
+					"new_lines": "",
+					"wrapper": { "width": "60" }
 				}
 			]
 		},
@@ -464,5 +503,5 @@
 	"active": true,
 	"description": "Nội dung trang Về chúng tôi: tổng quan, tổ chức, mạng lưới và minh bạch.",
 	"show_in_rest": 0,
-	"modified": 1792540800
+	"modified": 1761147000
 }

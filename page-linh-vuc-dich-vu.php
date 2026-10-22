@@ -78,7 +78,6 @@ get_header();
 		$is_muted   = ( 0 === $service['index'] % 2 );
 		$reversed   = $is_muted;
 		$section_bg = $is_muted ? 'bg-bone' : 'bg-white';
-		$card_bg    = $is_muted ? 'bg-white shadow-sm ring-1 ring-slate-100' : 'bg-bone';
 		$copy_order = $reversed ? 'order-1 lg:order-2' : 'order-1';
 		$card_order = $reversed ? 'order-2 lg:order-1' : 'order-2';
 		?>
@@ -118,18 +117,26 @@ get_header();
 						foreach ( $service['points'] as $point_index => $point ) :
 							$point_title = isset( $point['title'] ) ? (string) $point['title'] : '';
 							$point_text  = isset( $point['text'] ) ? (string) $point['text'] : '';
+							$point_bg    = nongnghiepnhietdoi_services_card_image( $point['image'] ?? null, (int) $service['index'], (int) $point_index );
 							if ( '' === $point_title && '' === $point_text ) {
 								continue;
 							}
 							$span = ( 1 === $point_count % 2 && (int) $point_index === $point_count - 1 ) ? ' sm:col-span-2' : '';
 							?>
-							<article class="rounded-3xl p-6 <?php echo esc_attr( $card_bg . $span ); ?>">
-								<?php if ( $point_title ) : ?>
-									<h3 class="font-sans text-lg font-bold text-ink"><?php echo esc_html( $point_title ); ?></h3>
+							<article class="vc-media-card vc-media-card--service group<?php echo esc_attr( $span ); ?>">
+								<?php if ( $point_bg ) : ?>
+									<img class="vc-media-card__bg" src="<?php echo esc_url( $point_bg ); ?>" alt="" loading="lazy" decoding="async">
 								<?php endif; ?>
-								<?php if ( $point_text ) : ?>
-									<p class="mt-2 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $point_text ); ?></p>
-								<?php endif; ?>
+								<span class="vc-media-card__scrim" aria-hidden="true"></span>
+								<div class="vc-media-card__body">
+									<p class="vc-media-card__index"><?php echo esc_html( str_pad( (string) ( $point_index + 1 ), 2, '0', STR_PAD_LEFT ) ); ?></p>
+									<?php if ( $point_title ) : ?>
+										<h3 class="vc-media-card__title"><?php echo esc_html( $point_title ); ?></h3>
+									<?php endif; ?>
+									<?php if ( $point_text ) : ?>
+										<p class="vc-media-card__text"><?php echo esc_html( $point_text ); ?></p>
+									<?php endif; ?>
+								</div>
 							</article>
 						<?php endforeach; ?>
 					</div>
@@ -150,9 +157,9 @@ get_header();
 					<?php endif; ?>
 				</div>
 				<?php if ( $cta_url && $cta_label ) : ?>
-					<a href="<?php echo esc_url( $cta_url ); ?>" class="inline-flex shrink-0 items-center gap-2 rounded-lg bg-white px-5 py-3 text-sm font-semibold text-ink hover:bg-bone">
+					<a href="<?php echo esc_url( $cta_url ); ?>" class="lx-band-cta">
 						<?php echo esc_html( $cta_label ); ?>
-						<span aria-hidden="true">→</span>
+						<span class="lx-band-cta__arrow" aria-hidden="true">→</span>
 					</a>
 				<?php endif; ?>
 			</div>
