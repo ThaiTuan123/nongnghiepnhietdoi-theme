@@ -2366,6 +2366,186 @@ body.lx-lightbox-open {
   }
 }
 
+/* ——— Utility pages: 404 + search ambient ——— */
+.lx-utility-hero,
+.lx-utility-panel {
+  background-color: var(--color-bone);
+}
+.lx-ambient {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+.lx-ambient__wash {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -8%, color-mix(in srgb, var(--brand) 16%, transparent), transparent 58%),
+    radial-gradient(ellipse 42% 38% at 92% 88%, color-mix(in srgb, var(--color-sun) 12%, transparent), transparent 55%),
+    radial-gradient(ellipse 38% 34% at 6% 72%, color-mix(in srgb, var(--brand) 10%, transparent), transparent 52%),
+    linear-gradient(180deg, #ffffff 0%, var(--color-bone) 100%);
+}
+.lx-ambient--empty .lx-ambient__wash {
+  background:
+    radial-gradient(ellipse 70% 50% at 50% 20%, color-mix(in srgb, var(--brand) 12%, transparent), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 90%, color-mix(in srgb, var(--color-sun) 10%, transparent), transparent 55%),
+    radial-gradient(ellipse 45% 36% at 12% 85%, color-mix(in srgb, var(--brand) 8%, transparent), transparent 50%),
+    linear-gradient(180deg, color-mix(in srgb, var(--color-bone) 70%, white) 0%, var(--color-bone) 100%);
+}
+.lx-ambient__blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(48px);
+  will-change: transform;
+  animation: lx-ambient-drift 16s ease-in-out infinite;
+}
+.lx-ambient__blob--a {
+  top: -8%;
+  left: 8%;
+  width: min(42vw, 22rem);
+  height: min(42vw, 22rem);
+  background: color-mix(in srgb, var(--brand) 22%, transparent);
+}
+.lx-ambient__blob--b {
+  top: 42%;
+  right: -6%;
+  width: min(36vw, 18rem);
+  height: min(36vw, 18rem);
+  background: color-mix(in srgb, var(--color-sun) 16%, transparent);
+  animation-duration: 20s;
+  animation-delay: -4s;
+}
+.lx-ambient__blob--c {
+  bottom: -12%;
+  left: 28%;
+  width: min(48vw, 24rem);
+  height: min(48vw, 24rem);
+  background: color-mix(in srgb, var(--brand) 14%, transparent);
+  animation-duration: 22s;
+  animation-delay: -9s;
+}
+.lx-ambient__motif {
+  position: absolute;
+  inset: 8% 6%;
+  width: auto;
+  height: auto;
+  color: var(--brand);
+  opacity: 0.55;
+  animation: lx-ambient-motif 28s ease-in-out infinite;
+}
+.lx-ambient--empty .lx-ambient__motif {
+  opacity: 0.7;
+}
+
+@keyframes lx-ambient-drift {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  33% {
+    transform: translate3d(3%, -4%, 0) scale(1.06);
+  }
+  66% {
+    transform: translate3d(-4%, 3%, 0) scale(0.96);
+  }
+}
+
+@keyframes lx-ambient-motif {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1.04) rotate(1.5deg);
+    opacity: 0.72;
+  }
+}
+
+.lx-404-mark {
+  animation: lx-404-breathe 5.5s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes lx-404-breathe {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-5px) scale(1.03);
+  }
+}
+
+.lx-empty-icon {
+  position: relative;
+  display: flex;
+  height: 3.5rem;
+  width: 3.5rem;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: color-mix(in srgb, var(--brand) 12%, white);
+  color: var(--brand);
+}
+.lx-empty-icon__ring {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  color: color-mix(in srgb, var(--brand) 35%, transparent);
+  animation: lx-empty-pulse 2.4s ease-out infinite;
+}
+.lx-empty-icon svg {
+  position: relative;
+  z-index: 1;
+  animation: lx-empty-search 3.2s ease-in-out infinite;
+  transform-origin: 40% 40%;
+}
+
+@keyframes lx-empty-pulse {
+  0% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0.7;
+  }
+  70% {
+    box-shadow: 0 0 0 14px currentColor;
+    opacity: 0;
+  }
+  100% {
+    box-shadow: 0 0 0 0 currentColor;
+    opacity: 0;
+  }
+}
+
+@keyframes lx-empty-search {
+  0%,
+  70%,
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+  78% {
+    transform: rotate(-12deg) scale(1.05);
+  }
+  86% {
+    transform: rotate(10deg) scale(1.05);
+  }
+  94% {
+    transform: rotate(-4deg) scale(1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lx-ambient__blob,
+  .lx-ambient__motif,
+  .lx-404-mark,
+  .lx-empty-icon__ring,
+  .lx-empty-icon svg {
+    animation: none !important;
+  }
+}
+
 /* ——— Single post: share / sidebar / related ——— */
 .lx-single-body {
   background: #fff;
@@ -2968,8 +3148,8 @@ body.lx-lightbox-open {
 }
 .vc-media-card--featured .vc-media-card__index {
   font-size: 0.7rem;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-transform: none;
   color: #e8fe85;
 }
 .vc-media-card--link {

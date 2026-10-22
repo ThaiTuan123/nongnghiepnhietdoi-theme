@@ -547,7 +547,7 @@ $nl_count = count( $nl_items );
 					}
 					?>
 					<article class="hp-card hp-card--project group overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-slate-100">
-						<div class="hp-card__media h-40 overflow-hidden bg-cover bg-center" style="background-image:linear-gradient(160deg,rgba(0,156,72,.82),rgba(6,53,31,.55)),url('<?php echo esc_url( $featured_image ); ?>')" aria-hidden="true"></div>
+						<div class="hp-card__media h-40 overflow-hidden bg-cover bg-center" style="background-image:url('<?php echo esc_url( $featured_image ); ?>')" aria-hidden="true"></div>
 						<div class="p-6">
 							<h3 class="font-sans text-lg font-bold text-ink">
 								<a href="<?php the_permalink(); ?>" class="hp-card__link"><?php the_title(); ?></a>

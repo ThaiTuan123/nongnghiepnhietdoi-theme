@@ -216,7 +216,7 @@ get_header();
 							<img class="vc-media-card__bg" src="<?php echo esc_url( $image ); ?>" alt="" loading="lazy" decoding="async">
 							<span class="vc-media-card__scrim" aria-hidden="true"></span>
 							<div class="vc-media-card__body">
-								<p class="vc-media-card__index"><?php echo esc_html( get_the_date() ); ?></p>
+								<p class="vc-media-card__index"><?php echo esc_html( get_the_date( 'd/m/Y' ) ); ?></p>
 								<h3 class="vc-media-card__title"><?php the_title(); ?></h3>
 								<?php if ( $excerpt ) : ?>
 									<p class="vc-media-card__text"><?php echo esc_html( wp_trim_words( $excerpt, 18, '…' ) ); ?></p>
