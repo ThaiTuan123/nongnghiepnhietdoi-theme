@@ -114,22 +114,22 @@ $hero_props = wp_json_encode(
 		<?php endif; ?>
 		<div class="pointer-events-none absolute inset-0 bg-gradient-to-r from-black/55 via-black/15 to-black/10"></div>
 	</div>
-	<div class="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1360px] items-end px-4 pb-36 pt-28 sm:items-center sm:px-6 sm:pb-0 lg:justify-start lg:px-8">
+	<div class="pointer-events-none relative z-10 mx-auto flex min-h-[100svh] w-full max-w-[1360px] items-end px-4 pb-28 pt-24 sm:items-center sm:px-6 sm:pb-0 sm:pt-28 lg:justify-start lg:px-8">
 		<div class="pointer-events-auto w-full max-w-[560px]">
 			<?php if ( $hero_eyebrow ) : ?>
-				<p class="mb-5 inline-flex w-fit items-center rounded-full border border-white/45 bg-white/10 px-4 py-1.5 text-sm text-white/95 backdrop-blur-sm" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
+				<p class="mb-3 inline-flex w-fit items-center rounded-full border border-white/45 bg-white/10 px-3 py-1 text-xs text-white/95 backdrop-blur-sm sm:mb-5 sm:px-4 sm:py-1.5 sm:text-sm" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
 			<?php endif; ?>
 			<?php if ( $hero_title ) : ?>
-				<h1 class="font-sans text-[2rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px]" data-reveal data-reveal-delay="0.12"><?php echo esc_html( $hero_title ); ?></h1>
+				<h1 class="font-sans text-[1.75rem] font-bold leading-[1.08] tracking-tight text-white sm:text-5xl lg:text-[56px]" data-reveal data-reveal-delay="0.12"><?php echo esc_html( $hero_title ); ?></h1>
 			<?php endif; ?>
 			<?php if ( $hero_desc ) : ?>
-				<p class="mt-5 max-w-md text-sm leading-relaxed text-white/90 sm:text-base" data-reveal data-reveal-delay="0.24"><?php echo esc_html( $hero_desc ); ?></p>
+				<p class="mt-3 max-w-md text-sm leading-relaxed text-white/90 sm:mt-5 sm:text-base" data-reveal data-reveal-delay="0.24"><?php echo esc_html( $hero_desc ); ?></p>
 			<?php endif; ?>
 			<?php if ( ! empty( $hero_cta['url'] ) ) : ?>
-				<a href="<?php echo esc_url( $hero_cta['url'] ); ?>" class="varc-cta mt-8 inline-flex items-center gap-3 rounded-full bg-brand py-2 pl-6 pr-2 text-sm font-semibold text-white hover:bg-brand-700" data-reveal data-reveal-delay="0.36"<?php echo ! empty( $hero_cta['target'] ) ? ' target="' . esc_attr( $hero_cta['target'] ) . '" rel="noopener noreferrer"' : ''; ?>>
+				<a href="<?php echo esc_url( $hero_cta['url'] ); ?>" class="varc-cta mt-5 inline-flex items-center gap-2 rounded-full bg-brand py-1.5 pl-4 pr-1.5 text-xs font-semibold text-white hover:bg-brand-700 sm:mt-8 sm:gap-3 sm:py-2 sm:pl-6 sm:pr-2 sm:text-sm" data-reveal data-reveal-delay="0.36"<?php echo ! empty( $hero_cta['target'] ) ? ' target="' . esc_attr( $hero_cta['target'] ) . '" rel="noopener noreferrer"' : ''; ?>>
 					<?php echo esc_html( $hero_cta['title'] ?: __( 'Hợp tác dự án', 'nongnghiepnhietdoi' ) ); ?>
-					<span class="varc-cta-icon inline-flex h-10 w-10 items-center justify-center rounded-full bg-sun text-white" aria-hidden="true">
-						<svg class="h-4 w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+					<span class="varc-cta-icon inline-flex h-8 w-8 items-center justify-center rounded-full bg-sun text-white sm:h-10 sm:w-10" aria-hidden="true">
+						<svg class="h-3.5 w-3.5 sm:h-4 sm:w-4" viewBox="0 0 16 16" fill="none"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
 					</span>
 				</a>
 			<?php endif; ?>
