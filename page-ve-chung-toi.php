@@ -108,7 +108,7 @@ get_header();
 		</div>
 	</section>
 
-	<nav class="sticky top-[76px] z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur sm:top-[88px]" aria-label="<?php esc_attr_e( 'Mục lục trang', 'nongnghiepnhietdoi' ); ?>">
+	<nav class="sticky top-[100px] z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur" aria-label="<?php esc_attr_e( 'Mục lục trang', 'nongnghiepnhietdoi' ); ?>">
 		<div class="mx-auto flex max-w-[1200px] gap-2 overflow-x-auto px-4 py-3">
 			<?php foreach ( $nav as $item ) : ?>
 				<?php if ( ! $item['label'] ) : ?>

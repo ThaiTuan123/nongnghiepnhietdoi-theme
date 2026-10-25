@@ -161,10 +161,7 @@ add_action(
 	function () {
 		?>
 <style id="nongnghiepnhietdoi-logo-inline">
-	.lx-logo{display:block;width:auto;height:auto;max-width:220px;max-height:52px;object-fit:contain}
-	@media (min-width:768px){.lx-logo{max-width:240px;max-height:60px}}
-	@media (min-width:1024px){.lx-logo{max-width:260px;max-height:72px}}
-	.site-footer .lx-logo{max-width:260px;max-height:84px}
+	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:220px;max-height:84px;object-fit:contain;background-color:transparent}
 </style>
 		<?php
 	},

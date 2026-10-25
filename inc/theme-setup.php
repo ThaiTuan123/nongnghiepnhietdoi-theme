@@ -203,6 +203,8 @@ add_filter(
 
 		if ( is_singular( array( 'post', 'du_an' ) ) && has_post_thumbnail() ) {
 			$dark = true;
+		} elseif ( is_category() ) {
+			$dark = true; // Archive chuyên mục mở đầu bằng hero banner tối.
 		} elseif ( is_post_type_archive( 'du_an' ) ) {
 			$dark = true; // Archive Bất động sản mở đầu bằng hero banner tối.
 		} elseif ( is_page_template( 'page-tin-tuc.php' ) || is_page( 'tin-tuc' ) ) {

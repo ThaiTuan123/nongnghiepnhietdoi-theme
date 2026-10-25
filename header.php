@@ -5,9 +5,7 @@
  * @package NongNghiepNhietDoi
  */
 
-$varc_logo_id    = function_exists( 'nongnghiepnhietdoi_option' ) ? (int) nongnghiepnhietdoi_option( 'site_logo' ) : 0;
 $varc_short_name = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'VARC';
-$varc_logo       = NONGNGHIEPNHIETDOI_URI . '/assets/images/logo-varc.png';
 
 $varc_menu_args = array(
 	'theme_location' => 'primary',
@@ -31,23 +29,9 @@ $varc_menu_args = array(
 <a class="skip-link sr-only focus:not-sr-only" href="#main"><?php esc_html_e( 'Bỏ qua tới nội dung', 'nongnghiepnhietdoi' ); ?></a>
 
 <div class="varc-header fixed inset-x-0 top-0 z-50 transition-colors duration-300" data-header>
-	<div class="relative mx-auto flex h-[76px] max-w-[1360px] items-center gap-3 px-4 sm:h-[88px] sm:px-6 lg:px-8">
+	<div class="relative mx-auto flex h-[100px] max-w-[1360px] items-center gap-3 px-4 sm:px-6 lg:px-8">
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex shrink-0 items-center gap-2.5" rel="home">
-			<?php if ( $varc_logo_id ) : ?>
-				<?php
-				echo wp_get_attachment_image(
-					$varc_logo_id,
-					'full',
-					false,
-					array(
-						'class' => 'varc-logo lx-logo h-11 w-auto max-w-[160px] shrink-0 object-contain sm:h-12',
-						'alt'   => get_bloginfo( 'name' ),
-					)
-				);
-				?>
-			<?php else : ?>
-				<img src="<?php echo esc_url( $varc_logo ); ?>" alt="" class="varc-logo h-11 w-11 shrink-0 bg-white object-contain p-0.5 sm:h-12 sm:w-12" width="48" height="48">
-			<?php endif; ?>
+			<?php nongnghiepnhietdoi_the_logo( 'h-auto w-auto max-w-[220px] object-contain' ); ?>
 			<?php if ( $varc_short_name ) : ?>
 				<span class="varc-logo-name text-base font-bold tracking-[0.14em] sm:text-lg"><?php echo esc_html( $varc_short_name ); ?></span>
 			<?php endif; ?>
