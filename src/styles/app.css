@@ -1217,12 +1217,8 @@ body.lx-lightbox-open {
 }
 .varc-logo {
   box-sizing: border-box;
-  width: 3rem;
-  height: 3rem;
-  padding: 2px;
   object-fit: contain;
-  border-radius: 0;
-  background-color: #fff;
+  background-color: transparent;
 }
 .ht-select {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none'%3E%3Cpath d='M5 7.5 10 12.5 15 7.5' stroke='%2364748b' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
@@ -3322,6 +3318,37 @@ body.lx-lightbox-open {
   .vc-media-card:active {
     transform: translateY(-2px) scale(0.99);
     transition-duration: 0.12s;
+  }
+}
+
+/* ——— Archive chuyên mục ——— */
+.cat-archive .vc-media-card__title,
+.cat-archive .vc-media-card__text {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.cat-archive .vc-media-card__title {
+  -webkit-line-clamp: 3;
+}
+.cat-archive .vc-media-card__text {
+  -webkit-line-clamp: 3;
+}
+.cat-archive .cat-card--lead {
+  min-height: 22rem;
+}
+@media (min-width: 1024px) {
+  .cat-archive .cat-card--lead {
+    grid-column: span 2;
+    min-height: 28rem;
+  }
+  .cat-archive .cat-card--lead .vc-media-card__title {
+    font-size: 1.85rem;
+    line-height: 1.25;
+  }
+  .cat-archive .cat-card--lead .vc-media-card__text {
+    max-width: 40rem;
+    font-size: 1rem;
   }
 }
 

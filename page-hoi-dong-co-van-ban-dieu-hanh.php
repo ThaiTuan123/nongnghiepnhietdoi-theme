@@ -88,7 +88,7 @@ get_header();
 		</div>
 	</section>
 
-	<nav class="sticky top-[76px] z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur sm:top-[88px]" aria-label="<?php esc_attr_e( 'Mục lục trang', 'nongnghiepnhietdoi' ); ?>">
+	<nav class="sticky top-[100px] z-40 border-b border-slate-200/80 bg-white/95 backdrop-blur" aria-label="<?php esc_attr_e( 'Mục lục trang', 'nongnghiepnhietdoi' ); ?>">
 		<div class="mx-auto flex max-w-[1200px] gap-2 overflow-x-auto px-4 py-3">
 			<?php if ( $advisors_label ) : ?>
 				<a class="shrink-0 rounded-full bg-bone px-4 py-2 text-sm font-semibold text-ink transition-colors hover:bg-brand hover:text-white" href="#hoi-dong"><?php echo esc_html( $advisors_label ); ?></a>

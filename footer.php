@@ -5,8 +5,6 @@
  * @package NongNghiepNhietDoi
  */
 
-$varc_logo_id   = function_exists( 'nongnghiepnhietdoi_option' ) ? (int) nongnghiepnhietdoi_option( 'site_logo' ) : 0;
-$varc_logo      = NONGNGHIEPNHIETDOI_URI . '/assets/images/logo-varc.png';
 $varc_company   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_company_name' ) : '';
 $varc_about     = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_about' ) : '';
 $varc_address   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_address' ) : '';
@@ -21,23 +19,7 @@ $varc_phone_tel = $varc_phone ? preg_replace( '/[^0-9+]/', '', $varc_phone ) : '
 	<div class="mx-auto grid max-w-[1200px] gap-10 px-4 py-12 sm:grid-cols-2 sm:py-14 lg:grid-cols-4">
 		<div>
 			<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="inline-flex items-center gap-3" rel="home">
-				<?php if ( $varc_logo_id ) : ?>
-					<?php
-					echo wp_get_attachment_image(
-						$varc_logo_id,
-						'full',
-						false,
-						array(
-							'class' => 'lx-logo h-auto max-h-16 w-auto max-w-[220px] object-contain',
-							'alt'   => get_bloginfo( 'name' ),
-						)
-					);
-					?>
-				<?php else : ?>
-					<span class="inline-flex h-14 w-14 items-center justify-center bg-white">
-						<img src="<?php echo esc_url( $varc_logo ); ?>" alt="" class="h-12 w-12 object-contain" width="48" height="48">
-					</span>
-				<?php endif; ?>
+				<?php nongnghiepnhietdoi_the_logo( 'h-auto w-auto max-w-[220px] object-contain' ); ?>
 			</a>
 			<?php if ( $varc_company ) : ?>
 				<p class="mt-4 text-sm font-semibold text-white"><?php echo esc_html( $varc_company ); ?></p>
