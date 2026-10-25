@@ -29,22 +29,22 @@ $varc_menu_args = array(
 <a class="skip-link sr-only focus:not-sr-only" href="#main"><?php esc_html_e( 'Bỏ qua tới nội dung', 'nongnghiepnhietdoi' ); ?></a>
 
 <div class="varc-header fixed inset-x-0 top-0 z-50 transition-colors duration-300" data-header>
-	<div class="relative mx-auto flex h-[100px] max-w-[1360px] items-center gap-3 px-4 sm:px-6 lg:px-8">
-		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex shrink-0 items-center gap-2.5" rel="home">
-			<?php nongnghiepnhietdoi_the_logo( 'h-auto w-auto max-w-[220px] object-contain' ); ?>
+	<div class="relative mx-auto flex h-[72px] max-w-[1360px] items-center gap-3 px-4 sm:h-[88px] sm:px-6 lg:px-8 xl:h-[100px]">
+		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="flex shrink-0 items-center gap-2 sm:gap-2.5" rel="home">
+			<?php nongnghiepnhietdoi_the_logo( 'h-auto w-auto max-w-[180px] object-contain' ); ?>
 			<?php if ( $varc_short_name ) : ?>
-				<span class="varc-logo-name text-base font-bold tracking-[0.14em] sm:text-lg"><?php echo esc_html( $varc_short_name ); ?></span>
+				<span class="varc-logo-name text-sm font-bold tracking-[0.12em] sm:text-base sm:tracking-[0.14em] xl:text-lg"><?php echo esc_html( $varc_short_name ); ?></span>
 			<?php endif; ?>
 		</a>
 
 		<div class="hidden min-w-0 flex-1 justify-center xl:flex">
-			<nav class="varc-nav flex w-max max-w-full items-center rounded-full bg-[#00A050] p-1 shadow-lg" aria-label="<?php esc_attr_e( 'Menu chính', 'nongnghiepnhietdoi' ); ?>">
+			<nav class="varc-nav flex w-max max-w-full items-center rounded-full bg-[#00A050] p-1.5 shadow-lg" aria-label="<?php esc_attr_e( 'Menu chính', 'nongnghiepnhietdoi' ); ?>">
 				<?php
 				wp_nav_menu(
 					array_merge(
 						$varc_menu_args,
 						array(
-							'menu_class' => 'varc-menu m-0 flex list-none items-center gap-0 p-0',
+							'menu_class' => 'varc-menu m-0 flex list-none items-center gap-1 p-0',
 						)
 					)
 				);

@@ -383,7 +383,7 @@
     @apply relative;
   }
   .varc-nav .varc-menu > .menu-item > a {
-    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-1.5 text-[12px] font-semibold text-white hover:bg-white/15;
+    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-wide text-white/95 hover:bg-white/15;
   }
   .varc-nav .menu-item-has-children > a::after {
     content: '';
@@ -397,7 +397,7 @@
   .varc-nav .varc-menu > .current-menu-item > a,
   .varc-nav .varc-menu > .current-menu-ancestor > a,
   .varc-nav .varc-menu > .current-menu-parent > a {
-    @apply bg-sun font-semibold text-white hover:text-white;
+    @apply bg-white font-semibold text-[#00A050] shadow-sm hover:bg-white hover:text-[#008a44];
   }
   .varc-nav .sub-menu {
     @apply pointer-events-none invisible absolute left-0 top-full z-50 m-0 min-w-[240px] list-none translate-y-1 rounded-xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition;
@@ -1169,7 +1169,13 @@ body.lx-lightbox-open {
 .varc-header .varc-nav,
 .varc-header .varc-cta {
   box-sizing: border-box;
-  height: 3rem;
+  height: 2.75rem;
+}
+@media (min-width: 1280px) {
+  .varc-header .varc-nav,
+  .varc-header .varc-cta {
+    height: 3rem;
+  }
 }
 .varc-lang {
   display: flex;

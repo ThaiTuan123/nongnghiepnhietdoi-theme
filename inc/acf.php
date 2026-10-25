@@ -161,7 +161,8 @@ add_action(
 	function () {
 		?>
 <style id="nongnghiepnhietdoi-logo-inline">
-	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:220px;max-height:84px;object-fit:contain;background-color:transparent}
+	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:180px;max-height:64px;object-fit:contain;background-color:transparent}
+	@media (max-width:639px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:112px;max-height:48px}}
 </style>
 		<?php
 	},
