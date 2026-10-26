@@ -1,0 +1,118 @@
+{
+	"key": "group_nongnghiepnhietdoi_home_clb",
+	"title": "Trang chủ - CLB Nông nghiệp Nhiệt đới",
+	"fields": [
+		{
+			"key": "field_nn_home_clb_note",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Khối hoạt động CLB nằm ngay trên mục Tin tức. Có thể chỉnh nhãn, tiêu đề, mô tả, nút xem thêm và danh sách thẻ hoạt động. Kéo thả để đổi thứ tự thẻ. Để trống ảnh thì thẻ dùng ảnh mặc định của giao diện.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_home_clb_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "home_clb_eyebrow",
+			"type": "text",
+			"default_value": "CLB Nông nghiệp Nhiệt đới",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_home_clb_title",
+			"label": "Tiêu đề",
+			"name": "home_clb_title",
+			"type": "text",
+			"default_value": "Hoạt động gắn với cộng đồng và hiện trường",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_home_clb_text",
+			"label": "Đoạn giới thiệu",
+			"name": "home_clb_text",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "",
+			"default_value": "CLB kết nối sinh viên, nhà khoa học trẻ và nông hộ để học hỏi kỹ thuật vi sinh, CSA và lan tỏa mô hình nông nghiệp phát thải thấp ngoài đồng."
+		},
+		{
+			"key": "field_nn_home_clb_cta",
+			"label": "Nút xem thêm",
+			"name": "home_clb_cta",
+			"type": "link",
+			"return_format": "array"
+		},
+		{
+			"key": "field_nn_home_clb_items",
+			"label": "Các hoạt động",
+			"name": "home_clb_items",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm hoạt động",
+			"min": 0,
+			"max": 8,
+			"sub_fields": [
+				{
+					"key": "field_nn_home_clb_item_tag",
+					"label": "Nhãn thẻ",
+					"name": "tag",
+					"type": "text",
+					"wrapper": { "width": "30" },
+					"instructions": "Ví dụ: Tập huấn, Hiện trường, Sự kiện."
+				},
+				{
+					"key": "field_nn_home_clb_item_title",
+					"label": "Tiêu đề",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "40" }
+				},
+				{
+					"key": "field_nn_home_clb_item_image",
+					"label": "Ảnh",
+					"name": "image",
+					"type": "image",
+					"return_format": "array",
+					"preview_size": "medium",
+					"library": "all",
+					"mime_types": "jpg,jpeg,png,webp",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_home_clb_item_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 3,
+					"new_lines": ""
+				},
+				{
+					"key": "field_nn_home_clb_item_link",
+					"label": "Liên kết (tuỳ chọn)",
+					"name": "link",
+					"type": "link",
+					"return_format": "array"
+				}
+			]
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_type",
+				"operator": "==",
+				"value": "front_page"
+			}
+		]
+	],
+	"menu_order": 11,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Khối hoạt động CLB Nông nghiệp Nhiệt đới trên trang chủ (trên mục Tin tức).",
+	"show_in_rest": 0,
+	"modified": 1761456000
+}
