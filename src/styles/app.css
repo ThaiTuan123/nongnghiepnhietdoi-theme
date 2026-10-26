@@ -183,32 +183,30 @@
     box-shadow: 0 1px 0 rgba(11, 31, 51, 0.06);
     backdrop-filter: blur(14px);
   }
-  .varc-header .varc-logo-name {
+  .varc-header .varc-logo-name,
+  .varc-header .varc-logo-full {
     color: #fff;
   }
   .varc-header.is-scrolled .varc-logo-name,
+  .varc-header.is-scrolled .varc-logo-full,
   .varc-header.is-scrolled .varc-menu-btn {
     color: #0b1f33;
   }
 
-  .varc-cta-icon {
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  .varc-cta {
+    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease;
   }
-  .varc-cta-icon svg {
-    transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-  }
-  .varc-cta:hover .varc-cta-icon,
-  .varc-cta:focus-visible .varc-cta-icon {
-    transform: scale(1.08);
-  }
-  .varc-cta:hover .varc-cta-icon svg,
-  .varc-cta:focus-visible .varc-cta-icon svg {
-    transform: translate(3px, -3px);
+  .varc-cta:hover,
+  .varc-cta:focus-visible {
+    transform: scale(1.06);
   }
   @media (prefers-reduced-motion: reduce) {
-    .varc-cta-icon,
-    .varc-cta-icon svg {
-      transition: none;
+    .varc-cta {
+      transition: background-color 0.2s ease;
+    }
+    .varc-cta:hover,
+    .varc-cta:focus-visible {
+      transform: none;
     }
   }
   [data-header] a {
@@ -383,7 +381,7 @@
     @apply relative;
   }
   .varc-nav .varc-menu > .menu-item > a {
-    @apply inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3.5 py-1.5 text-[12px] font-semibold tracking-wide text-white/95 hover:bg-white/15;
+    @apply inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2.5 py-1.5 text-[12px] font-semibold tracking-wide text-white/95 hover:bg-white/15 xl:px-3;
   }
   .varc-nav .menu-item-has-children > a::after {
     content: '';
@@ -402,7 +400,8 @@
   .varc-nav .sub-menu {
     @apply pointer-events-none invisible absolute left-0 top-full z-50 m-0 min-w-[240px] list-none translate-y-1 rounded-xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition;
   }
-  .varc-nav .menu-item:nth-last-child(-n + 2) > .sub-menu {
+  .varc-nav--right .menu-item:nth-last-child(-n + 2) > .sub-menu,
+  .varc-nav--left .menu-item:last-child > .sub-menu {
     @apply left-auto right-0;
   }
   .varc-nav .menu-item-has-children:hover > .sub-menu,
@@ -1149,32 +1148,51 @@ body.lx-lightbox-open {
   }
 }
 
-/* Pill menu ôm sát nhãn, căn giữa header, xanh trùng vòng logo. */
-@media (min-width: 1280px) {
-  .varc-nav {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    z-index: 20;
-    transform: translate(-50%, -50%);
-  }
-}
+/* Một hàng 3-3: menu trái | logo giữa | menu phải | CTA icon. */
 .varc-nav {
   flex: none;
   width: max-content;
-  max-width: calc(100% - 16rem);
+  max-width: 100%;
   background-color: #00a050;
 }
-/* Pill menu và nút Liên hệ cùng một chiều cao. */
-.varc-header .varc-nav,
-.varc-header .varc-cta {
+.varc-brand {
+  padding-block: 0.2rem;
+}
+.varc-brand img.lx-logo,
+.varc-brand img.varc-logo {
+  margin-inline: auto;
+}
+.varc-logo-full {
+  max-width: 10.5rem;
+  line-height: 1.2;
+  text-align: center;
+  opacity: 0.9;
+}
+.varc-logo-name {
+  text-align: center;
+}
+@media (min-width: 1280px) {
+  .varc-logo-full {
+    max-width: 12rem;
+  }
+}
+.varc-header .varc-nav {
   box-sizing: border-box;
   height: 2.75rem;
 }
+.varc-header .varc-cta {
+  box-sizing: border-box;
+  height: 2.75rem;
+  width: 2.75rem;
+  padding: 0;
+}
 @media (min-width: 1280px) {
-  .varc-header .varc-nav,
-  .varc-header .varc-cta {
+  .varc-header .varc-nav {
     height: 3rem;
+  }
+  .varc-header .varc-cta {
+    height: 2.75rem;
+    width: 2.75rem;
   }
 }
 .varc-lang {
@@ -1981,6 +1999,158 @@ body.lx-lightbox-open {
   .eco-card:hover .eco-card__text,
   .eco-card:focus-within .eco-card__text {
     transform: none !important;
+  }
+}
+
+/* Homepage — CLB Nông nghiệp Nhiệt đới */
+.clb-grid {
+  display: grid;
+  gap: 1rem;
+}
+@media (min-width: 640px) {
+  .clb-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  .clb-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.clb-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  background: #fff;
+  box-shadow: 0 1px 0 rgba(11, 31, 51, 0.04);
+  outline: 1px solid #e4ece7;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    outline-color 0.35s ease,
+    box-shadow 0.35s ease,
+    transform 0.35s ease;
+}
+.clb-card__media {
+  position: relative;
+  display: block;
+  height: 8.5rem;
+  overflow: hidden;
+  background: linear-gradient(135deg, #006b32, #009c48);
+}
+.clb-card__img {
+  display: block;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  filter: saturate(0.95);
+  transition:
+    transform 0.7s cubic-bezier(0.22, 1, 0.36, 1),
+    filter 0.45s ease;
+}
+.clb-card__fallback {
+  display: block;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(135deg, #006b32, #009c48);
+}
+.clb-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(11, 31, 51, 0.2) 100%);
+  opacity: 0.55;
+  pointer-events: none;
+  transition: opacity 0.35s ease;
+}
+.clb-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  padding: 1rem 1.05rem 1.15rem;
+}
+.clb-card__tag {
+  margin: 0;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-brand, #006b32);
+}
+.clb-card__title {
+  margin-top: 0.45rem;
+  font-family: var(--font-inter);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--color-ink, #0b1f33);
+  transition: color 0.3s ease;
+}
+.clb-card__link {
+  color: inherit;
+  text-decoration: none;
+}
+.clb-card__link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.clb-card__text {
+  margin-top: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #64748b;
+}
+.clb-card__more {
+  margin-top: auto;
+  padding-top: 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-brand, #006b32);
+  opacity: 0.85;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+@media (hover: hover) {
+  .clb-card:hover,
+  .clb-card:focus-within {
+    outline-color: rgba(0, 107, 50, 0.28);
+    box-shadow: 0 12px 28px rgba(11, 31, 51, 0.08);
+    transform: translateY(-2px);
+  }
+  .clb-card:hover .clb-card__img,
+  .clb-card:focus-within .clb-card__img {
+    transform: scale(1.06);
+    filter: saturate(1.05);
+  }
+  .clb-card:hover .clb-card__scrim,
+  .clb-card:focus-within .clb-card__scrim {
+    opacity: 0.35;
+  }
+  .clb-card:hover .clb-card__title,
+  .clb-card:focus-within .clb-card__title,
+  .clb-card:hover .clb-card__link,
+  .clb-card:focus-within .clb-card__link {
+    color: var(--color-brand, #006b32);
+  }
+  .clb-card:hover .clb-card__more,
+  .clb-card:focus-within .clb-card__more {
+    opacity: 1;
+    transform: translateX(2px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .clb-card,
+  .clb-card__img,
+  .clb-card__scrim,
+  .clb-card__more {
+    transition: none;
   }
 }
 

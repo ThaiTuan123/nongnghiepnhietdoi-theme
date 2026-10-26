@@ -161,8 +161,9 @@ add_action(
 	function () {
 		?>
 <style id="nongnghiepnhietdoi-logo-inline">
-	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:180px;max-height:64px;object-fit:contain;background-color:transparent}
+	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:180px;max-height:68px;object-fit:contain;background-color:transparent}
 	@media (max-width:639px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:112px;max-height:48px}}
+	@media (min-width:1280px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:200px;max-height:72px}}
 </style>
 		<?php
 	},
@@ -680,6 +681,90 @@ add_action(
 		update_option( 'nongnghiepnhietdoi_home_eco_seeded', 1, false );
 	},
 	34
+);
+
+/**
+ * Ghi khối CLB Nông nghiệp Nhiệt đới lần đầu để hộp Meta hiện đúng nội dung đang chạy.
+ */
+add_action(
+	'acf/init',
+	function () {
+		if ( get_option( 'nongnghiepnhietdoi_home_clb_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		$post_id = (int) get_option( 'page_on_front' );
+		if ( ! $post_id ) {
+			return;
+		}
+
+		$existing = get_field( 'home_clb_title', $post_id );
+		if ( is_string( $existing ) && '' !== $existing ) {
+			update_option( 'nongnghiepnhietdoi_home_clb_seeded', 1, false );
+			return;
+		}
+
+		update_field( 'home_clb_eyebrow', 'CLB Nông nghiệp Nhiệt đới', $post_id );
+		$title_saved = update_field( 'home_clb_title', 'Hoạt động gắn với cộng đồng và hiện trường', $post_id );
+		if ( ! $title_saved ) {
+			return;
+		}
+
+		update_field(
+			'home_clb_text',
+			'CLB kết nối sinh viên, nhà khoa học trẻ và nông hộ để học hỏi kỹ thuật vi sinh, CSA và lan tỏa mô hình nông nghiệp phát thải thấp ngoài đồng.',
+			$post_id
+		);
+		update_field(
+			'home_clb_cta',
+			array(
+				'title'  => 'Xem hoạt động',
+				'url'    => home_url( '/thu-vien-tin-tuc/' ),
+				'target' => '',
+			),
+			$post_id
+		);
+
+		$field     = nongnghiepnhietdoi_theme_image_id( 'assets/images/person-field.jpg', 'CLB tập huấn hiện trường' );
+		$handbook  = nongnghiepnhietdoi_theme_image_id( 'assets/images/person-scientist.jpg', 'CLB chia sẻ nghiên cứu' );
+		$farmers   = nongnghiepnhietdoi_theme_image_id( 'assets/images/eco-farmers.jpg', 'CLB mạng lưới nông hộ' );
+		$community = nongnghiepnhietdoi_theme_image_id( 'assets/images/about-field.jpg', 'CLB sự kiện cộng đồng' );
+
+		$rows = array(
+			array(
+				'tag'   => 'Tập huấn',
+				'title' => 'Tập huấn kỹ thuật ngoài đồng',
+				'text'  => 'Thành viên CLB tham gia hướng dẫn ủ phân, nhân sinh khối IMO và ghi nhận số liệu theo vụ tại hợp tác xã.',
+				'image' => $field,
+			),
+			array(
+				'tag'   => 'Chia sẻ',
+				'title' => 'Chia sẻ nghiên cứu & cẩm nang',
+				'text'  => 'Seminar nội bộ và buổi đọc cẩm nang kỹ thuật giúp lan tỏa kiến thức vi sinh, CSA và đo phát thải.',
+				'image' => $handbook,
+			),
+			array(
+				'tag'   => 'Mạng lưới',
+				'title' => 'Kết nối nông hộ & HTX',
+				'text'  => 'CLB đồng hành nông dân nòng cốt, hỗ trợ duy trì mô hình và mở rộng thực hành tốt trong mạng lưới tỉnh.',
+				'image' => $farmers,
+			),
+			array(
+				'tag'   => 'Cộng đồng',
+				'title' => 'Sự kiện & ngày hội hiện trường',
+				'text'  => 'Ngày hội đồng ruộng, triển lãm mô hình và giao lưu với sinh viên, doanh nghiệp và cơ quan quản lý.',
+				'image' => $community,
+			),
+		);
+
+		$saved = update_field( 'home_clb_items', $rows, $post_id );
+		if ( ! $saved ) {
+			return;
+		}
+
+		update_option( 'nongnghiepnhietdoi_home_clb_seeded', 1, false );
+	},
+	35
 );
 
 /**

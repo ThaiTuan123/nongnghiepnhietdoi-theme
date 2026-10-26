@@ -763,6 +763,160 @@ if ( $front_id && function_exists( 'get_field' ) ) {
 	</div>
 </section>
 
+<?php
+$clb_eyebrow = 'CLB Nông nghiệp Nhiệt đới';
+$clb_title   = 'Hoạt động gắn với cộng đồng và hiện trường';
+$clb_text    = 'CLB kết nối sinh viên, nhà khoa học trẻ và nông hộ để học hỏi kỹ thuật vi sinh, CSA và lan tỏa mô hình nông nghiệp phát thải thấp ngoài đồng.';
+$clb_cta     = array(
+	'title'  => 'Xem hoạt động',
+	'url'    => home_url( '/thu-vien-tin-tuc/' ),
+	'target' => '',
+);
+$clb_items   = array(
+	array(
+		'tag'   => 'Tập huấn',
+		'title' => 'Tập huấn kỹ thuật ngoài đồng',
+		'text'  => 'Thành viên CLB tham gia hướng dẫn ủ phân, nhân sinh khối IMO và ghi nhận số liệu theo vụ tại hợp tác xã.',
+		'image' => $img . '/person-field.jpg',
+		'alt'   => 'Tập huấn kỹ thuật ngoài đồng của CLB',
+		'link'  => null,
+	),
+	array(
+		'tag'   => 'Chia sẻ',
+		'title' => 'Chia sẻ nghiên cứu & cẩm nang',
+		'text'  => 'Seminar nội bộ và buổi đọc cẩm nang kỹ thuật giúp lan tỏa kiến thức vi sinh, CSA và đo phát thải.',
+		'image' => $img . '/person-scientist.jpg',
+		'alt'   => 'Chia sẻ nghiên cứu trong CLB',
+		'link'  => null,
+	),
+	array(
+		'tag'   => 'Mạng lưới',
+		'title' => 'Kết nối nông hộ & HTX',
+		'text'  => 'CLB đồng hành nông dân nòng cốt, hỗ trợ duy trì mô hình và mở rộng thực hành tốt trong mạng lưới tỉnh.',
+		'image' => $img . '/eco-farmers.jpg',
+		'alt'   => 'Mạng lưới nông hộ và hợp tác xã',
+		'link'  => null,
+	),
+	array(
+		'tag'   => 'Cộng đồng',
+		'title' => 'Sự kiện & ngày hội hiện trường',
+		'text'  => 'Ngày hội đồng ruộng, triển lãm mô hình và giao lưu với sinh viên, doanh nghiệp và cơ quan quản lý.',
+		'image' => $img . '/about-field.jpg',
+		'alt'   => 'Sự kiện cộng đồng CLB Nông nghiệp Nhiệt đới',
+		'link'  => null,
+	),
+);
+if ( $front_id && function_exists( 'get_field' ) ) {
+	$saved_clb_eyebrow = get_field( 'home_clb_eyebrow', $front_id );
+	$saved_clb_title   = get_field( 'home_clb_title', $front_id );
+	$saved_clb_text    = get_field( 'home_clb_text', $front_id );
+	$saved_clb_cta     = get_field( 'home_clb_cta', $front_id );
+	$saved_clb_items   = get_field( 'home_clb_items', $front_id );
+
+	if ( is_string( $saved_clb_eyebrow ) && '' !== $saved_clb_eyebrow ) {
+		$clb_eyebrow = $saved_clb_eyebrow;
+	}
+	if ( is_string( $saved_clb_title ) && '' !== $saved_clb_title ) {
+		$clb_title = $saved_clb_title;
+	}
+	if ( is_string( $saved_clb_text ) && '' !== $saved_clb_text ) {
+		$clb_text = $saved_clb_text;
+	}
+	if ( is_array( $saved_clb_cta ) && ! empty( $saved_clb_cta['url'] ) ) {
+		$clb_cta = $saved_clb_cta;
+	}
+	if ( is_array( $saved_clb_items ) ) {
+		$clb_items = array();
+		foreach ( $saved_clb_items as $row ) {
+			$title = is_array( $row ) && isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
+			$text  = is_array( $row ) && isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
+			if ( '' === $title && '' === $text ) {
+				continue;
+			}
+			$tag   = is_array( $row ) && isset( $row['tag'] ) ? trim( (string) $row['tag'] ) : '';
+			$image = '';
+			$alt   = $title;
+			if ( function_exists( 'nongnghiepnhietdoi_about_image_url' ) ) {
+				$image = nongnghiepnhietdoi_about_image_url( $row['image'] ?? null );
+				$alt   = nongnghiepnhietdoi_about_image_alt( $row['image'] ?? null, $title );
+			}
+			$link = null;
+			if ( ! empty( $row['link'] ) && is_array( $row['link'] ) && ! empty( $row['link']['url'] ) ) {
+				$link = $row['link'];
+			}
+			$clb_items[] = array(
+				'tag'   => $tag,
+				'title' => $title,
+				'text'  => $text,
+				'image' => $image,
+				'alt'   => $alt,
+				'link'  => $link,
+			);
+		}
+	}
+}
+?>
+<section id="clb-nn-nhiet-doi" class="scroll-mt-28 bg-[#f3f7f4]">
+	<div class="mx-auto max-w-[1200px] px-4 py-12 md:py-16">
+		<div class="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+			<div class="max-w-2xl">
+				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $clb_eyebrow ); ?></p>
+				<h2 data-reveal class="mt-3 font-sans text-3xl font-bold tracking-tight text-ink md:text-4xl"><?php echo esc_html( $clb_title ); ?></h2>
+				<p class="mt-4 text-slate-600"><?php echo esc_html( $clb_text ); ?></p>
+			</div>
+			<?php if ( ! empty( $clb_cta['url'] ) ) : ?>
+				<a
+					href="<?php echo esc_url( $clb_cta['url'] ); ?>"
+					class="inline-flex shrink-0 items-center gap-2 text-sm font-semibold text-brand"
+					<?php echo ! empty( $clb_cta['target'] ) ? ' target="' . esc_attr( $clb_cta['target'] ) . '" rel="noopener noreferrer"' : ''; ?>
+				>
+					<?php echo esc_html( $clb_cta['title'] ? $clb_cta['title'] : __( 'Xem hoạt động', 'nongnghiepnhietdoi' ) ); ?>
+					<span aria-hidden="true">→</span>
+				</a>
+			<?php endif; ?>
+		</div>
+		<?php if ( ! empty( $clb_items ) ) : ?>
+			<div class="clb-grid mt-8 sm:mt-10" data-reveal-stagger>
+				<?php foreach ( $clb_items as $item ) : ?>
+					<?php
+					$has_link    = ! empty( $item['link']['url'] );
+					$link_url    = $has_link ? $item['link']['url'] : '';
+					$link_target = $has_link && ! empty( $item['link']['target'] ) ? $item['link']['target'] : '';
+					?>
+					<article class="clb-card group">
+						<div class="clb-card__media" aria-hidden="true">
+							<?php if ( ! empty( $item['image'] ) ) : ?>
+								<img src="<?php echo esc_url( $item['image'] ); ?>" alt="" class="clb-card__img" width="800" height="520">
+							<?php else : ?>
+								<span class="clb-card__fallback"></span>
+							<?php endif; ?>
+							<span class="clb-card__scrim"></span>
+						</div>
+						<div class="clb-card__body">
+							<?php if ( ! empty( $item['tag'] ) ) : ?>
+								<p class="clb-card__tag"><?php echo esc_html( $item['tag'] ); ?></p>
+							<?php endif; ?>
+							<h3 class="clb-card__title">
+								<?php if ( $has_link ) : ?>
+									<a href="<?php echo esc_url( $link_url ); ?>" class="clb-card__link"<?php echo $link_target ? ' target="' . esc_attr( $link_target ) . '" rel="noopener noreferrer"' : ''; ?>>
+										<?php echo esc_html( $item['title'] ); ?>
+									</a>
+								<?php else : ?>
+									<?php echo esc_html( $item['title'] ); ?>
+								<?php endif; ?>
+							</h3>
+							<p class="clb-card__text"><?php echo esc_html( $item['text'] ); ?></p>
+							<?php if ( $has_link ) : ?>
+								<span class="clb-card__more" aria-hidden="true"><?php esc_html_e( 'Xem thêm', 'nongnghiepnhietdoi' ); ?> →</span>
+							<?php endif; ?>
+						</div>
+					</article>
+				<?php endforeach; ?>
+			</div>
+		<?php endif; ?>
+	</div>
+</section>
+
 <section id="tin-tuc" class="scroll-mt-28">
 	<div class="mx-auto grid max-w-[1200px] gap-8 px-4 py-12 md:py-16 lg:grid-cols-[1fr_300px]">
 		<div>
