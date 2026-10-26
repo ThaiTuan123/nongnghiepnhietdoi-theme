@@ -25,28 +25,112 @@ function nongnghiepnhietdoi_partnership_subjects() {
 }
 
 /**
- * Ba cổng đề xuất trên trang.
+ * Nội dung mặc định trang Hợp tác. Khách sửa trong hộp Meta sẽ ghi đè.
  *
- * @return array<string,array{title:string,text:string,subject:string}>
+ * @return array<string,mixed>
  */
-function nongnghiepnhietdoi_partnership_audiences() {
+function nongnghiepnhietdoi_partnership_defaults() {
 	return array(
-		'ngo'      => array(
-			'title'   => 'Nhà tài trợ / NGO',
-			'text'    => 'Tài trợ chương trình, nhận hồ sơ năng lực hoặc gửi Call for Proposal.',
-			'subject' => 'ngo',
-		),
-		'business' => array(
-			'title'   => 'Doanh nghiệp / HTX',
-			'text'    => 'Hợp tác chuyển giao công nghệ, thử nghiệm và chuỗi giá trị nông sản.',
-			'subject' => 'business',
-		),
-		'expert'   => array(
-			'title'   => 'Chuyên gia / Nhà khoa học',
-			'text'    => 'Tham gia nghiên cứu, phản biện kỹ thuật và mạng lưới chuyên môn.',
-			'subject' => 'expert',
+		'ht_hero_eyebrow'    => '',
+		'ht_hero_title'      => 'Hợp tác & dự án',
+		'ht_hero_lead'       => 'Gửi hồ sơ năng lực, Call for Proposal hoặc đề xuất hợp tác tới %s.',
+		'ht_legal_eyebrow'   => 'Đơn vị',
+		'ht_legal_title'     => 'Thông tin pháp lý & Liên hệ',
+		'ht_portal_eyebrow'  => 'Đối tác',
+		'ht_portal_title'    => 'Cổng đề xuất hợp tác',
+		'ht_portal_lead'     => 'Chọn nhóm phù hợp. Biểu mẫu bên dưới sẽ ghi nhận đề xuất gửi tới %s.',
+		'ht_form_intro'      => 'Yêu cầu nhận Hồ sơ năng lực hoặc gửi Call for Proposal tới %s.',
+		'ht_audiences'       => array(
+			array(
+				'key'     => 'ngo',
+				'title'   => 'Nhà tài trợ / NGO',
+				'text'    => 'Tài trợ chương trình, nhận hồ sơ năng lực hoặc gửi Call for Proposal.',
+				'subject' => 'ngo',
+			),
+			array(
+				'key'     => 'business',
+				'title'   => 'Doanh nghiệp / HTX',
+				'text'    => 'Hợp tác chuyển giao công nghệ, thử nghiệm và chuỗi giá trị nông sản.',
+				'subject' => 'business',
+			),
+			array(
+				'key'     => 'expert',
+				'title'   => 'Chuyên gia / Nhà khoa học',
+				'text'    => 'Tham gia nghiên cứu, phản biện kỹ thuật và mạng lưới chuyên môn.',
+				'subject' => 'expert',
+			),
 		),
 	);
+}
+
+/**
+ * Lấy một ô nội dung trang Hợp tác: đã lưu hoặc mặc định.
+ *
+ * @param string $name    Tên field.
+ * @param int    $post_id ID trang.
+ * @return mixed
+ */
+function nongnghiepnhietdoi_partnership_field( $name, $post_id = 0 ) {
+	$defaults = nongnghiepnhietdoi_partnership_defaults();
+	$default  = array_key_exists( $name, $defaults ) ? $defaults[ $name ] : '';
+	$page_id  = $post_id ? (int) $post_id : nongnghiepnhietdoi_partnership_page_id();
+
+	if ( ! $page_id || ! function_exists( 'get_field' ) ) {
+		return $default;
+	}
+
+	$value = get_field( $name, $page_id );
+
+	if ( null === $value || false === $value ) {
+		return $default;
+	}
+
+	return $value;
+}
+
+/**
+ * Ba cổng đề xuất trên trang (từ Meta Boxes hoặc mặc định).
+ *
+ * @param int $post_id ID trang.
+ * @return array<string,array{title:string,text:string,subject:string,key:string}>
+ */
+function nongnghiepnhietdoi_partnership_audiences( $post_id = 0 ) {
+	$rows = nongnghiepnhietdoi_partnership_field( 'ht_audiences', $post_id );
+	$out  = array();
+
+	if ( is_array( $rows ) ) {
+		foreach ( $rows as $row ) {
+			if ( ! is_array( $row ) ) {
+				continue;
+			}
+			$key = isset( $row['key'] ) ? sanitize_key( (string) $row['key'] ) : '';
+			if ( ! $key ) {
+				$key = isset( $row['subject'] ) ? sanitize_key( (string) $row['subject'] ) : '';
+			}
+			$title   = isset( $row['title'] ) ? trim( (string) $row['title'] ) : '';
+			$text    = isset( $row['text'] ) ? trim( (string) $row['text'] ) : '';
+			$subject = isset( $row['subject'] ) ? sanitize_key( (string) $row['subject'] ) : $key;
+			if ( ! $key || ( '' === $title && '' === $text ) ) {
+				continue;
+			}
+			$out[ $key ] = array(
+				'key'     => $key,
+				'title'   => $title,
+				'text'    => $text,
+				'subject' => $subject ? $subject : $key,
+			);
+		}
+	}
+
+	if ( $out ) {
+		return $out;
+	}
+
+	$fallback = array();
+	foreach ( nongnghiepnhietdoi_partnership_defaults()['ht_audiences'] as $row ) {
+		$fallback[ $row['key'] ] = $row;
+	}
+	return $fallback;
 }
 
 /**
@@ -123,6 +207,39 @@ add_action(
 		nongnghiepnhietdoi_partnership_page_id();
 	},
 	4
+);
+
+/**
+ * Ghi nội dung mặc định vào hộp Meta trang Hợp tác lần đầu.
+ */
+add_action(
+	'acf/init',
+	static function () {
+		if ( get_option( 'nongnghiepnhietdoi_partnership_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		$page_id = nongnghiepnhietdoi_partnership_page_id();
+		if ( ! $page_id ) {
+			return;
+		}
+
+		$existing = get_field( 'ht_hero_title', $page_id );
+		if ( is_string( $existing ) && '' !== $existing ) {
+			update_option( 'nongnghiepnhietdoi_partnership_seeded', 1, false );
+			return;
+		}
+
+		foreach ( nongnghiepnhietdoi_partnership_defaults() as $name => $value ) {
+			if ( '' === $value || array() === $value ) {
+				continue;
+			}
+			update_field( $name, $value, $page_id );
+		}
+
+		update_option( 'nongnghiepnhietdoi_partnership_seeded', 1, false );
+	},
+	30
 );
 
 /**

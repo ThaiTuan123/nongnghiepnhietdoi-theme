@@ -3,7 +3,7 @@
  * Template Name: Hợp tác & dự án
  * Trang Hợp tác & dự án (slug: hop-tac-du-an).
  *
- * Thông tin pháp lý và liên hệ lấy từ Cài đặt Nông nghiệp nhiệt đới.
+ * Nội dung trang sửa trong hộp Meta. Thông tin pháp lý / liên hệ lấy từ Cài đặt chung.
  *
  * @package NongNghiepNhietDoi
  */
@@ -19,16 +19,45 @@ $hours       = (string) nongnghiepnhietdoi_option( 'contact_hours' );
 $logo_id     = (int) nongnghiepnhietdoi_option( 'site_logo' );
 $socials     = nongnghiepnhietdoi_socials();
 $phone_tel   = $phone ? preg_replace( '/[^0-9+]/', '', $phone ) : '';
-$audiences   = nongnghiepnhietdoi_partnership_audiences();
+$audiences   = nongnghiepnhietdoi_partnership_audiences( $page_id );
 $hero_image  = get_the_post_thumbnail_url( $page_id, 'full' );
-$hero_title  = 'Hợp tác & dự án';
+
+$hero_eyebrow = (string) nongnghiepnhietdoi_partnership_field( 'ht_hero_eyebrow', $page_id );
+$hero_title   = (string) nongnghiepnhietdoi_partnership_field( 'ht_hero_title', $page_id );
+$hero_lead    = (string) nongnghiepnhietdoi_partnership_field( 'ht_hero_lead', $page_id );
+$legal_eyebrow = (string) nongnghiepnhietdoi_partnership_field( 'ht_legal_eyebrow', $page_id );
+$legal_title   = (string) nongnghiepnhietdoi_partnership_field( 'ht_legal_title', $page_id );
+$portal_eyebrow = (string) nongnghiepnhietdoi_partnership_field( 'ht_portal_eyebrow', $page_id );
+$portal_title   = (string) nongnghiepnhietdoi_partnership_field( 'ht_portal_title', $page_id );
+$portal_lead    = (string) nongnghiepnhietdoi_partnership_field( 'ht_portal_lead', $page_id );
+$form_intro     = (string) nongnghiepnhietdoi_partnership_field( 'ht_form_intro', $page_id );
 
 if ( ! $short_name ) {
-	$short_name = 'VARC';
+	$short_name = 'TARCC';
+}
+if ( ! $hero_eyebrow ) {
+	$hero_eyebrow = $short_name;
+}
+if ( ! $hero_title ) {
+	$hero_title = 'Hợp tác & dự án';
 }
 if ( ! $hero_image ) {
 	$hero_image = NONGNGHIEPNHIETDOI_URI . '/assets/images/hero-field.jpg';
 }
+
+/**
+ * Chèn tên viết tắt vào chuỗi có %s.
+ *
+ * @param string $text  Chuỗi.
+ * @param string $short Tên viết tắt.
+ * @return string
+ */
+$ht_fmt = static function ( $text, $short ) {
+	if ( false !== strpos( $text, '%s' ) ) {
+		return sprintf( $text, $short );
+	}
+	return $text;
+};
 
 $contact_rows = array();
 if ( $address ) {
@@ -79,7 +108,7 @@ $ht_icon = static function ( $name ) {
 		'expert'   => '<circle cx="12" cy="8" r="3"/><path d="M5.5 19.2a6.5 6.5 0 0 1 13 0"/><path d="M17.2 4.2 18.4 6l1.8.3-1.3 1.3.3 1.8-1.6-.8-1.6.8.3-1.8-1.3-1.3 1.8-.3Z"/>',
 	);
 	if ( ! isset( $icons[ $name ] ) ) {
-		return;
+		$name = 'ngo';
 	}
 	echo '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' . $icons[ $name ] . '</svg>'; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 };
@@ -100,18 +129,11 @@ get_header();
 				<span aria-hidden="true" class="text-sun">/</span>
 				<span><?php echo esc_html( $hero_title ); ?></span>
 			</nav>
-			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $short_name ); ?></p>
+			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
 			<h1 class="mt-3 max-w-3xl font-sans text-4xl font-bold leading-tight tracking-tight md:text-5xl" data-reveal><?php echo esc_html( $hero_title ); ?></h1>
-			<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal>
-				<?php
-				echo esc_html(
-					sprintf(
-						'Gửi hồ sơ năng lực, Call for Proposal hoặc đề xuất hợp tác tới %s.',
-						$short_name
-					)
-				);
-				?>
-			</p>
+			<?php if ( $hero_lead ) : ?>
+				<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal><?php echo esc_html( $ht_fmt( $hero_lead, $short_name ) ); ?></p>
+			<?php endif; ?>
 		</div>
 	</section>
 
@@ -119,8 +141,12 @@ get_header();
 		<div class="mx-auto grid max-w-[1200px] items-start gap-8 px-4 lg:grid-cols-2 lg:gap-10">
 
 			<article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100 md:p-8" data-reveal="left">
-				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php esc_html_e( 'Đơn vị', 'nongnghiepnhietdoi' ); ?></p>
-				<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php esc_html_e( 'Thông tin pháp lý & Liên hệ', 'nongnghiepnhietdoi' ); ?></h2>
+				<?php if ( $legal_eyebrow ) : ?>
+					<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $legal_eyebrow ); ?></p>
+				<?php endif; ?>
+				<?php if ( $legal_title ) : ?>
+					<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php echo esc_html( $legal_title ); ?></h2>
+				<?php endif; ?>
 
 				<div class="mt-6 flex items-center gap-4">
 					<?php if ( $logo_id ) : ?>
@@ -143,7 +169,7 @@ get_header();
 							<p class="text-xs font-bold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $short_name ); ?></p>
 						<?php endif; ?>
 						<?php if ( $company ) : ?>
-							<p class="mt-1 font-sans text-lg font-bold leading-snug text-ink"><?php echo esc_html( $company ); ?></p>
+							<p class="mt-1 font-sans text-lg font-bold uppercase leading-snug tracking-wide text-ink"><?php echo esc_html( $company ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -186,9 +212,15 @@ get_header();
 			</article>
 
 			<div data-reveal="right">
-				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php esc_html_e( 'Đối tác', 'nongnghiepnhietdoi' ); ?></p>
-				<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php esc_html_e( 'Cổng đề xuất hợp tác', 'nongnghiepnhietdoi' ); ?></h2>
-				<p class="mt-3 text-sm leading-relaxed text-slate-600"><?php echo esc_html( sprintf( 'Chọn nhóm phù hợp. Biểu mẫu bên dưới sẽ ghi nhận đề xuất gửi tới %s.', $short_name ) ); ?></p>
+				<?php if ( $portal_eyebrow ) : ?>
+					<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $portal_eyebrow ); ?></p>
+				<?php endif; ?>
+				<?php if ( $portal_title ) : ?>
+					<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php echo esc_html( $portal_title ); ?></h2>
+				<?php endif; ?>
+				<?php if ( $portal_lead ) : ?>
+					<p class="mt-3 text-sm leading-relaxed text-slate-600"><?php echo esc_html( $ht_fmt( $portal_lead, $short_name ) ); ?></p>
+				<?php endif; ?>
 
 				<div class="mt-6 space-y-3">
 					<?php foreach ( $audiences as $key => $audience ) : ?>
@@ -214,16 +246,9 @@ get_header();
 
 		<div id="gui-thong-tin" class="mx-auto mt-10 max-w-[1200px] scroll-mt-28 px-4 md:mt-14">
 			<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8" data-reveal>
-				<p class="text-sm text-slate-500">
-					<?php
-					echo esc_html(
-						sprintf(
-							'Yêu cầu nhận Hồ sơ năng lực hoặc gửi Call for Proposal tới %s.',
-							$short_name
-						)
-					);
-					?>
-				</p>
+				<?php if ( $form_intro ) : ?>
+					<p class="text-sm text-slate-500"><?php echo esc_html( $ht_fmt( $form_intro, $short_name ) ); ?></p>
+				<?php endif; ?>
 
 				<div class="ht-cf7 mt-6">
 					<?php

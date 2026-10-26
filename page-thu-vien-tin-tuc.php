@@ -69,6 +69,12 @@ if ( ! $hero_image ) {
 	$hero_image = NONGNGHIEPNHIETDOI_URI . '/assets/images/hero-field.jpg';
 }
 
+$hero_eyebrow = (string) nongnghiepnhietdoi_library_field( 'tv_hero_eyebrow', $page_id );
+$hero_title   = (string) nongnghiepnhietdoi_library_field( 'tv_hero_title', $page_id );
+$hero_lead    = (string) nongnghiepnhietdoi_library_field( 'tv_hero_lead', $page_id );
+$list_eyebrow = (string) nongnghiepnhietdoi_library_field( 'tv_list_eyebrow', $page_id );
+$latest_title = (string) nongnghiepnhietdoi_library_field( 'tv_latest_title', $page_id );
+
 $filter_url = $base_url;
 if ( $filter ) {
 	$filter_url = add_query_arg( 'danh_muc', $filter, $base_url );
@@ -91,11 +97,17 @@ get_header();
 			<nav class="mb-4 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.18em] text-white/75" aria-label="breadcrumb" data-reveal>
 				<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="transition-colors hover:text-white"><?php esc_html_e( 'Trang chủ', 'nongnghiepnhietdoi' ); ?></a>
 				<span aria-hidden="true" class="text-sun">/</span>
-				<span><?php esc_html_e( 'Thư viện & Tin tức', 'nongnghiepnhietdoi' ); ?></span>
+				<span><?php echo esc_html( $hero_title ); ?></span>
 			</nav>
-			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php esc_html_e( 'Tài liệu & hoạt động', 'nongnghiepnhietdoi' ); ?></p>
-			<h1 class="mt-3 max-w-3xl font-sans text-4xl font-bold leading-tight tracking-tight md:text-5xl" data-reveal><?php esc_html_e( 'Thư viện & Tin tức', 'nongnghiepnhietdoi' ); ?></h1>
-			<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal><?php esc_html_e( 'Công trình nghiên cứu, cẩm nang kỹ thuật và video để nông hộ, nhà khoa học và đối tác dùng chung.', 'nongnghiepnhietdoi' ); ?></p>
+			<?php if ( $hero_eyebrow ) : ?>
+				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
+			<?php endif; ?>
+			<?php if ( $hero_title ) : ?>
+				<h1 class="mt-3 max-w-3xl font-sans text-4xl font-bold leading-tight tracking-tight md:text-5xl" data-reveal><?php echo esc_html( $hero_title ); ?></h1>
+			<?php endif; ?>
+			<?php if ( $hero_lead ) : ?>
+				<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal><?php echo esc_html( $hero_lead ); ?></p>
+			<?php endif; ?>
 		</div>
 	</section>
 
@@ -104,7 +116,9 @@ get_header();
 
 			<div class="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between">
 				<div>
-					<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php esc_html_e( 'Thư viện', 'nongnghiepnhietdoi' ); ?></p>
+					<?php if ( $list_eyebrow ) : ?>
+						<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $list_eyebrow ); ?></p>
+					<?php endif; ?>
 					<h2 class="mt-1 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl">
 						<?php
 						if ( $active_term ) {
@@ -222,7 +236,9 @@ get_header();
 			</div>
 
 			<aside class="rounded-2xl bg-white p-5 shadow-sm ring-1 ring-slate-100 lg:sticky lg:top-28" data-reveal>
-				<h2 class="font-sans text-base font-bold text-ink"><?php esc_html_e( 'Tin mới nhất', 'nongnghiepnhietdoi' ); ?></h2>
+				<?php if ( $latest_title ) : ?>
+					<h2 class="font-sans text-base font-bold text-ink"><?php echo esc_html( $latest_title ); ?></h2>
+				<?php endif; ?>
 				<?php if ( $latest_query->have_posts() ) : ?>
 					<ul class="mt-4 divide-y divide-slate-100">
 						<?php

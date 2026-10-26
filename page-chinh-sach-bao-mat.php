@@ -10,7 +10,7 @@
  */
 
 $cs_company = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_company_name' ) : '';
-$cs_short   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'VARC';
+$cs_short   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'TARCC';
 $cs_email   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_email' ) : '';
 $cs_phone   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_phone' ) : '';
 $cs_address = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'contact_address' ) : '';
@@ -20,7 +20,7 @@ if ( ! $cs_company ) {
 	$cs_company = 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới';
 }
 if ( ! $cs_short ) {
-	$cs_short = 'VARC';
+	$cs_short = 'TARCC';
 }
 
 $cs_phone_tel = $cs_phone ? preg_replace( '/[^0-9+]/', '', $cs_phone ) : '';

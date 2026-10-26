@@ -1,0 +1,185 @@
+{
+	"key": "group_nongnghiepnhietdoi_hop_tac",
+	"title": "Hợp tác & dự án - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_ht_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa tiêu đề, đoạn giới thiệu và các cổng đề xuất tại đây. Ảnh nền đầu trang lấy từ <strong>Ảnh đại diện</strong> ở cột bên phải. Thông tin pháp lý, logo, địa chỉ, điện thoại lấy từ <strong>Nông nghiệp nhiệt đới → Cài đặt chung</strong>.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_ht_tab_hero",
+			"label": "Mở đầu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_ht_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "ht_hero_eyebrow",
+			"type": "text",
+			"instructions": "Để trống sẽ dùng tên viết tắt (TARCC) từ Cài đặt chung.",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_ht_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "ht_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_ht_hero_lead",
+			"label": "Đoạn giới thiệu",
+			"name": "ht_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br",
+			"instructions": "Dùng %s nếu muốn chèn tên viết tắt (TARCC)."
+		},
+		{
+			"key": "field_nn_ht_tab_legal",
+			"label": "Thẻ pháp lý",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_ht_legal_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "ht_legal_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_ht_legal_title",
+			"label": "Tiêu đề thẻ",
+			"name": "ht_legal_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_ht_tab_portal",
+			"label": "Cổng đề xuất",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_ht_portal_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "ht_portal_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_ht_portal_title",
+			"label": "Tiêu đề",
+			"name": "ht_portal_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_ht_portal_lead",
+			"label": "Đoạn mở",
+			"name": "ht_portal_lead",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Dùng %s nếu muốn chèn tên viết tắt."
+		},
+		{
+			"key": "field_nn_ht_audiences",
+			"label": "Các cổng đề xuất",
+			"name": "ht_audiences",
+			"type": "repeater",
+			"layout": "block",
+			"button_label": "Thêm cổng",
+			"min": 0,
+			"max": 6,
+			"sub_fields": [
+				{
+					"key": "field_nn_ht_aud_key",
+					"label": "Mã (icon)",
+					"name": "key",
+					"type": "select",
+					"choices": {
+						"ngo": "Nhà tài trợ / NGO",
+						"business": "Doanh nghiệp / HTX",
+						"expert": "Chuyên gia / Nhà khoa học"
+					},
+					"default_value": "ngo",
+					"wrapper": { "width": "30" }
+				},
+				{
+					"key": "field_nn_ht_aud_title",
+					"label": "Tiêu đề",
+					"name": "title",
+					"type": "text",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_ht_aud_subject",
+					"label": "Mã chủ đề form",
+					"name": "subject",
+					"type": "text",
+					"instructions": "ngo | business | expert | capability | cfp",
+					"wrapper": { "width": "35" }
+				},
+				{
+					"key": "field_nn_ht_aud_text",
+					"label": "Mô tả",
+					"name": "text",
+					"type": "textarea",
+					"rows": 2,
+					"new_lines": ""
+				}
+			]
+		},
+		{
+			"key": "field_nn_ht_tab_form",
+			"label": "Biểu mẫu",
+			"name": "",
+			"type": "tab",
+			"placement": "top"
+		},
+		{
+			"key": "field_nn_ht_form_intro",
+			"label": "Đoạn trên biểu mẫu",
+			"name": "ht_form_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Dùng %s nếu muốn chèn tên viết tắt."
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-hop-tac-du-an.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "hop-tac-du-an"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Nội dung trang Hợp tác & dự án.",
+	"modified": 1761470000
+}

@@ -3,7 +3,7 @@
  * Template Name: Liên hệ
  * Trang Liên hệ (slug: lien-he).
  *
- * Địa chỉ, email, điện thoại và giờ làm việc lấy từ Cài đặt Nông nghiệp nhiệt đới.
+ * Nội dung trang sửa trong hộp Meta. Địa chỉ / liên hệ lấy từ Cài đặt chung.
  *
  * @package NongNghiepNhietDoi
  */
@@ -21,14 +21,33 @@ $map_embed  = (string) nongnghiepnhietdoi_option( 'contact_map' );
 $socials    = nongnghiepnhietdoi_socials();
 $phone_tel  = $phone ? preg_replace( '/[^0-9+]/', '', $phone ) : '';
 $hero_image = get_the_post_thumbnail_url( $page_id, 'full' );
-$hero_title = 'Liên hệ';
+
+$hero_eyebrow = (string) nongnghiepnhietdoi_contact_field( 'lh_hero_eyebrow', $page_id );
+$hero_title   = (string) nongnghiepnhietdoi_contact_field( 'lh_hero_title', $page_id );
+$hero_lead    = (string) nongnghiepnhietdoi_contact_field( 'lh_hero_lead', $page_id );
+$info_eyebrow = (string) nongnghiepnhietdoi_contact_field( 'lh_info_eyebrow', $page_id );
+$info_title   = (string) nongnghiepnhietdoi_contact_field( 'lh_info_title', $page_id );
+$form_intro   = (string) nongnghiepnhietdoi_contact_field( 'lh_form_intro', $page_id );
 
 if ( ! $short_name ) {
-	$short_name = 'VARC';
+	$short_name = 'TARCC';
+}
+if ( ! $hero_eyebrow ) {
+	$hero_eyebrow = $short_name;
+}
+if ( ! $hero_title ) {
+	$hero_title = 'Liên hệ';
 }
 if ( ! $hero_image ) {
 	$hero_image = NONGNGHIEPNHIETDOI_URI . '/assets/images/hero-field.jpg';
 }
+
+$lh_fmt = static function ( $text, $insert ) {
+	if ( false !== strpos( $text, '%s' ) ) {
+		return sprintf( $text, $insert );
+	}
+	return $text;
+};
 
 $contact_rows = array();
 if ( $address ) {
@@ -91,18 +110,11 @@ get_header();
 				<span aria-hidden="true" class="text-sun">/</span>
 				<span><?php echo esc_html( $hero_title ); ?></span>
 			</nav>
-			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $short_name ); ?></p>
+			<p class="text-xs font-semibold uppercase tracking-[0.16em] text-sun" data-reveal><?php echo esc_html( $hero_eyebrow ); ?></p>
 			<h1 class="mt-3 font-sans text-4xl font-bold leading-tight tracking-tight md:text-5xl" data-reveal><?php echo esc_html( $hero_title ); ?></h1>
-			<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal>
-				<?php
-				echo esc_html(
-					sprintf(
-						'Gửi thông tin cho %s. Chúng tôi phản hồi trong giờ làm việc.',
-						$company ? $company : $short_name
-					)
-				);
-				?>
-			</p>
+			<?php if ( $hero_lead ) : ?>
+				<p class="mt-4 max-w-2xl text-base leading-relaxed text-white/85 md:text-lg" data-reveal><?php echo esc_html( $lh_fmt( $hero_lead, $company ? $company : $short_name ) ); ?></p>
+			<?php endif; ?>
 		</div>
 	</section>
 
@@ -110,8 +122,12 @@ get_header();
 		<div class="mx-auto grid max-w-[1200px] items-start gap-8 px-4 lg:grid-cols-2 lg:gap-10">
 
 			<article class="rounded-3xl bg-white p-6 shadow-sm ring-1 ring-slate-100 md:p-8" data-reveal="left">
-				<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php esc_html_e( 'Đơn vị', 'nongnghiepnhietdoi' ); ?></p>
-				<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php esc_html_e( 'Thông tin liên hệ', 'nongnghiepnhietdoi' ); ?></h2>
+				<?php if ( $info_eyebrow ) : ?>
+					<p class="text-xs font-semibold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $info_eyebrow ); ?></p>
+				<?php endif; ?>
+				<?php if ( $info_title ) : ?>
+					<h2 class="mt-2 font-sans text-2xl font-bold tracking-tight text-ink md:text-3xl"><?php echo esc_html( $info_title ); ?></h2>
+				<?php endif; ?>
 
 				<div class="mt-6 flex items-center gap-4">
 					<?php if ( $logo_id ) : ?>
@@ -134,7 +150,7 @@ get_header();
 							<p class="text-xs font-bold uppercase tracking-[0.16em] text-brand"><?php echo esc_html( $short_name ); ?></p>
 						<?php endif; ?>
 						<?php if ( $company ) : ?>
-							<p class="mt-1 font-sans text-lg font-bold leading-snug text-ink"><?php echo esc_html( $company ); ?></p>
+							<p class="mt-1 font-sans text-lg font-bold uppercase leading-snug tracking-wide text-ink"><?php echo esc_html( $company ); ?></p>
 						<?php endif; ?>
 					</div>
 				</div>
@@ -177,7 +193,9 @@ get_header();
 			</article>
 
 			<div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm md:p-8" data-reveal="right">
-				<p class="text-sm text-slate-500"><?php echo esc_html( sprintf( 'Gửi phản hồi tới %s.', $short_name ) ); ?></p>
+				<?php if ( $form_intro ) : ?>
+					<p class="text-sm text-slate-500"><?php echo esc_html( $lh_fmt( $form_intro, $short_name ) ); ?></p>
+				<?php endif; ?>
 				<div class="lh-cf7 mt-6">
 					<?php
 					if ( function_exists( 'nongnghiepnhietdoi_cf7_render' ) ) {
