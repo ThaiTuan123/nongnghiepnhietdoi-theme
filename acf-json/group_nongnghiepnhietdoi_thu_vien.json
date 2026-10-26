@@ -1,0 +1,75 @@
+{
+	"key": "group_nongnghiepnhietdoi_thu_vien",
+	"title": "Thư viện & Tin tức - Nội dung trang",
+	"fields": [
+		{
+			"key": "field_nn_tv_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa nhãn, tiêu đề và đoạn giới thiệu đầu trang. Ảnh nền lấy từ <strong>Ảnh đại diện</strong> ở cột bên phải. Danh mục thư viện lấy từ chuyên mục WordPress.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_tv_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "tv_hero_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_tv_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "tv_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_tv_hero_lead",
+			"label": "Đoạn giới thiệu",
+			"name": "tv_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br"
+		},
+		{
+			"key": "field_nn_tv_list_eyebrow",
+			"label": "Nhãn khối danh sách",
+			"name": "tv_list_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_tv_latest_title",
+			"label": "Tiêu đề cột Tin mới",
+			"name": "tv_latest_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		}
+	],
+	"location": [
+		[
+			{
+				"param": "page_template",
+				"operator": "==",
+				"value": "page-thu-vien-tin-tuc.php"
+			}
+		],
+		[
+			{
+				"param": "page_slug",
+				"operator": "==",
+				"value": "thu-vien-tin-tuc"
+			}
+		]
+	],
+	"menu_order": 0,
+	"position": "normal",
+	"style": "default",
+	"label_placement": "top",
+	"instruction_placement": "label",
+	"active": true,
+	"description": "Nội dung mở đầu trang Thư viện & Tin tức.",
+	"modified": 1761470001
+}

@@ -21,9 +21,9 @@ function nongnghiepnhietdoi_board_defaults() {
 		return $defaults;
 	}
 
-	$short = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'VARC';
+	$short = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'TARCC';
 	if ( ! $short ) {
-		$short = 'VARC';
+		$short = 'TARCC';
 	}
 
 	$defaults = array(

@@ -18,23 +18,23 @@
 			"preview_size": "medium",
 			"library": "all",
 			"mime_types": "jpg,jpeg,png,svg,webp",
-			"instructions": "Logo hiển thị ở header và footer. Bỏ trống sẽ dùng logo VARC mặc định của theme."
+			"instructions": "Logo hiển thị ở header và footer. Bỏ trống sẽ dùng logo mặc định của theme."
 		},
 		{
 			"key": "field_lx_opt_short_name",
 			"label": "Tên viết tắt",
 			"name": "site_short_name",
 			"type": "text",
-			"default_value": "VARC",
-			"instructions": "Chữ đứng cạnh logo trên header. Ví dụ: VARC."
+			"default_value": "TARCC",
+			"instructions": "Chữ đứng cạnh logo trên header. Ví dụ: TARCC."
 		},
 		{
 			"key": "field_lx_opt_company",
 			"label": "Tên đơn vị",
 			"name": "site_company_name",
 			"type": "text",
-			"default_value": "Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới",
-			"instructions": "Tên đầy đủ hiển thị ở footer."
+			"default_value": "Trung Tâm Nghiên Cứu Và Tư Vấn Nông Nghiệp Nhiệt Đới",
+			"instructions": "Tên đầy đủ hiển thị ở footer và trang Hợp tác."
 		},
 		{
 			"key": "field_lx_opt_about",
@@ -42,8 +42,8 @@
 			"name": "site_about",
 			"type": "textarea",
 			"rows": 4,
-			"default_value": "Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.",
-			"instructions": "Đoạn mô tả dưới logo ở footer. Cũng dùng làm mô tả SEO mặc định nếu ô SEO để trống."
+			"default_value": "Trung Tâm Nghiên Cứu Và Tư Vấn Nông Nghiệp Nhiệt Đới (TARCC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.",
+			"instructions": "Đoạn mô tả dưới logo ở footer và thẻ Thông tin pháp lý. Cũng dùng làm mô tả SEO mặc định nếu ô SEO để trống."
 		},
 		{
 			"key": "field_lx_opt_tab_contact",
@@ -183,5 +183,5 @@
 	"active": true,
 	"description": "Thông tin dùng chung toàn site. Sửa tại đây thì header, footer, trang liên hệ, nút nổi và SEO sẽ đổi theo.",
 	"show_in_rest": 0,
-	"modified": 1761000000
+	"modified": 1761470003
 }

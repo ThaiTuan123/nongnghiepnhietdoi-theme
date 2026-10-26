@@ -3,11 +3,67 @@
 	"title": "Liên hệ - Nội dung trang",
 	"fields": [
 		{
+			"key": "field_nn_lh_help",
+			"label": "Hướng dẫn",
+			"name": "",
+			"type": "message",
+			"message": "Sửa tiêu đề và đoạn giới thiệu tại đây. Ảnh nền đầu trang lấy từ <strong>Ảnh đại diện</strong>. Địa chỉ, điện thoại, email, logo lấy từ <strong>Nông nghiệp nhiệt đới → Cài đặt chung</strong>.",
+			"new_lines": "wpautop",
+			"esc_html": 0
+		},
+		{
+			"key": "field_nn_lh_hero_eyebrow",
+			"label": "Nhãn nhỏ",
+			"name": "lh_hero_eyebrow",
+			"type": "text",
+			"instructions": "Để trống sẽ dùng tên viết tắt từ Cài đặt chung.",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lh_hero_title",
+			"label": "Tiêu đề trang",
+			"name": "lh_hero_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lh_hero_lead",
+			"label": "Đoạn giới thiệu",
+			"name": "lh_hero_lead",
+			"type": "textarea",
+			"rows": 3,
+			"new_lines": "br",
+			"instructions": "Dùng %s để chèn tên đơn vị hoặc tên viết tắt."
+		},
+		{
+			"key": "field_nn_lh_info_eyebrow",
+			"label": "Nhãn thẻ thông tin",
+			"name": "lh_info_eyebrow",
+			"type": "text",
+			"wrapper": { "width": "40" }
+		},
+		{
+			"key": "field_nn_lh_info_title",
+			"label": "Tiêu đề thẻ thông tin",
+			"name": "lh_info_title",
+			"type": "text",
+			"wrapper": { "width": "60" }
+		},
+		{
+			"key": "field_nn_lh_form_intro",
+			"label": "Đoạn trên biểu mẫu",
+			"name": "lh_form_intro",
+			"type": "textarea",
+			"rows": 2,
+			"new_lines": "br",
+			"instructions": "Dùng %s để chèn tên viết tắt."
+		},
+		{
 			"key": "field_lx_lh_info_image",
-			"label": "Ảnh minh họa",
+			"label": "Ảnh minh họa (tuỳ chọn)",
 			"name": "lh_info_image",
 			"type": "image",
-			"instructions": "Ảnh bên trái khối Thông tin tập đoàn. Nếu để trống sẽ hiện nền thay thế.",
+			"instructions": "Dành dự phòng. Hiện tại ảnh nền hero dùng Ảnh đại diện của trang.",
 			"return_format": "array",
 			"preview_size": "medium",
 			"library": "all",
@@ -36,6 +92,6 @@
 	"label_placement": "top",
 	"instruction_placement": "label",
 	"active": true,
-	"description": "Ảnh minh họa bên trái khối thông tin liên hệ.",
-	"modified": 1784602000
+	"description": "Nội dung trang Liên hệ.",
+	"modified": 1761470002
 }

@@ -302,3 +302,77 @@ add_action(
 	},
 	4
 );
+
+/**
+ * Nội dung mặc định trang Liên hệ.
+ *
+ * @return array<string,string>
+ */
+function nongnghiepnhietdoi_contact_defaults() {
+	return array(
+		'lh_hero_eyebrow'  => '',
+		'lh_hero_title'    => 'Liên hệ',
+		'lh_hero_lead'     => 'Gửi thông tin cho %s. Chúng tôi phản hồi trong giờ làm việc.',
+		'lh_info_eyebrow'  => 'Đơn vị',
+		'lh_info_title'    => 'Thông tin liên hệ',
+		'lh_form_intro'    => 'Gửi phản hồi tới %s.',
+	);
+}
+
+/**
+ * Lấy một ô nội dung trang Liên hệ: đã lưu hoặc mặc định.
+ *
+ * @param string $name    Tên field.
+ * @param int    $post_id ID trang.
+ * @return mixed
+ */
+function nongnghiepnhietdoi_contact_field( $name, $post_id = 0 ) {
+	$defaults = nongnghiepnhietdoi_contact_defaults();
+	$default  = array_key_exists( $name, $defaults ) ? $defaults[ $name ] : '';
+	$page_id  = $post_id ? (int) $post_id : nongnghiepnhietdoi_contact_page_id();
+
+	if ( ! $page_id || ! function_exists( 'get_field' ) ) {
+		return $default;
+	}
+
+	$value = get_field( $name, $page_id );
+
+	if ( null === $value || false === $value ) {
+		return $default;
+	}
+
+	return $value;
+}
+
+/**
+ * Ghi nội dung mặc định vào hộp Meta trang Liên hệ lần đầu.
+ */
+add_action(
+	'acf/init',
+	static function () {
+		if ( get_option( 'nongnghiepnhietdoi_contact_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		$page_id = nongnghiepnhietdoi_contact_page_id();
+		if ( ! $page_id ) {
+			return;
+		}
+
+		$existing = get_field( 'lh_hero_title', $page_id );
+		if ( is_string( $existing ) && '' !== $existing ) {
+			update_option( 'nongnghiepnhietdoi_contact_seeded', 1, false );
+			return;
+		}
+
+		foreach ( nongnghiepnhietdoi_contact_defaults() as $name => $value ) {
+			if ( '' === $value ) {
+				continue;
+			}
+			update_field( $name, $value, $page_id );
+		}
+
+		update_option( 'nongnghiepnhietdoi_contact_seeded', 1, false );
+	},
+	30
+);

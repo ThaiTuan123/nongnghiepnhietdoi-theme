@@ -53,9 +53,9 @@ add_action(
  */
 function nongnghiepnhietdoi_option_defaults() {
 	return array(
-		'site_short_name'    => 'VARC',
-		'site_company_name'  => 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới',
-		'site_about'         => 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.',
+		'site_short_name'    => 'TARCC',
+		'site_company_name'  => 'Trung Tâm Nghiên Cứu Và Tư Vấn Nông Nghiệp Nhiệt Đới',
+		'site_about'         => 'Trung Tâm Nghiên Cứu Và Tư Vấn Nông Nghiệp Nhiệt Đới (TARCC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.',
 		'contact_email'      => 'info@nongnghiepnhietdoi.org',
 		'contact_address'    => '121 Nguyễn Bỉnh Khiêm, Phường Tân Định, TP. Hồ Chí Minh',
 		'contact_hours'      => 'Thứ 2 – Thứ 6: 08:00 – 17:00',
@@ -106,6 +106,62 @@ add_action(
 		update_option( 'nongnghiepnhietdoi_options_seeded', 1, false );
 	},
 	20
+);
+
+/**
+ * Một lần: VARC → TARCC và viết hoa tên đơn vị trong Cài đặt chung.
+ */
+add_action(
+	'acf/init',
+	function () {
+		if ( get_option( 'nongnghiepnhietdoi_brand_tarcc_v1' ) || ! function_exists( 'update_field' ) || ! function_exists( 'get_field' ) ) {
+			return;
+		}
+
+		$defaults = nongnghiepnhietdoi_option_defaults();
+		$short    = get_field( 'site_short_name', 'option' );
+		$company  = get_field( 'site_company_name', 'option' );
+		$about    = get_field( 'site_about', 'option' );
+
+		if ( ! is_string( $short ) || '' === $short || 'VARC' === $short ) {
+			update_field( 'site_short_name', $defaults['site_short_name'], 'option' );
+		}
+
+		$legacy_company = array(
+			'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới',
+			'Trung tâm nghiên cứu và tư vấn nông nghiệp nhiệt đới',
+			'Trung Tâm Nghiên Cứu và Tư Vấn Nông Nghiệp Nhiệt Đới',
+		);
+		if ( ! is_string( $company ) || '' === $company || in_array( $company, $legacy_company, true ) ) {
+			update_field( 'site_company_name', $defaults['site_company_name'], 'option' );
+		}
+
+		if ( is_string( $about ) && '' !== $about ) {
+			$updated = str_replace(
+				array(
+					'(VARC)',
+					'VARC',
+					'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới',
+					'Trung tâm nghiên cứu và tư vấn nông nghiệp nhiệt đới',
+				),
+				array(
+					'(TARCC)',
+					'TARCC',
+					$defaults['site_company_name'],
+					$defaults['site_company_name'],
+				),
+				$about
+			);
+			if ( $updated !== $about ) {
+				update_field( 'site_about', $updated, 'option' );
+			}
+		} else {
+			update_field( 'site_about', $defaults['site_about'], 'option' );
+		}
+
+		update_option( 'nongnghiepnhietdoi_brand_tarcc_v1', 1, false );
+	},
+	21
 );
 
 /**

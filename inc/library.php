@@ -139,6 +139,46 @@ function nongnghiepnhietdoi_library_terms() {
 	return $terms;
 }
 
+/**
+ * Nội dung mặc định trang Thư viện. Khách sửa trong hộp Meta sẽ ghi đè.
+ *
+ * @return array<string,string>
+ */
+function nongnghiepnhietdoi_library_defaults() {
+	return array(
+		'tv_hero_eyebrow'  => 'Tài liệu & hoạt động',
+		'tv_hero_title'    => 'Thư viện & Tin tức',
+		'tv_hero_lead'     => 'Công trình nghiên cứu, cẩm nang kỹ thuật và video để nông hộ, nhà khoa học và đối tác dùng chung.',
+		'tv_list_eyebrow'  => 'Thư viện',
+		'tv_latest_title'  => 'Tin mới nhất',
+	);
+}
+
+/**
+ * Lấy một ô nội dung trang Thư viện: đã lưu hoặc mặc định.
+ *
+ * @param string $name    Tên field.
+ * @param int    $post_id ID trang.
+ * @return mixed
+ */
+function nongnghiepnhietdoi_library_field( $name, $post_id = 0 ) {
+	$defaults = nongnghiepnhietdoi_library_defaults();
+	$default  = array_key_exists( $name, $defaults ) ? $defaults[ $name ] : '';
+	$page_id  = $post_id ? (int) $post_id : nongnghiepnhietdoi_library_page_id();
+
+	if ( ! $page_id || ! function_exists( 'get_field' ) ) {
+		return $default;
+	}
+
+	$value = get_field( $name, $page_id );
+
+	if ( null === $value || false === $value ) {
+		return $default;
+	}
+
+	return $value;
+}
+
 add_action(
 	'init',
 	static function () {
@@ -146,6 +186,39 @@ add_action(
 		nongnghiepnhietdoi_library_page_id();
 	},
 	5
+);
+
+/**
+ * Ghi nội dung mặc định vào hộp Meta trang Thư viện lần đầu.
+ */
+add_action(
+	'acf/init',
+	static function () {
+		if ( get_option( 'nongnghiepnhietdoi_library_seeded' ) || ! function_exists( 'update_field' ) ) {
+			return;
+		}
+
+		$page_id = nongnghiepnhietdoi_library_page_id();
+		if ( ! $page_id ) {
+			return;
+		}
+
+		$existing = get_field( 'tv_hero_title', $page_id );
+		if ( is_string( $existing ) && '' !== $existing ) {
+			update_option( 'nongnghiepnhietdoi_library_seeded', 1, false );
+			return;
+		}
+
+		foreach ( nongnghiepnhietdoi_library_defaults() as $name => $value ) {
+			if ( '' === $value ) {
+				continue;
+			}
+			update_field( $name, $value, $page_id );
+		}
+
+		update_option( 'nongnghiepnhietdoi_library_seeded', 1, false );
+	},
+	30
 );
 
 /**

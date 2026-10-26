@@ -5,7 +5,7 @@
  * @package NongNghiepNhietDoi
  */
 
-$varc_short_name   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'VARC';
+$varc_short_name   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'TARCC';
 $varc_company_name = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_company_name' ) : '';
 
 $varc_menu_args = array(

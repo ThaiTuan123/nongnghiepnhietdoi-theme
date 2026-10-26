@@ -22,13 +22,13 @@ function nongnghiepnhietdoi_about_defaults() {
 	}
 
 	$company = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_company_name' ) : '';
-	$short   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'VARC';
+	$short   = function_exists( 'nongnghiepnhietdoi_option' ) ? nongnghiepnhietdoi_option( 'site_short_name' ) : 'TARCC';
 
 	if ( ! $company ) {
 		$company = 'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới';
 	}
 	if ( ! $short ) {
-		$short = 'VARC';
+		$short = 'TARCC';
 	}
 
 	$defaults = array(

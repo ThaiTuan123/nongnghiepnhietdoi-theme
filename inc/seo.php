@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 define(
 	'NONGNGHIEPNHIETDOI_DEFAULT_DESCRIPTION',
-	'Trung tâm Nghiên cứu và Tư vấn Nông nghiệp Nhiệt đới (VARC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.'
+	'Trung Tâm Nghiên Cứu Và Tư Vấn Nông Nghiệp Nhiệt Đới (TARCC) chuyển hóa tiến bộ khoa học thành sinh kế bền vững cho nông dân, giá trị gia tăng cho doanh nghiệp và bảo vệ môi trường sinh thái.'
 );
 
 /**
