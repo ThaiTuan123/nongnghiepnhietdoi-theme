@@ -400,8 +400,7 @@
   .varc-nav .sub-menu {
     @apply pointer-events-none invisible absolute left-0 top-full z-50 m-0 min-w-[240px] list-none translate-y-1 rounded-xl bg-white p-2 opacity-0 shadow-lg ring-1 ring-black/5 transition;
   }
-  .varc-nav--right .menu-item:nth-last-child(-n + 2) > .sub-menu,
-  .varc-nav--left .menu-item:last-child > .sub-menu {
+  .varc-nav .menu-item:nth-last-child(-n + 2) > .sub-menu {
     @apply left-auto right-0;
   }
   .varc-nav .menu-item-has-children:hover > .sub-menu,
@@ -1148,33 +1147,17 @@ body.lx-lightbox-open {
   }
 }
 
-/* Một hàng 3-3: menu trái | logo giữa | menu phải | CTA icon. */
+/* Logo trái — menu pill phải — mail + cờ hàng dưới menu. */
 .varc-nav {
   flex: none;
   width: max-content;
   max-width: 100%;
   background-color: #00a050;
 }
-.varc-brand {
-  padding-block: 0.2rem;
-}
-.varc-brand img.lx-logo,
-.varc-brand img.varc-logo {
-  margin-inline: auto;
-}
 .varc-logo-full {
-  max-width: 10.5rem;
+  max-width: 13rem;
   line-height: 1.2;
-  text-align: center;
   opacity: 0.9;
-}
-.varc-logo-name {
-  text-align: center;
-}
-@media (min-width: 1280px) {
-  .varc-logo-full {
-    max-width: 12rem;
-  }
 }
 .varc-header .varc-nav {
   box-sizing: border-box;
@@ -1182,18 +1165,17 @@ body.lx-lightbox-open {
 }
 .varc-header .varc-cta {
   box-sizing: border-box;
-  height: 2.75rem;
-  width: 2.75rem;
+  height: 2.25rem;
+  width: 2.25rem;
   padding: 0;
 }
 @media (min-width: 1280px) {
   .varc-header .varc-nav {
     height: 3rem;
   }
-  .varc-header .varc-cta {
-    height: 2.75rem;
-    width: 2.75rem;
-  }
+}
+.varc-tools .varc-lang {
+  height: 2.25rem;
 }
 .varc-lang {
   display: flex;

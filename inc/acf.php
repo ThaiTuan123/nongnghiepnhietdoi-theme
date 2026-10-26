@@ -161,9 +161,9 @@ add_action(
 	function () {
 		?>
 <style id="nongnghiepnhietdoi-logo-inline">
-	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:180px;max-height:68px;object-fit:contain;background-color:transparent}
-	@media (max-width:639px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:112px;max-height:48px}}
-	@media (min-width:1280px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:200px;max-height:72px}}
+	img.lx-logo,img.varc-logo{display:block;width:auto;height:auto;max-width:240px;max-height:96px;object-fit:contain;background-color:transparent}
+	@media (max-width:639px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:132px;max-height:60px}}
+	@media (min-width:1280px){.varc-header img.lx-logo,.varc-header img.varc-logo{max-width:280px;max-height:104px}}
 </style>
 		<?php
 	},
